@@ -1,5 +1,5 @@
-# S3T-G2
-Projet Tutoré 2020 en S3T Groupe 2 
+# S4T-G2
+Projet Tutoré 2021 en S4T Groupe 2 
 
 **Membres de l'équipe :** 
 - Latapie Florian **Chef d'équipe** (@lf9034541)
