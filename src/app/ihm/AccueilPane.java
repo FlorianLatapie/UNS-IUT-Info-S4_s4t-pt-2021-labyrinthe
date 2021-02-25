@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import pp.ihm.ConfirmationPane;
 
 
 public class AccueilPane extends StackPane{
