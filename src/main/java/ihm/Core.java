@@ -8,6 +8,7 @@ public class Core {
 	private final int minHauteur = 500;
 	private String styleBouton = " -fx-background-color:#000000; -fx-background-radius: 15px; -fx-text-fill: #ffffff";
 	private String styleBoutonSouris = "-fx-background-color:#ff0000;  -fx-text-fill:#000000; -fx-background-radius: 15px;";
+	private String nomPolice = "Segoe UI";
 	
 	public String getStyleBouton() {
 		return styleBouton;
@@ -24,8 +25,6 @@ public class Core {
 	public void setStyleBoutonSouris(String styleBoutonSouris) {
 		this.styleBoutonSouris = styleBoutonSouris;
 	}
-
-	private String nomPolice = "Segoe UI";
 
 	public String getNomPolice() {
 		return nomPolice;

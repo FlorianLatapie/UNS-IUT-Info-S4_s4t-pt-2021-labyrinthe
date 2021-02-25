@@ -77,7 +77,7 @@ public class AccueilPane extends VBox{
 		bQuitter.setOnMouseEntered(event -> bQuitter.setStyle(styleBoutonsSouris));
 		bQuitter.setOnMouseExited(event -> bQuitter.setStyle(styleBoutons));
 		bQuitter.setOnAction(event -> {
-			boolean resultat = ConfirmationPane.afficher("quitter l'main.java.app","etes vous surs de quitter ?");
+			boolean resultat = ConfirmationPane.afficher();
 			if (resultat) {
 				Platform.exit();
 				System.exit(0);

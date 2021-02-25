@@ -15,9 +15,10 @@ import javafx.stage.Stage;
 
 public class ConfirmationPane {
 	static boolean reponse;
-	private static int tailleFenetreL = 500;
-	private static int tailleFenetreH = 190;
-	private static String nomPolice = "Segoe UI";
+	private static int tailleFenetreL = 480;
+	private static int tailleFenetreH = 160;
+	private static Core c = InterfacePrincipale.getCore();
+	private static String nomPolice = c.getNomPolice();
 	private static Font police = Font.font(nomPolice, FontWeight.BOLD, 27);
 
 	static Button boutonOui;
@@ -30,11 +31,11 @@ public class ConfirmationPane {
 	 * @param message message affiché dans la fenetre
 	 * @return
 	 */
-	public static boolean afficher(String titre, String message) {
+	public static boolean afficher() {
 		Stage window = new Stage();
 		//window.getIcons().add(new Image(DataControl.ICONE));
 		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle(titre);
+		window.setTitle("Quitter l'application");
 
 		window.setMaxWidth(tailleFenetreL);
 		window.setMaxHeight(tailleFenetreH);
@@ -45,10 +46,10 @@ public class ConfirmationPane {
 
 		// titre
 		Label labelL1 = new Label();
-		labelL1.setText(message);
+		labelL1.setText("Êtes-vous sûr de vouloir quitter l'application ?");
 		labelL1.setStyle("-fx-text-fill: #DDDDDD");
 		labelL1.setFont(Font.font(nomPolice, FontWeight.BOLD, 20));
-		labelL1.setPadding(new Insets(10, 10, 0, 10));
+		labelL1.setPadding(new Insets(10));
 
 		// boutons
 		boutonOui = new Button("Quitter");
@@ -74,7 +75,7 @@ public class ConfirmationPane {
 		HBox boutonHbox = new HBox(10);
 		boutonHbox.getChildren().addAll(boutonNon, boutonOui);
 		boutonHbox.setAlignment(Pos.CENTER);
-		boutonHbox.setPadding(new Insets(10));
+		
 
 		VBox layout = new VBox(10);
 		layout.setAlignment(Pos.TOP_CENTER);
