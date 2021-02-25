@@ -1,6 +1,5 @@
 package ihm;
 
-import ihm.InterfacePrincipale;
 import ihm.DataControl.ApplicationPane;
 import javafx.event.EventHandler;
 import javafx.scene.Node;

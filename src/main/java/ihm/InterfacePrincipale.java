@@ -17,28 +17,19 @@ public class InterfacePrincipale extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
 		//primaryStage.getIcons().add(new Image(DataControl.ICONE));
 		sControl = new ScreenControl(this, core);
-		int largeur = 1920;
-		int hauteur = 1080;
 
 		primaryStage.setTitle("Maze Solver");
 
-		primaryStage.setMaxWidth(largeur);
-		primaryStage.setMaxHeight(hauteur);
-		primaryStage.setMinWidth(largeur - 20.0);
-		primaryStage.setMinHeight(hauteur - 50.0);
+		primaryStage.setMaxWidth(core.getMaxLargeur());
+		primaryStage.setMaxHeight(core.getMaxHauteur());
+		primaryStage.setMinWidth(core.getMinLargeur());
+		primaryStage.setMinHeight(core.getMinHauteur());
 
-		//primaryStage.setFullScreen(false);
-
-
-		AccueilPane accueilPane = new AccueilPane(sControl, core);
-
-		
+		AccueilPane accueilPane = new AccueilPane(sControl);
 
 		//scene.getStylesheets().add(DataControl.CSS);
-		
 
 		root.getChildren().add(accueilPane);
 
@@ -61,5 +52,9 @@ public class InterfacePrincipale extends Application {
 
 	public Scene getScene() {
 		return scene;
+	}
+	
+	public static Core getCore() {
+		return core;
 	}
 }

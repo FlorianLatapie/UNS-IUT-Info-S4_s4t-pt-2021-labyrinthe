@@ -20,54 +20,55 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 
-public class AccueilPane extends StackPane{
+public class AccueilPane extends VBox{
 	private ScreenControl sControl = null;
-	private Core core = null;
+	private Core core = InterfacePrincipale.getCore();
 	private final ApplicationPane paneName = ApplicationPane.ACCUEIL;
-
-	private int tailleCarreCentral = 600;
 
 	private int hBouton = 100;
 	private int lBouton = 200;
-	private int marge = tailleCarreCentral / 25;
+	private int marge = 24;
 	private Insets margeBoutons = new Insets(marge, marge, marge, marge);
 
-	private String nomPolice = "Segoe UI";
+	private String nomPolice = core.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
 
 	private CornerRadii coin = new CornerRadii(15.0);
 
-	private String styleBoutons = " -fx-background-color:#000000; -fx-background-radius: 15px; -fx-text-fill: #ffffff";
-	private String styleBoutonsSouris = "-fx-background-color:#ff0000;  -fx-text-fill:#000000; -fx-background-radius: 15px;";
+	private String styleBoutons = core.getStyleBouton();
+	private String styleBoutonsSouris = core.getStyleBoutonSouris();
 
 	private GaussianBlur flou = new GaussianBlur(30);
 
 	VBox centreMenu;
 	Label titre1;
 	Label titre2;
-	Button bJouer;
-	Button bOptions;
-	Button bRegles;
+	Button bLancer;
 	Button bQuitter;
 
-	public AccueilPane(ScreenControl sc, Core c) {
-		core = c;
+	public AccueilPane(ScreenControl sc) {
 		sControl = sc;
 
-		titre1 = new Label("hello world");
-		titre1.setFont(Font.font(nomPolice, FontWeight.BOLD, 160));
+		titre1 = new Label("Maze Solver");
+		titre1.setFont(Font.font(nomPolice, FontWeight.BOLD, 25));
 		titre1.setTextFill(Color.BLACK);
 
 
 		VBox titre = new VBox(titre1);
 		titre.setAlignment(Pos.CENTER);
-		titre.setBackground(new Background(new BackgroundFill(Color.RED, coin, null)));
-		titre.setPrefWidth(800);
-		titre.setMinWidth(800);
-
+		titre.setBackground(new Background(new BackgroundFill(Color.BLUE, coin, null)));
 		
+		bLancer = new Button("LANCER");
+		bLancer.setPrefSize(lBouton, hBouton);
+		bLancer.setMinSize(lBouton, hBouton);
+		bLancer.setFont(policeBouton);
+		bLancer.setStyle(styleBoutons);
 
-		bQuitter = new Button("quitter");
+		bLancer.setOnMouseEntered(event -> bLancer.setStyle(styleBoutonsSouris));
+		bLancer.setOnMouseExited(event -> bLancer.setStyle(styleBoutons));
+		
+		
+		bQuitter = new Button("QUITTER");
 		bQuitter.setPrefSize(lBouton, hBouton);
 		bQuitter.setMinSize(lBouton, hBouton);
 		bQuitter.setFont(policeBouton);
@@ -83,27 +84,9 @@ public class AccueilPane extends StackPane{
 			}
 		});
 
-		// grille contenant les 4 boutons
-		GridPane grilleBoutons = new GridPane();
-		grilleBoutons.setAlignment(Pos.CENTER);
-		grilleBoutons.add(bQuitter, 1, 1);
-
-		grilleBoutons.setMargin(bQuitter, margeBoutons);
-
 		// image fond
 		//ImageView imgFond = new ImageView(DataControl.FOND);
 
-		// carre central qui contient tous les éléments (boutons et titre)
-		centreMenu = new VBox();
-
-		centreMenu.setMinSize(tailleCarreCentral, tailleCarreCentral);
-		centreMenu.setPrefSize(tailleCarreCentral, tailleCarreCentral);
-		centreMenu.setMaxSize(tailleCarreCentral, tailleCarreCentral);
-		centreMenu.setAlignment(Pos.CENTER);
-		centreMenu.setMargin(titre, new Insets(0, 0, 100, 0));
-		centreMenu.getChildren().addAll(titre, grilleBoutons);
-
-		// auteur florian
 		// boite du fond qui contient l'image et les autres boites
 		HBox fond = new HBox();
 		fond.setAlignment(Pos.CENTER);
@@ -112,8 +95,8 @@ public class AccueilPane extends StackPane{
 		fond.setEffect(flou);
 		//fond.getChildren().add(imgFond);
 
-		this.getChildren().addAll(/*imgFond,*/fond, centreMenu);
-		this.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, null)));
+		this.getChildren().addAll(/*imgFond,*/fond, titre, bLancer,bQuitter);
+		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, null)));
 
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
