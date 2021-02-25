@@ -1,4 +1,4 @@
-package app.ihm;
+package ihm;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

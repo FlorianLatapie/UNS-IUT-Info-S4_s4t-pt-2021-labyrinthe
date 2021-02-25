@@ -1,6 +1,7 @@
-package app.ihm;
+package ihm;
 
-import app.ihm.DataControl.ApplicationPane;
+import ihm.InterfacePrincipale;
+import ihm.DataControl.ApplicationPane;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;

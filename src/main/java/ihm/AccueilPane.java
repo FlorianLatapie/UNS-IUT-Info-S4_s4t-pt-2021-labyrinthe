@@ -1,14 +1,13 @@
-package app.ihm;
+package ihm;
 
 
-import app.ihm.DataControl.ApplicationPane;
+import ihm.DataControl.ApplicationPane;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -77,7 +76,7 @@ public class AccueilPane extends StackPane{
 		bQuitter.setOnMouseEntered(event -> bQuitter.setStyle(styleBoutonsSouris));
 		bQuitter.setOnMouseExited(event -> bQuitter.setStyle(styleBoutons));
 		bQuitter.setOnAction(event -> {
-			boolean resultat = ConfirmationPane.afficher("quitter l'app","etes vous surs de quitter ?");
+			boolean resultat = ConfirmationPane.afficher("quitter l'main.java.app","etes vous surs de quitter ?");
 			if (resultat) {
 				Platform.exit();
 				System.exit(0);

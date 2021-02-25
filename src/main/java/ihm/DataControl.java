@@ -1,4 +1,4 @@
-package app.ihm;
+package ihm;
 
 
 public class DataControl {

@@ -1,7 +1,7 @@
 package app;
 
-import app.ihm.Core;
-import app.ihm.InterfacePrincipale;
+import ihm.Core;
+import ihm.InterfacePrincipale;
 
 public class App {
 	public static void main(String[] args) {
