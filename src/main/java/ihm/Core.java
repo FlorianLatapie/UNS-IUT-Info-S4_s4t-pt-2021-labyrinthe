@@ -3,12 +3,11 @@ package ihm;
 
 public class Core {
 	private final int maxLargeur = 1920;
-	private final int minLargeur = 500;
+	private final int minLargeur = 960;
 	private final int maxHauteur = 1080;
-	private final int minHauteur = 500;
-	private String styleBouton = " -fx-background-color:#000000; -fx-background-radius: 15px; -fx-text-fill: #ffffff";
-	private String styleBoutonSouris = "-fx-background-color:#ff0000;  -fx-text-fill:#000000; -fx-background-radius: 15px;";
-	private String nomPolice = "Segoe UI";
+	private final int minHauteur = 1080;
+	private String styleBouton = " -fx-background-color:#5234eb; -fx-background-radius: 15px; -fx-text-fill: #ffffff";
+	private String styleBoutonSouris = "-fx-background-color:#34c6eb;  -fx-text-fill:#ffffff; -fx-background-radius: 15px;";
 	
 	public String getStyleBouton() {
 		return styleBouton;
@@ -25,6 +24,8 @@ public class Core {
 	public void setStyleBoutonSouris(String styleBoutonSouris) {
 		this.styleBoutonSouris = styleBoutonSouris;
 	}
+
+	private String nomPolice = "Segoe UI";
 
 	public String getNomPolice() {
 		return nomPolice;
