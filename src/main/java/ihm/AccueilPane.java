@@ -111,6 +111,7 @@ public class AccueilPane extends StackPane{
 		bLancer.setStyle(styleBoutons);
 		bLancer.setOnMouseEntered(event -> bLancer.setStyle(styleBoutonsSouris));
 		bLancer.setOnMouseExited(event -> bLancer.setStyle(styleBoutons));
+		bLancer.setOnAction(EventHandler -> { sc.setPaneOnTop(ApplicationPane.ROBOT);});
 		
 		bQuitter = new Button("QUITTER");
 		bQuitter.setPrefSize(lBouton, hBouton);
@@ -132,9 +133,6 @@ public class AccueilPane extends StackPane{
 		bp.setTop(vbTitre);
 		bp.setCenter(vbCentre);
 		bp.setBottom(hbBottom);
-		
-		Line line = new Line(960, 50, 960, 1030);
-		
 
 		this.getChildren().addAll(bp);
 
