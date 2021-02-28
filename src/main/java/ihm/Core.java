@@ -3,7 +3,7 @@ package ihm;
 
 public class Core {
 	private final int maxLargeur = 1920;
-	private final int minLargeur = 960;
+	private final int minLargeur = 1920;
 	private final int maxHauteur = 1080;
 	private final int minHauteur = 1080;
 	private String styleBouton = " -fx-background-color:#5234eb; -fx-background-radius: 15px; -fx-text-fill: #ffffff";

@@ -39,6 +39,8 @@ public class InterfacePrincipale extends Application {
 		primaryStage.setMaxHeight(core.getMaxHauteur());
 		primaryStage.setMinWidth(core.getMinLargeur());
 		primaryStage.setMinHeight(core.getMinHauteur());
+		
+		primaryStage.setFullScreen(true);
 
 		AccueilPane accueilPane = new AccueilPane(sControl);
 

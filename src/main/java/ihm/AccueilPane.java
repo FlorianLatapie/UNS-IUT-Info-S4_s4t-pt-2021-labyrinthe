@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -56,8 +57,6 @@ public class AccueilPane extends StackPane{
 		sControl = sc;
 
 		bp = new BorderPane();
-		bp.setMinSize(960, 1080);
-		bp.setMinSize(960, 1080);
 		bp.setPadding(new Insets(50));
 		
 		vbTitre = new VBox();
@@ -133,6 +132,8 @@ public class AccueilPane extends StackPane{
 		bp.setTop(vbTitre);
 		bp.setCenter(vbCentre);
 		bp.setBottom(hbBottom);
+		
+		Line line = new Line(960, 50, 960, 1030);
 		
 
 		this.getChildren().addAll(bp);
