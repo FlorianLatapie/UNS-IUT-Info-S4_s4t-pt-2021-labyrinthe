@@ -3,7 +3,7 @@ package ihm;
 
 public class DataControl {
 	public static enum ApplicationPane {
-		ACCUEIL
+		ACCUEIL, ROBOT
 	}
 	
 
