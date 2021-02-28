@@ -22,6 +22,7 @@ public class ConfirmationPane {
 	private static int hBouton = 50;
 	private static int lBouton = 200;
 	private static String styleBoutons = c.getStyleBouton();
+	private static String styleBoutonSecondaire = c.getStyleBoutonSecondaire();
 	private static String styleBoutonsSouris = c.getStyleBoutonSouris();
 
 	private static String nomPolice = c.getNomPolice();
@@ -60,21 +61,17 @@ public class ConfirmationPane {
 		// boutons
 		boutonOui = new Button("Quitter");
 		boutonOui.setPrefSize(lBouton, hBouton);
-		boutonOui.setStyle(c.getStyleBouton());
-		// boutonOui.setStyle("-fx-background-color: #ff0000; -fx-background-radius:
-		// 5px; -fx-text-fill: #ffffff");
+		boutonOui.setStyle(styleBoutons);
 		boutonOui.setFont(police);
 		boutonOui.setOnMouseEntered(event -> boutonOui.setStyle(styleBoutonsSouris));
 		boutonOui.setOnMouseExited(event -> boutonOui.setStyle(styleBoutons));
 
 		boutonNon = new Button("Annuler");
 		boutonNon.setPrefSize(lBouton, hBouton);
-		boutonNon.setStyle(c.getStyleBouton());
-		// boutonNon.setStyle("-fx-background-color: #A9A9A9; -fx-background-radius:
-		// 5px; -fx-text-fill: #ffffff");
+		boutonNon.setStyle(styleBoutonSecondaire);
 		boutonNon.setFont(police);
 		boutonNon.setOnMouseEntered(event -> boutonNon.setStyle(styleBoutonsSouris));
-		boutonNon.setOnMouseExited(event -> boutonNon.setStyle(styleBoutons));
+		boutonNon.setOnMouseExited(event -> boutonNon.setStyle(styleBoutonSecondaire));
 
 		boutonOui.setOnAction(e -> {
 			reponse = true;

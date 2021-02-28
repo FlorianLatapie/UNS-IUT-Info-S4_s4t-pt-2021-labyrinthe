@@ -25,17 +25,17 @@ import javafx.scene.text.FontWeight;
 
 public class RobotPane extends StackPane {
 	private ScreenControl sControl = null;
-	private Core core = InterfacePrincipale.getCore();
+	private Core c = InterfacePrincipale.getCore();
 	private final ApplicationPane paneName = ApplicationPane.ROBOT;
 	private int hBouton = 100;
 	private int lBouton = 200;
-	private int marge = 24;
-	private Insets margeBoutons = new Insets(marge, marge, marge, marge);
-	private String nomPolice = core.getNomPolice();
+	private int marge = 50;
+	private int margeDivider = (int) (marge*2.5);
+	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
 	private CornerRadii coin = new CornerRadii(15.0);
-	private String styleBoutons = core.getStyleBouton();
-	private String styleBoutonsSouris = core.getStyleBoutonSouris();
+	private String styleBoutons = c.getStyleBouton();
+	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(30);
 
 	VBox vbCentreG;
@@ -49,20 +49,20 @@ public class RobotPane extends StackPane {
 		sControl = sc;
 
 		titre = new Label("Le labyrinthe");
-		titre.setTranslateY(-480);
+		titre.setTranslateY(-(c.getMaxLargeur()/4));
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
 		titre.setTextFill(Color.BLACK);
 
 		bpG = new BorderPane();
-		bpG.setMinSize(960, 1080);
-		bpG.setMaxSize(960, 1080);
-		bpG.setPrefSize(960, 1080);
-		bpG.setTranslateX(-480);
-		bpG.setPadding(new Insets(50));
+		bpG.setMinSize(c.getMinLargeur()/2, c.getMinHauteur());
+		bpG.setMaxSize(c.getMaxLargeur()/2, c.getMinHauteur());
+		bpG.setPrefSize(c.getMaxLargeur()/2, c.getMinHauteur());
+		bpG.setTranslateX(-(c.getMaxLargeur()/4));
+		bpG.setPadding(new Insets(marge));
 
 		vbCentreG = new VBox();
 		vbCentreG.setAlignment(Pos.CENTER);
-		vbCentreG.setSpacing(50);
+		vbCentreG.setSpacing(marge);
 		vbCentreG.getChildren().addAll();
 
 		hbBottom = new HBox();
@@ -88,14 +88,15 @@ public class RobotPane extends StackPane {
 		bpG.setCenter(vbCentreG);
 		bpG.setBottom(hbBottom);
 
-		Line line = new Line(960, 270, 960, 1150);
+		Line line = new Line(c.getMaxLargeur()/2, margeDivider, c.getMaxLargeur()/2, c.getMaxHauteur()-margeDivider);
+		line.setStrokeWidth(marge/10);
 
 		bpD = new BorderPane();
-		bpD.setMinSize(960, 1080);
-		bpD.setMaxSize(960, 1080);
-		bpD.setPrefSize(960, 1080);
-		bpD.setTranslateX(480);
-		bpD.setPadding(new Insets(50));
+		bpD.setMinSize(c.getMinLargeur()/2, c.getMinHauteur());
+		bpD.setMaxSize(c.getMaxLargeur()/2, c.getMinHauteur());
+		bpD.setPrefSize(c.getMaxLargeur()/2, c.getMinHauteur());
+		bpD.setTranslateX((c.getMaxLargeur()/4));
+		bpD.setPadding(new Insets(marge));
 
 		this.getChildren().addAll(titre, bpG, line, bpD);
 
