@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -14,10 +15,17 @@ import javafx.stage.Stage;
 
 
 public class ConfirmationPane {
+	private static Core c = InterfacePrincipale.getCore();
 	static boolean reponse;
 	private static int tailleFenetreL = 480;
 	private static int tailleFenetreH = 160;
-	private static Core c = InterfacePrincipale.getCore();
+	
+	private static int hBouton = 50;
+	private static int lBouton = 200;
+	private static String styleBoutons = c.getStyleBouton();
+	private static String styleBoutonsSouris = c.getStyleBoutonSouris();
+	
+
 	private static String nomPolice = c.getNomPolice();
 	private static Font police = Font.font(nomPolice, FontWeight.BOLD, 27);
 
@@ -33,7 +41,7 @@ public class ConfirmationPane {
 	 */
 	public static boolean afficher() {
 		Stage window = new Stage();
-		//window.getIcons().add(new Image(DataControl.ICONE));
+		window.getIcons().add(new Image(DataControl.ICONE));
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Quitter l'application");
 
@@ -45,22 +53,28 @@ public class ConfirmationPane {
 		window.setMinHeight(tailleFenetreH);
 
 		// titre
-		Label labelL1 = new Label();
-		labelL1.setText("Êtes-vous sûr de vouloir quitter l'application ?");
-		labelL1.setStyle("-fx-text-fill: #DDDDDD");
-		labelL1.setFont(Font.font(nomPolice, FontWeight.BOLD, 20));
-		labelL1.setPadding(new Insets(10));
+		Label label = new Label();
+		label.setText("Êtes-vous sûr de vouloir quitter l'application ?");
+		label.setFont(Font.font(nomPolice, FontWeight.BOLD, 20));
+		label.setPadding(new Insets(10));
+		label.setStyle(c.getCouleurPolice());
 
 		// boutons
 		boutonOui = new Button("Quitter");
-		boutonOui.setPrefSize(200, 50);
-		boutonOui.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
+		boutonOui.setPrefSize(lBouton, hBouton);
+		boutonOui.setStyle(c.getStyleBouton());
+		//boutonOui.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
 		boutonOui.setFont(police);
+		boutonOui.setOnMouseEntered(event -> boutonOui.setStyle(styleBoutonsSouris));
+		boutonOui.setOnMouseExited(event -> boutonOui.setStyle(styleBoutons));
 
 		boutonNon = new Button("Annuler");
-		boutonNon.setPrefSize(200, 50);
-		boutonNon.setStyle("-fx-background-color: #A9A9A9; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
+		boutonNon.setPrefSize(lBouton, hBouton);
+		boutonNon.setStyle(c.getStyleBouton());
+		//boutonNon.setStyle("-fx-background-color: #A9A9A9; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
 		boutonNon.setFont(police);
+		boutonNon.setOnMouseEntered(event -> boutonNon.setStyle(styleBoutonsSouris));
+		boutonNon.setOnMouseExited(event -> boutonNon.setStyle(styleBoutons));
 
 		boutonOui.setOnAction(e -> {
 			reponse = true;
@@ -79,8 +93,8 @@ public class ConfirmationPane {
 
 		VBox layout = new VBox(10);
 		layout.setAlignment(Pos.TOP_CENTER);
-		layout.getChildren().addAll(labelL1, boutonHbox);
-		layout.setStyle(" -fx-background-color: #1F1F1F;");
+		layout.getChildren().addAll(label, boutonHbox);
+		layout.setStyle(c.getCouleurFond());
 		Scene scene = new Scene(layout);
 
 		window.setScene(scene);

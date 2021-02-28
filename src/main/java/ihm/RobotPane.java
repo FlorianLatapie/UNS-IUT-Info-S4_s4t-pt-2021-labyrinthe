@@ -1,6 +1,5 @@
 package ihm;
 
-
 import ihm.DataControl.ApplicationPane;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -24,8 +23,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-
-public class RobotPane extends StackPane{
+public class RobotPane extends StackPane {
 	private ScreenControl sControl = null;
 	private Core core = InterfacePrincipale.getCore();
 	private final ApplicationPane paneName = ApplicationPane.ROBOT;
@@ -40,14 +38,13 @@ public class RobotPane extends StackPane{
 	private String styleBoutonsSouris = core.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(30);
 
-
 	VBox vbCentreG;
 	HBox hbBottom;
 	Label titre;
 	BorderPane bpG;
 	BorderPane bpD;
 	Button bQuitter;
-    
+
 	public RobotPane(ScreenControl sc) {
 		sControl = sc;
 
@@ -55,24 +52,23 @@ public class RobotPane extends StackPane{
 		titre.setTranslateY(-480);
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
 		titre.setTextFill(Color.BLACK);
-		
+
 		bpG = new BorderPane();
 		bpG.setMinSize(960, 1080);
 		bpG.setMaxSize(960, 1080);
 		bpG.setPrefSize(960, 1080);
 		bpG.setTranslateX(-480);
 		bpG.setPadding(new Insets(50));
-		
-		
+
 		vbCentreG = new VBox();
 		vbCentreG.setAlignment(Pos.CENTER);
 		vbCentreG.setSpacing(50);
 		vbCentreG.getChildren().addAll();
-		
+
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
 		hbBottom.setSpacing(300);
-	
+
 		bQuitter = new Button("QUITTER");
 		bQuitter.setPrefSize(lBouton, hBouton);
 		bQuitter.setMinSize(lBouton, hBouton);
@@ -87,20 +83,19 @@ public class RobotPane extends StackPane{
 				System.exit(0);
 			}
 		});
-		
+
 		hbBottom.getChildren().addAll(bQuitter);
 		bpG.setCenter(vbCentreG);
 		bpG.setBottom(hbBottom);
-		
+
 		Line line = new Line(960, 270, 960, 1150);
-		
+
 		bpD = new BorderPane();
 		bpD.setMinSize(960, 1080);
 		bpD.setMaxSize(960, 1080);
 		bpD.setPrefSize(960, 1080);
 		bpD.setTranslateX(480);
 		bpD.setPadding(new Insets(50));
-		
 
 		this.getChildren().addAll(titre, bpG, line, bpD);
 

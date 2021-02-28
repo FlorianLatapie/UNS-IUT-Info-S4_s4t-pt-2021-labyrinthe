@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
@@ -20,7 +21,7 @@ public class InterfacePrincipale extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//primaryStage.getIcons().add(new Image(DataControl.ICONE));
+		primaryStage.getIcons().add(new Image(DataControl.ICONE));
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent event) {

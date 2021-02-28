@@ -27,17 +27,17 @@ import javafx.scene.text.FontWeight;
 
 public class AccueilPane extends StackPane{
 	private ScreenControl sControl = null;
-	private Core core = InterfacePrincipale.getCore();
+	private Core c = InterfacePrincipale.getCore();
 	private final ApplicationPane paneName = ApplicationPane.ACCUEIL;
 	private int hBouton = 100;
 	private int lBouton = 200;
 	private int marge = 24;
 	private Insets margeBoutons = new Insets(marge, marge, marge, marge);
-	private String nomPolice = core.getNomPolice();
+	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
 	private CornerRadii coin = new CornerRadii(15.0);
-	private String styleBoutons = core.getStyleBouton();
-	private String styleBoutonsSouris = core.getStyleBoutonSouris();
+	private String styleBoutons = c.getStyleBouton();
+	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(30);
 
 	VBox vbTitre;
@@ -64,7 +64,7 @@ public class AccueilPane extends StackPane{
 	
 		titre = new Label("Le labyrinthe");
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
-		titre.setTextFill(Color.BLACK);
+		titre.setStyle(c.getCouleurPolice());
 		
 		vbTitre.getChildren().add(titre);
 		
@@ -74,29 +74,34 @@ public class AccueilPane extends StackPane{
 		
 		choixAlgo = new Label("Choisir un algorithme");
 		choixAlgo.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
-		choixAlgo.setTextFill(Color.BLACK);
+		choixAlgo.setStyle(c.getCouleurPolice());
 		
 		ToggleGroup group = new ToggleGroup();
 		
 		button1 = new RadioButton("Aléatoire");
 		button1.setToggleGroup(group);
 		button1.setSelected(true);
+		button1.setStyle(c.getCouleurPolice());
 		
 		button2 = new RadioButton("Mur de gauche");
 		button2.setToggleGroup(group);
+		button2.setStyle(c.getCouleurPolice());
 		
 		button3 = new RadioButton("Mur de droite");
 		button3.setToggleGroup(group);
+		button3.setStyle(c.getCouleurPolice());
 		
 		vitesse = new Label("Choix de la vitesse");
 		vitesse.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
-		vitesse.setTextFill(Color.BLACK);
+		vitesse.setStyle(c.getCouleurPolice());
 		
 		Slider slider = new Slider(1, 3, 1);
 		slider.setShowTickLabels(true);
 		slider.setMajorTickUnit(1);
 		slider.setBlockIncrement(1);
 		slider.setValue(2);
+		slider.setStyle(c.getCouleurPolice());
+		
 		vbCentre.getChildren().addAll(choixAlgo, button1, button2, button3, vitesse, slider);
 		
 		hbBottom = new HBox();
@@ -129,7 +134,8 @@ public class AccueilPane extends StackPane{
 		});
 		
 		hbBottom.getChildren().addAll(bQuitter, bLancer);
-
+		
+		bp.setStyle(c.getCouleurFond());
 		bp.setTop(vbTitre);
 		bp.setCenter(vbCentre);
 		bp.setBottom(hbBottom);
