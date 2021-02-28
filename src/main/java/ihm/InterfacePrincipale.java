@@ -1,6 +1,5 @@
 package ihm;
 
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Node;
@@ -10,7 +9,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
-
 
 public class InterfacePrincipale extends Application {
 	private StackPane root = new StackPane();
@@ -40,13 +38,13 @@ public class InterfacePrincipale extends Application {
 		primaryStage.setMaxHeight(core.getMaxHauteur());
 		primaryStage.setMinWidth(core.getMinLargeur());
 		primaryStage.setMinHeight(core.getMinHauteur());
-		
+
 		primaryStage.setFullScreen(true);
-		
+
 		RobotPane robotPane = new RobotPane(sControl);
 		AccueilPane accueilPane = new AccueilPane(sControl);
-		
-		//scene.getStylesheets().add(DataControl.CSS);
+
+		// scene.getStylesheets().add(DataControl.CSS);
 
 		root.getChildren().add(robotPane);
 		root.getChildren().add(accueilPane);
@@ -55,12 +53,12 @@ public class InterfacePrincipale extends Application {
 		primaryStage.show();
 
 	}
-	
+
 	public static void lancement(String[] args, Core c) {
 		core = c;
 		InterfacePrincipale.launch(args);
 	}
-	
+
 	public void setOnTop(Node n) {
 		if (currentTopNode != null)
 			currentTopNode.setVisible(false);
@@ -71,7 +69,7 @@ public class InterfacePrincipale extends Application {
 	public Scene getScene() {
 		return scene;
 	}
-	
+
 	public static Core getCore() {
 		return core;
 	}

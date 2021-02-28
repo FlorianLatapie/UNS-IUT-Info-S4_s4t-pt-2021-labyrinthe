@@ -13,18 +13,16 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
 public class ConfirmationPane {
 	private static Core c = InterfacePrincipale.getCore();
 	static boolean reponse;
 	private static int tailleFenetreL = 480;
 	private static int tailleFenetreH = 160;
-	
+
 	private static int hBouton = 50;
 	private static int lBouton = 200;
 	private static String styleBoutons = c.getStyleBouton();
 	private static String styleBoutonsSouris = c.getStyleBoutonSouris();
-	
 
 	private static String nomPolice = c.getNomPolice();
 	private static Font police = Font.font(nomPolice, FontWeight.BOLD, 27);
@@ -63,7 +61,8 @@ public class ConfirmationPane {
 		boutonOui = new Button("Quitter");
 		boutonOui.setPrefSize(lBouton, hBouton);
 		boutonOui.setStyle(c.getStyleBouton());
-		//boutonOui.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
+		// boutonOui.setStyle("-fx-background-color: #ff0000; -fx-background-radius:
+		// 5px; -fx-text-fill: #ffffff");
 		boutonOui.setFont(police);
 		boutonOui.setOnMouseEntered(event -> boutonOui.setStyle(styleBoutonsSouris));
 		boutonOui.setOnMouseExited(event -> boutonOui.setStyle(styleBoutons));
@@ -71,7 +70,8 @@ public class ConfirmationPane {
 		boutonNon = new Button("Annuler");
 		boutonNon.setPrefSize(lBouton, hBouton);
 		boutonNon.setStyle(c.getStyleBouton());
-		//boutonNon.setStyle("-fx-background-color: #A9A9A9; -fx-background-radius: 5px; -fx-text-fill: #ffffff");
+		// boutonNon.setStyle("-fx-background-color: #A9A9A9; -fx-background-radius:
+		// 5px; -fx-text-fill: #ffffff");
 		boutonNon.setFont(police);
 		boutonNon.setOnMouseEntered(event -> boutonNon.setStyle(styleBoutonsSouris));
 		boutonNon.setOnMouseExited(event -> boutonNon.setStyle(styleBoutons));
@@ -89,7 +89,6 @@ public class ConfirmationPane {
 		HBox boutonHbox = new HBox(10);
 		boutonHbox.getChildren().addAll(boutonNon, boutonOui);
 		boutonHbox.setAlignment(Pos.CENTER);
-		
 
 		VBox layout = new VBox(10);
 		layout.setAlignment(Pos.TOP_CENTER);

@@ -7,16 +7,16 @@ public class Core {
 	private final int minLargeur = 1920;
 	private final int maxHauteur = 1080;
 	private final int minHauteur = 1080;
-	
+
 	private final String APBouton = "-fx-background-color:#5234eb;";
 	private final String APBoutonSouris = "-fx-background-color:#34c6eb;";
-	private final String styleBouton = APBouton+"-fx-background-radius: 15px; -fx-text-fill: #ffffff";
-	private final String styleBoutonSouris = APBoutonSouris+"-fx-text-fill:#ffffff; -fx-background-radius: 15px;";
-	
+	private final String styleBouton = APBouton + "-fx-background-radius: 15px; -fx-text-fill: #ffffff";
+	private final String styleBoutonSouris = APBoutonSouris + "-fx-text-fill:#ffffff; -fx-background-radius: 15px;";
+
 	private final String couleurFond = "-fx-background-color:#FFFFFF;";
 	private final String couleurPolice = "-fx-text-fill: #000000";
 	private final Color couleurPoliceColor = Color.BLACK;
-	
+
 	public Color getCouleurPoliceColor() {
 		return couleurPoliceColor;
 	}
@@ -70,12 +70,5 @@ public class Core {
 	public int getMinHauteur() {
 		return minHauteur;
 	}
-	
-	
 
-	
-
-	
-	
-	
 }
