@@ -41,6 +41,7 @@ public class AccueilPane extends StackPane {
 
 	VBox vbTitre;
 	VBox vbCentre;
+	VBox radioAlignment;
 	HBox hbBottom;
 	Label titre;
 	Label choixAlgo;
@@ -82,18 +83,26 @@ public class AccueilPane extends StackPane {
 
 		ToggleGroup group = new ToggleGroup();
 
+		radioAlignment = new VBox();
+		radioAlignment.setAlignment(Pos.CENTER_LEFT);
+		radioAlignment.setTranslateX(800);
+		radioAlignment.setSpacing(20);
+
 		button1 = new RadioButton("Aléatoire");
 		button1.setToggleGroup(group);
 		button1.setSelected(true);
 		button1.setStyle(c.getCouleurPolice());
+		radioAlignment.getChildren().add(button1);
 
 		button2 = new RadioButton("Mur de gauche");
 		button2.setToggleGroup(group);
 		button2.setStyle(c.getCouleurPolice());
+		radioAlignment.getChildren().add(button2);
 
 		button3 = new RadioButton("Mur de droite");
 		button3.setToggleGroup(group);
 		button3.setStyle(c.getCouleurPolice());
+		radioAlignment.getChildren().add(button3);
 
 		vitesse = new Label("Choix de la vitesse");
 		vitesse.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
@@ -106,7 +115,7 @@ public class AccueilPane extends StackPane {
 		slider.setValue(2);
 		slider.setStyle(c.getCouleurPolice());
 
-		vbCentre.getChildren().addAll(choixAlgo, button1, button2, button3, vitesse, slider);
+		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, vitesse, slider);
 
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
