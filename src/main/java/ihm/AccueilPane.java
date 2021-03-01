@@ -117,6 +117,7 @@ public class AccueilPane extends StackPane {
 		slider.setMajorTickUnit(1);
 		slider.setBlockIncrement(1);
 		slider.setValue(2);
+		slider.setMaxWidth(500);
 		slider.setStyle(c.getCouleurPolice());
 
 		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, vitesse, slider);

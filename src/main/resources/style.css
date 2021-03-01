@@ -53,3 +53,9 @@
     -fx-padding: 8px;
 }
 
+.slider {
+    -fx-font-size: 35px;
+    -fx-control-inner-background: #1354cb;
+    /* This works in changing the track */
+
+}
