@@ -27,8 +27,10 @@ public class RobotPane extends StackPane {
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
 	private final ApplicationPane paneName = ApplicationPane.ROBOT;
-	private int hBouton = 100;
-	private int lBouton = 200;
+	private int hBouton = c.gethBouton();
+	private int lBouton = c.getlBouton();
+	private int largeurTitre = c.getLargeurTitre();
+	private int hauteurTitre = c.getHauteurTitre();
 	private int marge = 50;
 	private int margeDivider = (int) (marge*2.5);
 	private String nomPolice = c.getNomPolice();
@@ -39,6 +41,7 @@ public class RobotPane extends StackPane {
 	private GaussianBlur flou = new GaussianBlur(30);
 
 	VBox vbCentreG;
+	VBox vbTitre;
 	HBox hbBottom;
 	Label titre;
 	BorderPane bpG;
@@ -49,9 +52,23 @@ public class RobotPane extends StackPane {
 		sControl = sc;
 
 		titre = new Label("Le labyrinthe");
-		titre.setTranslateY(-(c.getMaxLargeur()/4));
-		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
-		titre.setTextFill(Color.BLACK);
+		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
+		titre.setStyle(c.getCouleurPoliceTitre());
+		titre.setAlignment(Pos.CENTER);
+
+		vbTitre = new VBox();
+		vbTitre.getChildren().add(titre);
+		vbTitre.setTranslateY(-(c.getMaxLargeur()/4));
+		vbTitre.setAlignment(Pos.CENTER);
+		vbTitre.setStyle(c.getStyleTitre());
+		
+		vbTitre.setPrefWidth(largeurTitre);
+		vbTitre.setPrefHeight(hauteurTitre);
+		vbTitre.setMinWidth(largeurTitre);
+		vbTitre.setMinHeight(hauteurTitre);
+		vbTitre.setMaxWidth(largeurTitre);
+		vbTitre.setMaxHeight(hauteurTitre);
+		
 
 		bpG = new BorderPane();
 		bpG.setMinSize(c.getMinLargeur()/2, c.getMinHauteur());
@@ -98,7 +115,7 @@ public class RobotPane extends StackPane {
 		bpD.setTranslateX((c.getMaxLargeur()/4));
 		bpD.setPadding(new Insets(marge));
 
-		this.getChildren().addAll(titre, bpG, line, bpD);
+		this.getChildren().addAll(vbTitre, bpG, line, bpD);
 
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);

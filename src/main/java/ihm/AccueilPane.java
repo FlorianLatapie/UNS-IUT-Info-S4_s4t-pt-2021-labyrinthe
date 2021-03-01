@@ -27,9 +27,10 @@ public class AccueilPane extends StackPane {
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
 	private final ApplicationPane paneName = ApplicationPane.ACCUEIL;
-	private int largeurTitre = 450;
-	private int hBouton = 100;
-	private int lBouton = 200;
+	private int largeurTitre = c.getLargeurTitre();
+	private int hauteurTitre = c.getHauteurTitre();
+	private int hBouton = c.gethBouton();
+	private int lBouton = c.getlBouton();
 	private int marge = 24;
 	private Insets margeBoutons = new Insets(marge, marge, marge, marge);
 	private String nomPolice = c.getNomPolice();
@@ -64,14 +65,17 @@ public class AccueilPane extends StackPane {
 
 		titre = new Label("Le labyrinthe");
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
-		titre.setStyle(c.getCouleurPolice());
+		titre.setStyle(c.getCouleurPoliceTitre());
 
 		vbTitre.getChildren().add(titre);
-		vbTitre.setBackground(new Background(new BackgroundFill(Color.RED, coin, null)));
+		vbTitre.setStyle(c.getStyleTitre());
 		
 		vbTitre.setPrefWidth(largeurTitre);
+		vbTitre.setPrefHeight(hauteurTitre);
 		vbTitre.setMinWidth(largeurTitre);
+		vbTitre.setMinHeight(hauteurTitre);
 		vbTitre.setMaxWidth(largeurTitre);
+		vbTitre.setMaxHeight(hauteurTitre);
 
 		vbCentre = new VBox();
 		vbCentre.setAlignment(Pos.CENTER);
