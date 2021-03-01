@@ -7,7 +7,6 @@ public class Core {
 	private final int minLargeur = 1920;
 	private final int maxHauteur = 1080;
 	private final int minHauteur = 1080;
-
 	
 	private final String couleurFond = "-fx-background-color:#DDDDDD;";
 	private final String couleurPolice = "-fx-text-fill: #000000";
@@ -22,13 +21,19 @@ public class Core {
 	private final String styleBoutonSouris = APBoutonSouris + couleurPoliceSecondaire + "-fx-background-radius: 15px;";
 
 	private final int lBouton = 200;
-	private final int hBouton = 100;
+	private final int hBouton = 75;
 
 	private final String styleTitre = APBouton + "-fx-background-radius: 7px;";
 	private final String couleurPoliceTitre = couleurPoliceSecondaire;
 
-	private final int largeurTitre = 450;
-	private final int hauteurTitre = 75;
+	private final int largeurTitre = 425;
+	private final int hauteurTitre = 95;
+	
+	private final int valeurBlur = 20;
+
+	public int getValeurBlur() {
+		return valeurBlur;
+	}
 
 	public String getCouleurPoliceTitre() {
 		return couleurPoliceTitre;

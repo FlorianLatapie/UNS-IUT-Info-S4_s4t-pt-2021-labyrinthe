@@ -10,6 +10,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -38,7 +39,7 @@ public class AccueilPane extends StackPane {
 	private CornerRadii coin = new CornerRadii(15.0);
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
-	private GaussianBlur flou = new GaussianBlur(30);
+	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
 
 	VBox vbTitre;
 	VBox vbCentre;
@@ -154,15 +155,18 @@ public class AccueilPane extends StackPane {
 
 		hbBottom.getChildren().addAll(bQuitter, bLancer);
 		bp.setAlignment(vbTitre, Pos.CENTER);
-		bp.setStyle(c.getCouleurFond());
 		bp.setTop(vbTitre);
 		bp.setCenter(vbCentre);
 		bp.setBottom(hbBottom);
+		
+		ImageView imgFond = new ImageView(DataControl.FOND);
+		imgFond.setEffect(flou);
 
-		this.getChildren().addAll(bp);
+		this.getChildren().addAll(imgFond,bp);
 
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
 
 	}
 }
+
