@@ -34,10 +34,10 @@ public class InterfacePrincipale extends Application {
 
 		primaryStage.setTitle("Maze Solver");
 
-		primaryStage.setMaxWidth(core.getMaxLargeur());
-		primaryStage.setMaxHeight(core.getMaxHauteur());
-		primaryStage.setMinWidth(core.getMinLargeur());
-		primaryStage.setMinHeight(core.getMinHauteur());
+		primaryStage.setMaxWidth(core.getLargeur());
+		primaryStage.setMaxHeight(core.getHauteur());
+		primaryStage.setMinWidth(core.getLargeur());
+		primaryStage.setMinHeight(core.getHauteur());
 
 		primaryStage.setFullScreen(true);
 

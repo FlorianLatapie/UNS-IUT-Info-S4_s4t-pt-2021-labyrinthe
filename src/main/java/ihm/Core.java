@@ -3,10 +3,8 @@ package ihm;
 import com.sun.prism.paint.Color;
 
 public class Core {
-	private final int maxLargeur = 1920;
-	private final int minLargeur = 1920;
-	private final int maxHauteur = 1080;
-	private final int minHauteur = 1080;
+	private final int largeur = 1920;
+	private final int hauteur = 1080;
 	
 	private final String couleurFond = "-fx-background-color:#DDDDDD;";
 	private final String couleurPolice = "-fx-text-fill: #000000";
@@ -97,20 +95,13 @@ public class Core {
 		this.nomPolice = nomPolice;
 	}
 
-	public int getMaxLargeur() {
-		return maxLargeur;
+	public int getLargeur() {
+		return largeur;
 	}
 
-	public int getMinLargeur() {
-		return minLargeur;
-	}
 
-	public int getMaxHauteur() {
-		return maxHauteur;
-	}
-
-	public int getMinHauteur() {
-		return minHauteur;
+	public int getHauteur() {
+		return hauteur;
 	}
 
 }

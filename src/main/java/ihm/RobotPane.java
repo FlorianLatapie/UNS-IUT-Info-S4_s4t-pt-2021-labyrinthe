@@ -59,7 +59,7 @@ public class RobotPane extends StackPane {
 
 		vbTitre = new VBox();
 		vbTitre.getChildren().add(titre);
-		vbTitre.setTranslateY(-(c.getMaxLargeur()/4));
+		vbTitre.setTranslateY(-(c.getLargeur()/4));
 		vbTitre.setAlignment(Pos.CENTER);
 		vbTitre.setStyle(c.getStyleTitre());
 		
@@ -72,10 +72,10 @@ public class RobotPane extends StackPane {
 		
 
 		bpG = new BorderPane();
-		bpG.setMinSize(c.getMinLargeur()/2, c.getMinHauteur());
-		bpG.setMaxSize(c.getMaxLargeur()/2, c.getMinHauteur());
-		bpG.setPrefSize(c.getMaxLargeur()/2, c.getMinHauteur());
-		bpG.setTranslateX(-(c.getMaxLargeur()/4));
+		bpG.setMinSize(c.getLargeur()/2, c.getHauteur());
+		bpG.setMaxSize(c.getLargeur()/2, c.getHauteur());
+		bpG.setPrefSize(c.getLargeur()/2, c.getHauteur());
+		bpG.setTranslateX(-(c.getLargeur()/4));
 		bpG.setPadding(new Insets(marge));
 
 		vbCentreG = new VBox();
@@ -106,14 +106,14 @@ public class RobotPane extends StackPane {
 		bpG.setCenter(vbCentreG);
 		bpG.setBottom(hbBottom);
 
-		Line line = new Line(c.getMaxLargeur()/2, margeDivider, c.getMaxLargeur()/2, c.getMaxHauteur()-margeDivider);
+		Line line = new Line(c.getLargeur()/2, margeDivider, c.getLargeur()/2, c.getHauteur()-margeDivider);
 		line.setStrokeWidth(marge/10);
 
 		bpD = new BorderPane();
-		bpD.setMinSize(c.getMinLargeur()/2, c.getMinHauteur());
-		bpD.setMaxSize(c.getMaxLargeur()/2, c.getMinHauteur());
-		bpD.setPrefSize(c.getMaxLargeur()/2, c.getMinHauteur());
-		bpD.setTranslateX((c.getMaxLargeur()/4));
+		bpD.setMinSize(c.getLargeur()/2, c.getHauteur());
+		bpD.setMaxSize(c.getLargeur()/2, c.getHauteur());
+		bpD.setPrefSize(c.getLargeur()/2, c.getHauteur());
+		bpD.setTranslateX((c.getLargeur()/4));
 		bpD.setPadding(new Insets(marge));
 		
 		
