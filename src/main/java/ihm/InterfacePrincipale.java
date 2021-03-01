@@ -44,7 +44,7 @@ public class InterfacePrincipale extends Application {
 		RobotPane robotPane = new RobotPane(sControl);
 		AccueilPane accueilPane = new AccueilPane(sControl);
 
-		// scene.getStylesheets().add(DataControl.CSS);
+		scene.getStylesheets().add(DataControl.CSS);
 
 		root.getChildren().add(robotPane);
 		root.getChildren().add(accueilPane);
