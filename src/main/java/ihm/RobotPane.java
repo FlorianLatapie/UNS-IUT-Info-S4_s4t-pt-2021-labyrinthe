@@ -33,6 +33,7 @@ public class RobotPane extends StackPane {
 	private int largeurTitre = c.getLargeurTitre();
 	private int hauteurTitre = c.getHauteurTitre();
 	private int marge = 50;
+	private int margeTitre = 150;
 	private int margeDivider = (int) (marge*2.5);
 	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
@@ -43,8 +44,12 @@ public class RobotPane extends StackPane {
 
 	VBox vbCentreG;
 	VBox vbTitre;
+	VBox hbtitreD;
+	VBox hbtitreG;
 	HBox hbBottom;
 	Label titre;
+	Label titreD;
+	Label titreG;
 	BorderPane bpG;
 	BorderPane bpD;
 	Button bQuitter;
@@ -69,14 +74,26 @@ public class RobotPane extends StackPane {
 		vbTitre.setMinHeight(hauteurTitre);
 		vbTitre.setMaxWidth(largeurTitre);
 		vbTitre.setMaxHeight(hauteurTitre);
-		
+
+		titreG = new Label("Position du robot dans le labyrinthe");
+		titreG.setFont(Font.font(nomPolice, FontWeight.BOLD, 30));
+		titreG.setStyle(c.getCouleurPoliceTitre());
+		titreG.setAlignment(Pos.CENTER);
+
+		hbtitreG = new VBox();
+		hbtitreG.getChildren().add(titreG);
+		hbtitreG.setAlignment(Pos.CENTER);
+		hbtitreG.setStyle(c.getStyleTitre());
+		hbtitreG.setPadding(new Insets(10));
 
 		bpG = new BorderPane();
 		bpG.setMinSize(c.getLargeur()/2, c.getHauteur());
 		bpG.setMaxSize(c.getLargeur()/2, c.getHauteur());
 		bpG.setPrefSize(c.getLargeur()/2, c.getHauteur());
 		bpG.setTranslateX(-(c.getLargeur()/4));
-		bpG.setPadding(new Insets(marge));
+		bpG.setPadding(new Insets(margeTitre, margeTitre, marge, margeTitre));
+		bpG.setTop(hbtitreG);
+		bpG.setAlignment(hbtitreG,Pos.CENTER);
 
 		vbCentreG = new VBox();
 		vbCentreG.setAlignment(Pos.CENTER);
@@ -109,14 +126,25 @@ public class RobotPane extends StackPane {
 		Line line = new Line(c.getLargeur()/2, margeDivider, c.getLargeur()/2, c.getHauteur()-margeDivider);
 		line.setStrokeWidth(marge/10);
 
+		titreD = new Label("Représentation du labyrinthe");
+		titreD.setFont(Font.font(nomPolice, FontWeight.BOLD, 30));
+		titreD.setStyle(c.getCouleurPoliceTitre());
+		titreD.setAlignment(Pos.CENTER);
+
+		hbtitreD = new VBox();
+		hbtitreD.getChildren().add(titreD);
+		hbtitreD.setAlignment(Pos.CENTER);
+		hbtitreD.setStyle(c.getStyleTitre());
+		hbtitreD.setPadding(new Insets(10));
+
 		bpD = new BorderPane();
 		bpD.setMinSize(c.getLargeur()/2, c.getHauteur());
 		bpD.setMaxSize(c.getLargeur()/2, c.getHauteur());
 		bpD.setPrefSize(c.getLargeur()/2, c.getHauteur());
 		bpD.setTranslateX((c.getLargeur()/4));
-		bpD.setPadding(new Insets(marge));
-		
-		
+		bpD.setPadding(new Insets(margeTitre));
+		bpD.setTop(hbtitreD);
+		bpD.setAlignment(hbtitreD, Pos.CENTER);
 		
 		ImageView imgFond = new ImageView(DataControl.FOND);
 		imgFond.setEffect(flou);
@@ -125,6 +153,5 @@ public class RobotPane extends StackPane {
 
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
-
 	}
 }
