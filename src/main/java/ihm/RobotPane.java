@@ -37,7 +37,7 @@ public class RobotPane extends StackPane {
 	private int margeDivider = (int) (marge*2.5);
 	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
-	private CornerRadii coin = new CornerRadii(15.0);
+	private CornerRadii coin = new CornerRadii(c.getValeurCoin());
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());

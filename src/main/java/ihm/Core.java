@@ -6,6 +6,10 @@ public class Core {
 	private final int largeur = 1920;
 	private final int hauteur = 1080;
 	
+	private final int valeurBlur = 20;
+	private final int valeurCoin = 10;
+
+	
 	private final String couleurFond = "-fx-background-color:#DDDDDD;";
 	private final String couleurPolice = "-fx-text-fill: #000000";
 	private final String couleurPoliceSecondaire = "-fx-text-fill: #ffffff;";
@@ -13,10 +17,10 @@ public class Core {
 	private final String APBouton = "-fx-background-color:#5234eb;";
 	private final String APBoutonSecondaire = "-fx-background-color:#34c6eb;";
 	private final String APBoutonSouris = "-fx-background-color:#1c1c1c;";
-	private final String styleBouton = APBouton + "-fx-background-radius: 15px;"+couleurPoliceSecondaire;
+	private final String styleBouton = APBouton + "-fx-background-radius: "+valeurCoin+"px;"+couleurPoliceSecondaire;
 	private final String styleBoutonSecondaire = APBoutonSecondaire
 			+ "-fx-background-radius: 15px;"+couleurPoliceSecondaire;
-	private final String styleBoutonSouris = APBoutonSouris + couleurPoliceSecondaire + "-fx-background-radius: 15px;";
+	private final String styleBoutonSouris = APBoutonSouris + couleurPoliceSecondaire + "-fx-background-radius: "+valeurCoin+"px;";
 
 	private final int lBouton = 200;
 	private final int hBouton = 75;
@@ -27,7 +31,10 @@ public class Core {
 	private final int largeurTitre = 425;
 	private final int hauteurTitre = 95;
 	
-	private final int valeurBlur = 20;
+	
+	public int getValeurCoin() {
+		return valeurCoin;
+	}
 
 	public int getValeurBlur() {
 		return valeurBlur;
