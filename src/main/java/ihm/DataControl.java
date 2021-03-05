@@ -10,7 +10,7 @@ public class DataControl {
 	public static final String CSS = "style.css";
 
 	public static final String FOND = "Images/fond.jpg";
-	
+	public static final String ROBOT = "Images/icon_robot.png";
 	// Images Labyrinthe 
 	
 	public static final String LIGNE0 = "Images/Labyrinthe/ligne0.png";
