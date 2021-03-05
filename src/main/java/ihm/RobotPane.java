@@ -1,5 +1,7 @@
 package ihm;
 
+import java.util.ArrayList;
+
 import ihm.DataControl.ApplicationPane;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,6 +46,12 @@ public class RobotPane extends StackPane {
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
+	private String[][] matriceLaby = {{ "C","DLH","DLH","DLH", "AHD"},
+			   						  {null, null, null, null, "DLV"},
+			   						  {null, null, null, null, "DLV"},
+			   						  {null, null, null, null, "DLV"},
+			   						  {null, null, null, null, "C" }};
+
 
 	VBox vbCentreG;
 	VBox vbTitre;
@@ -56,10 +64,20 @@ public class RobotPane extends StackPane {
 	BorderPane bpG;
 	BorderPane bpD;
 	Button bQuitter;
+	GridPane gp;
+	ImageView[][] matriceImg  = new ImageView[5][5];
 
 	public RobotPane(ScreenControl sc) {
 		sControl = sc;
-
+		
+	
+		for(int i = 0; i< matriceImg.length; i++) {
+			for(int j = 0; j < matriceImg.length; j++) {
+				matriceImg[i][j] = new ImageView(buildMatrice(matriceLaby[i][j]));
+			}
+		}
+		
+		
 		titre = new Label("Le labyrinthe");
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
 		titre.setStyle(c.getCouleurPoliceTitre());
@@ -97,12 +115,16 @@ public class RobotPane extends StackPane {
 		bpG.setPadding(new Insets(margeTitre, margeTitre, marge, margeTitre));
 		bpG.setTop(hbtitreG);
 		bpG.setAlignment(hbtitreG,Pos.CENTER);
-
-		vbCentreG = new VBox();
-		vbCentreG.setAlignment(Pos.CENTER);
-		vbCentreG.setSpacing(marge);
-		vbCentreG.getChildren().addAll();
-
+		
+		
+		gp = new GridPane();
+		for(int i = 0; i<matriceImg.length; i++) {
+			for(int j = 0; j<matriceImg.length; j++) {
+				gp.setConstraints(matriceImg[i][j], j, i);
+				gp.getChildren().add(matriceImg[i][j]);
+			}
+		}
+		
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
 		hbBottom.setSpacing(300);
@@ -136,7 +158,7 @@ public class RobotPane extends StackPane {
 		});
 
 		hbBottom.getChildren().addAll(bQuitter);
-		bpG.setCenter(vbCentreG);
+		bpG.setCenter(gp);
 		bpG.setBottom(hbBottom);
 
 		Line line = new Line(c.getLargeur()/2, margeDivider, c.getLargeur()/2, c.getHauteur()-margeDivider);
@@ -170,4 +192,37 @@ public class RobotPane extends StackPane {
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
 	}
+	
+	public String buildMatrice(String val) {
+		if(val != null){
+			switch(val) {
+				case "DLV": 
+					return DataControl.DLIGNE_VERT;
+				case "DLH": 
+					return DataControl.DLIGNE_HOR;
+				case "AHG": 
+					return DataControl.ANGLE_HAUT_GAUCHE;
+				case "AHD": 
+					return DataControl.ANGLE_HAUT_DROITE;
+				case "ABG": 
+					return DataControl.ANGLE_BAS_GAUCHE;
+				case "ABD": 
+					return DataControl.ANGLE_BAS_DROITE;
+				case "LH": 
+					return DataControl.LIGNE_HAUT;
+				case "LG": 
+					return DataControl.LIGNE_GAUCHE;
+				case "LD":
+					return DataControl.LIGNE_DROITE;
+				case "LB": 
+					return DataControl.LIGNE_BAS;
+				case "C": 
+					return DataControl.CARRE;
+				default:
+					return DataControl.CARRE;			
+			}
+		}
+		return DataControl.CARRE;
+	}
+	
 }
