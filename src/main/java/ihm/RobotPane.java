@@ -39,19 +39,15 @@ public class RobotPane extends StackPane {
 	private int hauteurTitre = c.getHauteurTitre();
 	private int marge = 50;
 	private int margeTitre = 150;
-	private int margeDivider = (int) (marge*2.5);
+	private int margeDivider = (int) (marge * 2.5);
 	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
 	private CornerRadii coin = new CornerRadii(c.getValeurCoin());
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
-	private String[][] matriceLaby = {{ "C","DLH","DLH","DLH", "AHD"},
-			   						  {null, null, null, null, "DLV"},
-			   						  {null, null, null, null, "DLV"},
-			   						  {null, null, null, null, "DLV"},
-			   						  {null, null, null, null, "C" }};
-
+	private String[][] matriceLaby = { { "LB", "LB", "LB", "LB", "CB" }, { null, null, null, null, "LG" },
+			{ "AHG", "LH", "AHD", null, "LG" }, { "LG", "CB", "LD", null, "LG" }, { "ABG", "LB", "ABD", null, "LG" } };
 
 	VBox vbCentreG;
 	VBox vbTitre;
@@ -65,19 +61,17 @@ public class RobotPane extends StackPane {
 	BorderPane bpD;
 	Button bQuitter;
 	GridPane gp;
-	ImageView[][] matriceImg  = new ImageView[5][5];
+	ImageView[][] matriceImg = new ImageView[5][5];
 
 	public RobotPane(ScreenControl sc) {
 		sControl = sc;
-		
-	
-		for(int i = 0; i< matriceImg.length; i++) {
-			for(int j = 0; j < matriceImg.length; j++) {
+
+		for (int i = 0; i < matriceImg.length; i++) {
+			for (int j = 0; j < matriceImg.length; j++) {
 				matriceImg[i][j] = new ImageView(buildMatrice(matriceLaby[i][j]));
 			}
 		}
-		
-		
+
 		titre = new Label("Le labyrinthe");
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
 		titre.setStyle(c.getCouleurPoliceTitre());
@@ -85,10 +79,10 @@ public class RobotPane extends StackPane {
 
 		vbTitre = new VBox();
 		vbTitre.getChildren().add(titre);
-		vbTitre.setTranslateY(-(c.getLargeur()/4));
+		vbTitre.setTranslateY(-(c.getLargeur() / 4));
 		vbTitre.setAlignment(Pos.CENTER);
 		vbTitre.setStyle(c.getStyleTitre());
-		
+
 		vbTitre.setPrefWidth(largeurTitre);
 		vbTitre.setPrefHeight(hauteurTitre);
 		vbTitre.setMinWidth(largeurTitre);
@@ -108,23 +102,23 @@ public class RobotPane extends StackPane {
 		hbtitreG.setPadding(new Insets(10));
 
 		bpG = new BorderPane();
-		bpG.setMinSize(c.getLargeur()/2, c.getHauteur());
-		bpG.setMaxSize(c.getLargeur()/2, c.getHauteur());
-		bpG.setPrefSize(c.getLargeur()/2, c.getHauteur());
-		bpG.setTranslateX(-(c.getLargeur()/4));
+		bpG.setMinSize(c.getLargeur() / 2, c.getHauteur());
+		bpG.setMaxSize(c.getLargeur() / 2, c.getHauteur());
+		bpG.setPrefSize(c.getLargeur() / 2, c.getHauteur());
+		bpG.setTranslateX(-(c.getLargeur() / 4));
 		bpG.setPadding(new Insets(margeTitre, margeTitre, marge, margeTitre));
 		bpG.setTop(hbtitreG);
-		bpG.setAlignment(hbtitreG,Pos.CENTER);
-		
-		
+		bpG.setAlignment(hbtitreG, Pos.CENTER);
+
 		gp = new GridPane();
-		for(int i = 0; i<matriceImg.length; i++) {
-			for(int j = 0; j<matriceImg.length; j++) {
+		gp.setAlignment(Pos.CENTER);
+		for (int i = 0; i < matriceImg.length; i++) {
+			for (int j = 0; j < matriceImg.length; j++) {
 				gp.setConstraints(matriceImg[i][j], j, i);
 				gp.getChildren().add(matriceImg[i][j]);
 			}
 		}
-		
+		bpG.setAlignment(gp, Pos.CENTER);
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
 		hbBottom.setSpacing(300);
@@ -161,8 +155,8 @@ public class RobotPane extends StackPane {
 		bpG.setCenter(gp);
 		bpG.setBottom(hbBottom);
 
-		Line line = new Line(c.getLargeur()/2, margeDivider, c.getLargeur()/2, c.getHauteur()-margeDivider);
-		line.setStrokeWidth(marge/10);
+		Line line = new Line(c.getLargeur() / 2, margeDivider, c.getLargeur() / 2, c.getHauteur() - margeDivider);
+		line.setStrokeWidth(marge / 10);
 
 		titreD = new Label("Représentation du labyrinthe");
 		titreD.setFont(Font.font(nomPolice, FontWeight.BOLD, 30));
@@ -176,53 +170,55 @@ public class RobotPane extends StackPane {
 		hbtitreD.setPadding(new Insets(10));
 
 		bpD = new BorderPane();
-		bpD.setMinSize(c.getLargeur()/2, c.getHauteur());
-		bpD.setMaxSize(c.getLargeur()/2, c.getHauteur());
-		bpD.setPrefSize(c.getLargeur()/2, c.getHauteur());
-		bpD.setTranslateX((c.getLargeur()/4));
+		bpD.setMinSize(c.getLargeur() / 2, c.getHauteur());
+		bpD.setMaxSize(c.getLargeur() / 2, c.getHauteur());
+		bpD.setPrefSize(c.getLargeur() / 2, c.getHauteur());
+		bpD.setTranslateX((c.getLargeur() / 4));
 		bpD.setPadding(new Insets(margeTitre));
 		bpD.setTop(hbtitreD);
 		bpD.setAlignment(hbtitreD, Pos.CENTER);
-		
+
 		ImageView imgFond = new ImageView(DataControl.FOND);
 		imgFond.setEffect(flou);
 
-		this.getChildren().addAll(imgFond,vbTitre, bpG, line, bpD);
+		this.getChildren().addAll(imgFond, vbTitre, bpG, line, bpD);
 
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
 	}
-	
+
 	public String buildMatrice(String val) {
-		if(val != null){
-			switch(val) {
-				case "DLV": 
-					return DataControl.DLIGNE_VERT;
-				case "DLH": 
-					return DataControl.DLIGNE_HOR;
-				case "AHG": 
-					return DataControl.ANGLE_HAUT_GAUCHE;
-				case "AHD": 
-					return DataControl.ANGLE_HAUT_DROITE;
-				case "ABG": 
-					return DataControl.ANGLE_BAS_GAUCHE;
-				case "ABD": 
-					return DataControl.ANGLE_BAS_DROITE;
-				case "LH": 
-					return DataControl.LIGNE_HAUT;
-				case "LG": 
-					return DataControl.LIGNE_GAUCHE;
-				case "LD":
-					return DataControl.LIGNE_DROITE;
-				case "LB": 
-					return DataControl.LIGNE_BAS;
-				case "C": 
-					return DataControl.CARRE;
-				default:
-					return DataControl.CARRE;			
+		if (val != null) {
+			switch (val) {
+			case "DLV":
+				return DataControl.DLIGNE_VERT;
+			case "DLH":
+				return DataControl.DLIGNE_HOR;
+			case "AHG":
+				return DataControl.ANGLE_HAUT_GAUCHE;
+			case "AHD":
+				return DataControl.ANGLE_HAUT_DROITE;
+			case "ABG":
+				return DataControl.ANGLE_BAS_GAUCHE;
+			case "ABD":
+				return DataControl.ANGLE_BAS_DROITE;
+			case "LH":
+				return DataControl.LIGNE_HAUT;
+			case "LG":
+				return DataControl.LIGNE_GAUCHE;
+			case "LD":
+				return DataControl.LIGNE_DROITE;
+			case "LB":
+				return DataControl.LIGNE_BAS;
+			case "C":
+				return DataControl.CARRE;
+			case "CB":
+				return DataControl.CARRE_BLANC;
+			default:
+				return DataControl.CARRE_VIDE;
 			}
 		}
-		return DataControl.CARRE;
+		return DataControl.CARRE_VIDE;
 	}
-	
+
 }
