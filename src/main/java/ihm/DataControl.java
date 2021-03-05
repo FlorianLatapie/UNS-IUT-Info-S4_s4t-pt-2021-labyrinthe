@@ -27,6 +27,5 @@ public class DataControl {
 	public static final String ANGLE_BAS_DROITE = "Images/Labyrinthe/Angle3.png";
 	
 	public static final String CARRE = "Images/Labyrinthe/Carre.png";
-	public static final String CARRE_VIDE = "Images/Labyrinthe/CarreVide.png";
 	
 }
