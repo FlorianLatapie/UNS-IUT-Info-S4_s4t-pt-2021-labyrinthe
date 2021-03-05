@@ -2,6 +2,8 @@ package ihm;
 
 import ihm.DataControl.ApplicationPane;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -109,13 +112,26 @@ public class RobotPane extends StackPane {
 		bQuitter.setMinSize(lBouton, hBouton);
 		bQuitter.setFont(policeBouton);
 		bQuitter.setStyle(styleBoutons);
-		bQuitter.setOnMouseEntered(event -> bQuitter.setStyle(styleBoutonsSouris));
-		bQuitter.setOnMouseExited(event -> bQuitter.setStyle(styleBoutons));
-		bQuitter.setOnAction(event -> {
-			boolean resultat = ConfirmationPane.afficher();
-			if (resultat) {
-				Platform.exit();
-				System.exit(0);
+		bQuitter.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				bQuitter.setStyle(styleBoutonsSouris);
+			}
+		});
+		bQuitter.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				bQuitter.setStyle(styleBoutons);
+			}
+		});
+		bQuitter.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				boolean resultat = ConfirmationPane.afficher();
+				if (resultat) {
+					Platform.exit();
+					System.exit(0);
+				}
 			}
 		});
 

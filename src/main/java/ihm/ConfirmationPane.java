@@ -1,11 +1,14 @@
 package ihm;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -39,7 +42,7 @@ public class ConfirmationPane {
 	 * @return
 	 */
 	public static boolean afficher() {
-		Stage window = new Stage();
+		final Stage window = new Stage();
 		window.getIcons().add(new Image(DataControl.ICONE));
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Quitter l'application");
@@ -63,24 +66,50 @@ public class ConfirmationPane {
 		boutonOui.setPrefSize(lBouton, hBouton);
 		boutonOui.setStyle(styleBoutons);
 		boutonOui.setFont(police);
-		boutonOui.setOnMouseEntered(event -> boutonOui.setStyle(styleBoutonsSouris));
-		boutonOui.setOnMouseExited(event -> boutonOui.setStyle(styleBoutons));
+		boutonOui.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				boutonOui.setStyle(styleBoutonsSouris);
+			}
+		});
+		boutonOui.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				boutonOui.setStyle(styleBoutons);
+			}
+		});
 
 		boutonNon = new Button("Annuler");
 		boutonNon.setPrefSize(lBouton, hBouton);
 		boutonNon.setStyle(styleBoutonSecondaire);
 		boutonNon.setFont(police);
-		boutonNon.setOnMouseEntered(event -> boutonNon.setStyle(styleBoutonsSouris));
-		boutonNon.setOnMouseExited(event -> boutonNon.setStyle(styleBoutonSecondaire));
-
-		boutonOui.setOnAction(e -> {
-			reponse = true;
-			window.close();
+		boutonNon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				boutonNon.setStyle(styleBoutonsSouris);
+			}
+		});
+		boutonNon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				boutonNon.setStyle(styleBoutonSecondaire);
+			}
 		});
 
-		boutonNon.setOnAction(e -> {
-			reponse = false;
-			window.close();
+		boutonOui.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				reponse = true;
+				window.close();
+			}
+		});
+
+		boutonNon.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				reponse = false;
+				window.close();
+			}
 		});
 
 		HBox boutonHbox = new HBox(10);
