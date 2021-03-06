@@ -4,21 +4,31 @@ import lejos.hardware.motor.Motor;
 import lejos.utility.Delay;
 
 public class MouvementController {
-	static int gearRatio = 24 / 8;
-	static double rotation = 1.25;
-	static double distance = 1.45;
-
-	public static void methodeExemple()  {
-		System.out.println("méthode d'exemple");
+	private int gearRatio = 24 / 8;
+	private double rotation = 1.25;
+	private double distance = 1.45;
+	private boolean modeVerbeux = false;
+	
+	
+	public MouvementController() {
+		this.modeVerbeux = false;
+	}
+	
+	public MouvementController(boolean modeVerbeux) {
+		this.modeVerbeux = modeVerbeux;
+	}
+	
+	public void methodeExemple()  {
+		if (modeVerbeux)System.out.println("méthode d'exemple");
 		gauche();
 		droite();
 		avancer();
 		reculer();
-		System.out.println("fin");
+		if (modeVerbeux)System.out.println("fin de l'exemple");
 	}
 
-	public static void gauche() {
-		System.out.println("je vais a gauche");
+	public void gauche() {
+		if (modeVerbeux)System.out.println("je vais a gauche");
 		double correction = 0;
 
 		int objectifA = (int) (-360 * (rotation+correction) * gearRatio);
@@ -29,11 +39,11 @@ public class MouvementController {
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		System.out.println("fin gauche");
+		if (modeVerbeux)System.out.println("fin gauche");
 	}
 
-	public static void droite() {
-		System.out.println("je vais � droite");
+	public void droite() {
+		if (modeVerbeux)System.out.println("je vais � droite");
 
 		double correction = -0.15;
 
@@ -45,11 +55,11 @@ public class MouvementController {
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		System.out.println("fin droite");
+		if (modeVerbeux)System.out.println("fin droite");
 	}
 	
-	public static void avancer() {
-		System.out.println("j'avance");
+	public void avancer() {
+		if (modeVerbeux)System.out.println("j'avance");
 		double correction = 0;
 
 		int objectifA = (int) (-360 * (distance+correction) * gearRatio);
@@ -60,11 +70,11 @@ public class MouvementController {
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		System.out.println("fin avancer");
+		if (modeVerbeux)System.out.println("fin avancer");
 	}
 	
-	public static void reculer() {
-		System.out.println("je recule");
+	public void reculer() {
+		if (modeVerbeux)System.out.println("je recule");
 		double correction = 0.15;
 
 		int objectifA = (int) (360 * (distance+correction) * gearRatio);
@@ -75,6 +85,6 @@ public class MouvementController {
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		System.out.println("fin reculer");
+		if (modeVerbeux)System.out.println("fin reculer");
 	}
 }
