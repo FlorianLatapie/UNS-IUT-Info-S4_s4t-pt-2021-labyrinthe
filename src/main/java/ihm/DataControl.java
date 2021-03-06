@@ -1,7 +1,7 @@
 package ihm;
 
 public class DataControl {
-	public static enum ApplicationPane {
+	public enum ApplicationPane {
 		ACCUEIL, ROBOT
 	}
 
@@ -12,8 +12,8 @@ public class DataControl {
 
 	public static final String FOND = "Images/fond.jpg";
 	public static final String ROBOT = "Images/icon_robot.png";
-	// Images Labyrinthe 
 	
+	// Images Labyrinthe 
 	public static final String LIGNE_HAUT = "Images/Labyrinthe/ligne0.png";
 	public static final String LIGNE_DROITE = "Images/Labyrinthe/ligne1.png";
 	public static final String LIGNE_BAS = "Images/Labyrinthe/ligne2.png";

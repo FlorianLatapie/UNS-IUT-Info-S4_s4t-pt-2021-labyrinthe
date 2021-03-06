@@ -1,7 +1,5 @@
 package ihm;
 
-import java.util.ArrayList;
-
 import ihm.DataControl.ApplicationPane;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -10,21 +8,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Slider;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -32,7 +23,7 @@ import javafx.scene.text.FontWeight;
 public class RobotPane extends StackPane {
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
-	private final ApplicationPane paneName = ApplicationPane.ROBOT;
+	private static final ApplicationPane paneName = ApplicationPane.ROBOT;
 	private int hBouton = c.gethBouton();
 	private int lBouton = c.getlBouton();
 	private int largeurTitre = c.getLargeurTitre();
@@ -42,7 +33,6 @@ public class RobotPane extends StackPane {
 	private int margeDivider = (int) (marge * 2.5);
 	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
-	private CornerRadii coin = new CornerRadii(c.getValeurCoin());
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private String styleGp = "-fx-border-color: black; -fx-border-insets: -3; -fx-border-width: 6";
@@ -135,7 +125,7 @@ public class RobotPane extends StackPane {
 		bpG.setTranslateX(-(c.getLargeur() / 4));
 		bpG.setPadding(new Insets(margeTitre, margeTitre, marge, margeTitre));
 		bpG.setTop(hbtitreG);
-		bpG.setAlignment(hbtitreG, Pos.CENTER);
+		BorderPane.setAlignment(hbtitreG, Pos.CENTER);
 		
 		StackPane stackCenter = new StackPane();
 		stackCenter.setAlignment(Pos.CENTER);
@@ -146,7 +136,7 @@ public class RobotPane extends StackPane {
 		gp.setAlignment(Pos.CENTER);
 		for (int i = 0; i < matriceImg.length; i++) {
 			for (int j = 0; j < matriceImg.length; j++) {
-				gp.setConstraints(matriceImg[i][j], j, i);
+				GridPane.setConstraints(matriceImg[i][j], j, i);
 				gp.getChildren().addAll(matriceImg[i][j]);
 			}
 		}
@@ -156,7 +146,7 @@ public class RobotPane extends StackPane {
 		gpRobot.setAlignment(Pos.CENTER);
 		for (int i = 0; i < matriceIconRobot.length; i++) {
 			for (int j = 0; j < matriceIconRobot.length; j++) {
-				gp.setConstraints(matriceIconRobot[i][j], j, i);
+				GridPane.setConstraints(matriceIconRobot[i][j], j, i);
 				gp.getChildren().addAll(matriceIconRobot[i][j]);
 					
 			
@@ -166,7 +156,7 @@ public class RobotPane extends StackPane {
 		stackCenter.getChildren().addAll(gp, gpRobot);
 		
 		
-		bpG.setAlignment(gp, Pos.CENTER);
+		BorderPane.setAlignment(gp, Pos.CENTER);
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
 		hbBottom.setSpacing(300);
@@ -224,7 +214,7 @@ public class RobotPane extends StackPane {
 		bpD.setTranslateX((c.getLargeur() / 4));
 		bpD.setPadding(new Insets(margeTitre));
 		bpD.setTop(hbtitreD);
-		bpD.setAlignment(hbtitreD, Pos.CENTER);
+		BorderPane.setAlignment(hbtitreD, Pos.CENTER);
 
 		ImageView imgFond = new ImageView(DataControl.FOND);
 		imgFond.setEffect(flou);

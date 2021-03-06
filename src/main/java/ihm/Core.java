@@ -1,6 +1,5 @@
 package ihm;
 
-import com.sun.prism.paint.Color;
 
 public class Core {
 	private final int largeur = 1920;
@@ -16,7 +15,7 @@ public class Core {
 	
 	private final String APBouton = "-fx-background-color:#0070FF;";
 	private final String APBoutonSecondaire = "-fx-background-color:#34c6eb;";
-	private final String APBoutonSouris = "-fx-background-color:#1c1c1c;";
+	private final String APBoutonSouris = "-fx-background-color:#666666;";
 	private final String styleBouton = APBouton + "-fx-background-radius: "+valeurCoin+"px;"+couleurPoliceSecondaire;
 	private final String styleBoutonSecondaire = APBoutonSecondaire
 			+ "-fx-background-radius: "+valeurCoin+"px;"+couleurPoliceSecondaire;
@@ -80,16 +79,8 @@ public class Core {
 		return styleBouton;
 	}
 
-	public void setStyleBouton(String styleBouton) {
-		styleBouton = styleBouton;
-	}
-
 	public String getStyleBoutonSouris() {
 		return styleBoutonSouris;
-	}
-
-	public void setStyleBoutonSouris(String styleBoutonSouris) {
-		styleBoutonSouris = styleBoutonSouris;
 	}
 
 	private String nomPolice = "Segoe UI";

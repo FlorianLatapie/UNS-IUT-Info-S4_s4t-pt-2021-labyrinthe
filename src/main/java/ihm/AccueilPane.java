@@ -14,32 +14,23 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class AccueilPane extends StackPane {
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
-	private final ApplicationPane paneName = ApplicationPane.ACCUEIL;
+	private static final ApplicationPane paneName = ApplicationPane.ACCUEIL;
 	private int largeurTitre = c.getLargeurTitre();
 	private int hauteurTitre = c.getHauteurTitre();
 	private int hBouton = c.gethBouton();
 	private int lBouton = c.getlBouton();
-	private int marge = 24;
-	private Insets margeBoutons = new Insets(marge, marge, marge, marge);
 	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
-	private CornerRadii coin = new CornerRadii(c.getValeurCoin());
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
@@ -149,7 +140,7 @@ public class AccueilPane extends StackPane {
 		});
 		bLancer.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent EventHandler) {
+			public void handle(ActionEvent event) {
 				sc.setPaneOnTop(ApplicationPane.ROBOT);
 			}
 		});
@@ -183,7 +174,7 @@ public class AccueilPane extends StackPane {
 		});
 
 		hbBottom.getChildren().addAll(bQuitter, bLancer);
-		bp.setAlignment(vbTitre, Pos.CENTER);
+		BorderPane.setAlignment(vbTitre, Pos.CENTER);
 		bp.setTop(vbTitre);
 		bp.setCenter(vbCentre);
 		bp.setBottom(hbBottom);

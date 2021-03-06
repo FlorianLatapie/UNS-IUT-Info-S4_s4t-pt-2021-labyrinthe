@@ -1,7 +1,6 @@
 package raspberry.reseaulego;
 
 import lego.MouvementController;
-import lejos.hardware.Button;
 
 import java.net.*;
 import java.io.*;

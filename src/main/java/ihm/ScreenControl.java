@@ -10,14 +10,12 @@ import java.util.HashMap;
 
 public class ScreenControl implements EventHandler<MouseEvent> {
 	
-	//private final Core core;
 	private InterfacePrincipale primary = null;
 	private HashMap<ApplicationPane, Node> listNode = new HashMap<>();
 	private boolean lock = false;
 
 
 	public ScreenControl(InterfacePrincipale i, Core core) {
-		//this.core = core;
 		primary = i;
 		primary.getScene().addEventFilter(MouseEvent.ANY, this);
 	}
@@ -44,7 +42,6 @@ public class ScreenControl implements EventHandler<MouseEvent> {
 			primary.setOnTop(listNode.get(s));
 		}
 		else {
-			//TODO mettre une erreur au lieu d'un print 
 			System.out.println("pane "+s.toString()+" introuvable");
 		}
 

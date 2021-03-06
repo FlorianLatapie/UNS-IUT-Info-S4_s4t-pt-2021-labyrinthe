@@ -5,14 +5,6 @@ import java.net.*;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-
-        /*if (args.length != 1) {
-            System.err.println(
-                    "Usage: java Client <host name> ");
-            System.exit(1);
-        }
-
-        String hostName = args[0];*/
     	String hostName = "172.20.10.10"; // ip address of lego 
         int portNumber = 8888;
         System.out.println("client lancé");
@@ -30,7 +22,7 @@ public class Client {
             System.out.println("client connecté ");
         	String userInput;
             while ((userInput = stdIn.readLine()) != null) {
-                if(userInput.toUpperCase().equals("EXIT")){
+                if(userInput.equalsIgnoreCase("EXIT")){
                 	out.println(userInput.toUpperCase());
                     
                     out.close();
