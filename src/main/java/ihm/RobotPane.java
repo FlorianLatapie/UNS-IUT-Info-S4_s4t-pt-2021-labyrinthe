@@ -45,9 +45,15 @@ public class RobotPane extends StackPane {
 	private CornerRadii coin = new CornerRadii(c.getValeurCoin());
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
+	private String styleGp = "-fx-border-color: black; -fx-border-insets: -3; -fx-border-width: 6";
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
-	private String[][] matriceLaby = { { "LB", "LB", "LB", "LB", "CB" }, { null, null, null, null, "LG" },
-			{ "AHG", "LH", "AHD", null, "LG" }, { "LG", "CB", "LD", null, "LG" }, { "ABG", "LB", "ABD", null, "LG" } };
+	private String[][] matriceLaby = { 
+			{ null, null, null, null, null }, 
+			{ "CA", "DLH", "DLH", "AHD", null },
+			{ null, null, null, "DLV", null }, 
+			{ null, null, null,   "DLV", null }, 
+			{ null, null, null, "CD", null }};
+
 
 	VBox vbCentreG;
 	VBox vbTitre;
@@ -61,8 +67,9 @@ public class RobotPane extends StackPane {
 	BorderPane bpD;
 	Button bQuitter;
 	GridPane gp;
+	GridPane gpRobot;
 	ImageView[][] matriceImg = new ImageView[5][5];
-
+	ImageView[][] matriceRobot = new ImageView[5][5];
 	public RobotPane(ScreenControl sc) {
 		sControl = sc;
 
@@ -71,7 +78,15 @@ public class RobotPane extends StackPane {
 				matriceImg[i][j] = new ImageView(buildMatrice(matriceLaby[i][j]));
 			}
 		}
-
+		
+		for (int i = 0; i < matriceRobot.length; i++) {
+			for (int j = 0; j < matriceRobot.length; j++) {
+				matriceRobot[i][j] = new ImageView(DataControl.ROBOT);
+				matriceRobot[i][j].setTranslateX(13);
+				positionRobot(matriceLaby[i][j], matriceRobot[i][j]);
+			}
+		}
+		
 		titre = new Label("Le labyrinthe");
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
 		titre.setStyle(c.getCouleurPoliceTitre());
@@ -109,15 +124,36 @@ public class RobotPane extends StackPane {
 		bpG.setPadding(new Insets(margeTitre, margeTitre, marge, margeTitre));
 		bpG.setTop(hbtitreG);
 		bpG.setAlignment(hbtitreG, Pos.CENTER);
-
+		
+		StackPane stackCenter = new StackPane();
+		stackCenter.setAlignment(Pos.CENTER);
+		
 		gp = new GridPane();
+		gp.setMaxSize(100, 100);
+		gp.setStyle(styleGp);
 		gp.setAlignment(Pos.CENTER);
 		for (int i = 0; i < matriceImg.length; i++) {
 			for (int j = 0; j < matriceImg.length; j++) {
 				gp.setConstraints(matriceImg[i][j], j, i);
-				gp.getChildren().add(matriceImg[i][j]);
+				gp.getChildren().addAll(matriceImg[i][j]);
 			}
 		}
+		
+		gpRobot = new GridPane();
+		gpRobot.setMaxSize(100, 100);
+		gpRobot.setAlignment(Pos.CENTER);
+		for (int i = 0; i < matriceRobot.length; i++) {
+			for (int j = 0; j < matriceRobot.length; j++) {
+				gp.setConstraints(matriceRobot[i][j], j, i);
+				gp.getChildren().addAll(matriceRobot[i][j]);
+					
+			
+			}
+		}
+		
+		stackCenter.getChildren().addAll(gp, gpRobot);
+		
+		
 		bpG.setAlignment(gp, Pos.CENTER);
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
@@ -152,7 +188,7 @@ public class RobotPane extends StackPane {
 		});
 
 		hbBottom.getChildren().addAll(bQuitter);
-		bpG.setCenter(gp);
+		bpG.setCenter(stackCenter);
 		bpG.setBottom(hbBottom);
 
 		Line line = new Line(c.getLargeur() / 2, margeDivider, c.getLargeur() / 2, c.getHauteur() - margeDivider);
@@ -210,8 +246,10 @@ public class RobotPane extends StackPane {
 				return DataControl.LIGNE_DROITE;
 			case "LB":
 				return DataControl.LIGNE_BAS;
-			case "C":
-				return DataControl.CARRE;
+			case "CD":
+				return DataControl.CARRE_DEPART;
+			case "CA":
+				return DataControl.CARRE_ARRIVEE;
 			case "CB":
 				return DataControl.CARRE_BLANC;
 			default:
@@ -219,6 +257,29 @@ public class RobotPane extends StackPane {
 			}
 		}
 		return DataControl.CARRE_VIDE;
+	}
+	
+	public ImageView positionRobot(String s, ImageView v) {
+		if(s == null) {v.setVisible(false); return v;}
+		switch(s) {
+		case "AHG":
+			v.setRotate(90);
+			v.setVisible(false);
+			return v;
+		case "AHD":
+			v.setRotate(-90);
+			v.setVisible(false);
+			return v;
+		case "ABG":
+			v.setRotate(-90);
+			v.setVisible(false);
+			return v;
+		case "CD":
+			return v;
+		default:
+				v.setVisible(false);
+				return v;
+		}
 	}
 
 }

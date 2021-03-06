@@ -29,5 +29,7 @@ public class DataControl {
 	public static final String CARRE = "Images/Labyrinthe/Carre.png";
 	public static final String CARRE_VIDE = "Images/Labyrinthe/CarreVide.png";
 	public static final String CARRE_BLANC = "Images/Labyrinthe/CarreBlanc.png";
+	public static final String CARRE_DEPART = "Images/Labyrinthe/CaseDepart.png";
+	public static final String CARRE_ARRIVEE = "Images/Labyrinthe/CaseArrivee.png";
 	
 }
