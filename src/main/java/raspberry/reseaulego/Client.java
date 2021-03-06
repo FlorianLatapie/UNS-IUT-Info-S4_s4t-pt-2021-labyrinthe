@@ -24,10 +24,9 @@ public class Client {
             while ((userInput = stdIn.readLine()) != null) {
                 if(userInput.equalsIgnoreCase("EXIT")){
                 	out.println(userInput.toUpperCase());
-                    
                     out.close();
-                    echoSocket.close();
                     in.close();
+                    echoSocket.close();
                 }
                 out.println(userInput.toUpperCase());
                 System.out.println("LEGO a repondu '" + in.readLine()+"'");
