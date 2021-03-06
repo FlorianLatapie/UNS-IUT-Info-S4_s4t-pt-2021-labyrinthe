@@ -4,19 +4,13 @@ import java.net.*;
 import java.io.*;
 
 public class Server {
-    public static void main(String[] args) throws IOException {
+    public void runServer() throws IOException {
 
-        if (args.length != 1) {
-            System.err.println("Usage: java Server <port number>");
-            System.exit(1);
-        }
-
-        int portNumber = Integer.parseInt(args[0]);
-
+        int portNumber = 8888;
 
         try (
                 ServerSocket serverSocket =
-                        new ServerSocket(Integer.parseInt(args[0]));
+                        new ServerSocket(portNumber);
                 Socket clientSocket = serverSocket.accept();
                 PrintWriter out =
                         new PrintWriter(clientSocket.getOutputStream(), true);

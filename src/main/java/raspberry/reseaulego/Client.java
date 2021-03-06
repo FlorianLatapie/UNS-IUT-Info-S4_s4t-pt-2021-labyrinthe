@@ -6,14 +6,15 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) throws IOException {
 
-        if (args.length != 2) {
+        /*if (args.length != 1) {
             System.err.println(
-                    "Usage: java Client <host name> <port number>");
+                    "Usage: java Client <host name> ");
             System.exit(1);
         }
 
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
+        String hostName = args[0];*/
+    	String hostName = "172.20.10.10"; // ip address of lego 
+        int portNumber = 8888;
 
         try (
                 Socket echoSocket = new Socket(hostName, portNumber);
