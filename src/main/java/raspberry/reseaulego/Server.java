@@ -1,9 +1,12 @@
 package raspberry.reseaulego;
 
+import lego.MouvementController;
+
 import java.net.*;
 import java.io.*;
 
 public class Server {
+
     public void runServer() throws IOException {
 
         int portNumber = 8888;
@@ -25,6 +28,7 @@ public class Server {
                     in.close();
                     out.close();
                 }
+                traitement(inputLine);
                 out.println(inputLine);
                 System.out.println("server has replied server replies "+inputLine);
             }
@@ -33,6 +37,29 @@ public class Server {
             System.out.println("Exception caught when trying to listen on port "
                     + portNumber + " or listening for a connection");
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void traitement(String inputLine){
+        MouvementController mouvementController = new MouvementController(true);
+        switch (inputLine){
+            case "A":
+                mouvementController.avancer();
+                break;
+            case "D":
+                mouvementController.droite();
+                break;
+            case "G":
+                mouvementController.gauche();
+                break;
+            case "R":
+                mouvementController.reculer();
+                break;
+            case "S":
+                mouvementController.stop();
+                break;
+            default:
+                System.out.println("mouvement inconnu");
         }
     }
 }
