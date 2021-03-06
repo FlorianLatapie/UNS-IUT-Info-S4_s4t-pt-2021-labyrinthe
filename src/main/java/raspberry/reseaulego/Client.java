@@ -15,7 +15,7 @@ public class Client {
         String hostName = args[0];*/
     	String hostName = "172.20.10.10"; // ip address of lego 
         int portNumber = 8888;
-
+        System.out.println("client lancé");
         try (
                 Socket echoSocket = new Socket(hostName, portNumber);
                 PrintWriter out =
@@ -27,16 +27,18 @@ public class Client {
                         new BufferedReader(
                                 new InputStreamReader(System.in))
         ) {
-            String userInput;
+            System.out.println("client connecté ");
+        	String userInput;
             while ((userInput = stdIn.readLine()) != null) {
-                if(userInput.equals("exit")){
-                    out.println("Server close !");
+                if(userInput.toUpperCase().equals("EXIT")){
+                	out.println(userInput.toUpperCase());
+                    
+                    out.close();
                     echoSocket.close();
                     in.close();
-                    out.close();
                 }
-                out.println(userInput);
-                System.out.println("echo: server replies " + in.readLine());
+                out.println(userInput.toUpperCase());
+                System.out.println("LEGO a repondu '" + in.readLine()+"'");
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);

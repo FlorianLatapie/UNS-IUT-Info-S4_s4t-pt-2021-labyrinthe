@@ -70,7 +70,7 @@ public class MouvementController {
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		if (modeVerbeux)System.out.println("fin avancer");
+		if (modeVerbeux)System.out.println("stop");
 	}
 	
 	public void reculer() {
@@ -85,7 +85,7 @@ public class MouvementController {
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		if (modeVerbeux)System.out.println("fin reculer");
+		if (modeVerbeux)System.out.println("stop");
 	}
 	
 	public void stop() {

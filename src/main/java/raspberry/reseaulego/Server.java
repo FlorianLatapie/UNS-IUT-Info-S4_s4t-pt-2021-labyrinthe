@@ -1,6 +1,7 @@
 package raspberry.reseaulego;
 
 import lego.MouvementController;
+import lejos.hardware.Button;
 
 import java.net.*;
 import java.io.*;
@@ -10,7 +11,7 @@ public class Server {
     public void runServer() throws IOException {
 
         int portNumber = 8888;
-
+        System.out.println("Server lance");
         try (
                 ServerSocket serverSocket =
                         new ServerSocket(portNumber);
@@ -20,46 +21,56 @@ public class Server {
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(clientSocket.getInputStream()));
         ) {
-            String inputLine;
+        	System.out.println("Server connecte");
+        	String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 if(inputLine.equals("exit")){
                     out.println("Server close !");
-                    serverSocket.close();
                     in.close();
                     out.close();
+                    serverSocket.close();
                 }
-                traitement(inputLine);
-                out.println(inputLine);
-                System.out.println("server has replied server replies "+inputLine);
+                
+                if (traitement(inputLine)) {
+                	out.println("\""+inputLine+"\" :Mouvement effectué");
+                    System.out.println("je reponds \""+inputLine+"\" :\nMouvement done");
+                }
+                else {
+                	out.println("\""+inputLine + "\" est incorrect");
+                    System.out.println("je reponds "+inputLine+"\nEst incorrect");
+                }
+                
             }
 
         } catch (IOException e) {
-            System.out.println("Exception caught when trying to listen on port "
-                    + portNumber + " or listening for a connection");
+            System.out.println("Connexion terminee");
             System.out.println(e.getMessage());
         }
     }
 
-    public void traitement(String inputLine){
+    public boolean traitement(String inputLine){
         MouvementController mouvementController = new MouvementController(true);
         switch (inputLine){
             case "A":
                 mouvementController.avancer();
-                break;
-            case "D":
+                return true;
+		case "D":
                 mouvementController.droite();
-                break;
+                return true;
             case "G":
                 mouvementController.gauche();
-                break;
+                return true;
             case "R":
                 mouvementController.reculer();
-                break;
+                return true;
             case "S":
                 mouvementController.stop();
-                break;
+                return true;
+            case "EXIT":
+            	return true;
             default:
                 System.out.println("mouvement inconnu");
+                return false;
         }
     }
 }

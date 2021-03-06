@@ -8,7 +8,7 @@ import raspberry.reseaulego.Server;
 public class LegoMain {
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("Appuyez sur retour pour quitter");
+		System.out.println("+---------------+\n|  Labyrinthe   |\n+---------------+");
 		Server legoServ = new Server();
 		legoServ.runServer();
 		
