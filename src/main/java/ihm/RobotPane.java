@@ -53,6 +53,13 @@ public class RobotPane extends StackPane {
 			{ null, null, null, "DLV", null }, 
 			{ null, null, null,   "DLV", null }, 
 			{ null, null, null, "CD", null }};
+	
+	private String[][] matriceRobot = { 
+			{ null, null, null, null, null }, 
+			{ "G", "G", "G", "G", null },
+			{ null, null, null, "H", null }, 
+			{ null, null, null, "H", null }, 
+			{ null, null, null, "H", null }};
 
 
 	VBox vbCentreG;
@@ -69,23 +76,28 @@ public class RobotPane extends StackPane {
 	GridPane gp;
 	GridPane gpRobot;
 	ImageView[][] matriceImg = new ImageView[5][5];
-	ImageView[][] matriceRobot = new ImageView[5][5];
+	ImageView[][] matriceIconRobot = new ImageView[5][5];
 	public RobotPane(ScreenControl sc) {
 		sControl = sc;
 
-		for (int i = 0; i < matriceImg.length; i++) {
-			for (int j = 0; j < matriceImg.length; j++) {
-				matriceImg[i][j] = new ImageView(buildMatrice(matriceLaby[i][j]));
+		for (int i = 0; i < matriceIconRobot.length; i++) {
+			for (int j = 0; j < matriceIconRobot.length; j++) {
+				matriceIconRobot[i][j] = new ImageView(DataControl.ROBOT);
+				matriceIconRobot[i][j].setTranslateX(13);
+				positionRobot(matriceRobot[i][j], matriceIconRobot[i][j]);
+				
 			}
 		}
 		
-		for (int i = 0; i < matriceRobot.length; i++) {
-			for (int j = 0; j < matriceRobot.length; j++) {
-				matriceRobot[i][j] = new ImageView(DataControl.ROBOT);
-				matriceRobot[i][j].setTranslateX(13);
-				positionRobot(matriceLaby[i][j], matriceRobot[i][j]);
+		for (int i = 0; i < matriceImg.length; i++) {
+			for (int j = 0; j < matriceImg.length; j++) {
+				matriceImg[i][j] = new ImageView(buildMatrice(matriceLaby[i][j]));
+				if(matriceLaby[i][j] == "CD")
+					matriceIconRobot[i][j].setVisible(true);
 			}
 		}
+		
+		
 		
 		titre = new Label("Le labyrinthe");
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
@@ -142,10 +154,10 @@ public class RobotPane extends StackPane {
 		gpRobot = new GridPane();
 		gpRobot.setMaxSize(100, 100);
 		gpRobot.setAlignment(Pos.CENTER);
-		for (int i = 0; i < matriceRobot.length; i++) {
-			for (int j = 0; j < matriceRobot.length; j++) {
-				gp.setConstraints(matriceRobot[i][j], j, i);
-				gp.getChildren().addAll(matriceRobot[i][j]);
+		for (int i = 0; i < matriceIconRobot.length; i++) {
+			for (int j = 0; j < matriceIconRobot.length; j++) {
+				gp.setConstraints(matriceIconRobot[i][j], j, i);
+				gp.getChildren().addAll(matriceIconRobot[i][j]);
 					
 			
 			}
@@ -262,23 +274,21 @@ public class RobotPane extends StackPane {
 	public ImageView positionRobot(String s, ImageView v) {
 		if(s == null) {v.setVisible(false); return v;}
 		switch(s) {
-		case "AHG":
+		case "G":
+			v.setRotate(-90);
+			v.setVisible(false);
+			return v;
+		case "D":
 			v.setRotate(90);
 			v.setVisible(false);
 			return v;
-		case "AHD":
-			v.setRotate(-90);
+		case "B":
+			v.setRotate(180);
 			v.setVisible(false);
-			return v;
-		case "ABG":
-			v.setRotate(-90);
-			v.setVisible(false);
-			return v;
-		case "CD":
 			return v;
 		default:
-				v.setVisible(false);
-				return v;
+			v.setVisible(false);
+			return v;
 		}
 	}
 
