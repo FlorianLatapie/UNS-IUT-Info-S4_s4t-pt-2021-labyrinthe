@@ -13,6 +13,7 @@ public class Server {
 
         int portNumber = Integer.parseInt(args[0]);
 
+
         try (
                 ServerSocket serverSocket =
                         new ServerSocket(Integer.parseInt(args[0]));
@@ -24,9 +25,16 @@ public class Server {
         ) {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
+                if(inputLine.equals("exit")){
+                    out.println("Server close !");
+                    serverSocket.close();
+                    in.close();
+                    out.close();
+                }
                 out.println(inputLine);
                 System.out.println("server has replied server replies "+inputLine);
             }
+
         } catch (IOException e) {
             System.out.println("Exception caught when trying to listen on port "
                     + portNumber + " or listening for a connection");

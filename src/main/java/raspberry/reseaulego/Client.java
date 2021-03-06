@@ -28,6 +28,12 @@ public class Client {
         ) {
             String userInput;
             while ((userInput = stdIn.readLine()) != null) {
+                if(userInput.equals("exit")){
+                    out.println("Server close !");
+                    echoSocket.close();
+                    in.close();
+                    out.close();
+                }
                 out.println(userInput);
                 System.out.println("echo: server replies " + in.readLine());
             }
