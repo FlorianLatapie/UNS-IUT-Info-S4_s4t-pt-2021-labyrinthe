@@ -32,7 +32,7 @@ public class Server {
                 }
                 
                 if (traitement(inputLine)) {
-                	out.println("\""+inputLine+"\" :Mouvement effectué");
+                	out.println("\""+inputLine+"\" Mouvement effectué");
                     System.out.println("je reponds \""+inputLine+"\" :\nMouvement done");
                 }
                 else {

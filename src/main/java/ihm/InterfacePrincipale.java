@@ -32,7 +32,7 @@ public class InterfacePrincipale extends Application {
 		});
 		sControl = new ScreenControl(this, core);
 
-		primaryStage.setTitle("Maze Solver");
+		primaryStage.setTitle(DataControl.TITRE);
 
 		primaryStage.setMaxWidth(core.getLargeur());
 		primaryStage.setMaxHeight(core.getHauteur());

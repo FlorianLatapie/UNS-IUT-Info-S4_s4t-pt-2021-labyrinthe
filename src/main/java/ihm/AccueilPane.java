@@ -67,7 +67,7 @@ public class AccueilPane extends StackPane {
 		vbTitre = new VBox();
 		vbTitre.setAlignment(Pos.CENTER);
 
-		titre = new Label("Le labyrinthe");
+		titre = new Label(DataControl.TITRE);
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
 		titre.setStyle(c.getCouleurPoliceTitre());
 

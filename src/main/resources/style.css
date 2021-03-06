@@ -55,7 +55,7 @@
 
 .slider {
     -fx-font-size: 35px;
-    -fx-control-inner-background: #1354cb;
+    -fx-control-inner-background: #0070FF;
     /* This works in changing the track */
 
 }

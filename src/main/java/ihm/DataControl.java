@@ -5,6 +5,7 @@ public class DataControl {
 		ACCUEIL, ROBOT
 	}
 
+	public static final String TITRE = "Le labyrinthe";
 	public static final String ICONE = "Images/Icon.png"; // image by freepik modifiée par florian
 
 	public static final String CSS = "style.css";
@@ -31,5 +32,7 @@ public class DataControl {
 	public static final String CARRE_BLANC = "Images/Labyrinthe/CarreBlanc.png";
 	public static final String CARRE_DEPART = "Images/Labyrinthe/CaseDepart.png";
 	public static final String CARRE_ARRIVEE = "Images/Labyrinthe/CaseArrivee.png";
+	
+	
 	
 }

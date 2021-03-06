@@ -38,7 +38,7 @@ public class RobotPane extends StackPane {
 	private int largeurTitre = c.getLargeurTitre();
 	private int hauteurTitre = c.getHauteurTitre();
 	private int marge = 50;
-	private int margeTitre = 150;
+	private int margeTitre = 210;
 	private int margeDivider = (int) (marge * 2.5);
 	private String nomPolice = c.getNomPolice();
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
@@ -99,7 +99,7 @@ public class RobotPane extends StackPane {
 		
 		
 		
-		titre = new Label("Le labyrinthe");
+		titre = new Label(DataControl.TITRE);
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
 		titre.setStyle(c.getCouleurPoliceTitre());
 		titre.setAlignment(Pos.CENTER);
