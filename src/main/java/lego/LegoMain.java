@@ -9,7 +9,6 @@ public class LegoMain {
 
 	public static void main(String[] args) throws IOException {
 		System.out.println("Appuyez sur retour pour quitter");
-		MouvementController mc = new MouvementController();
 		Server legoServ = new Server();
 		legoServ.runServer();
 		

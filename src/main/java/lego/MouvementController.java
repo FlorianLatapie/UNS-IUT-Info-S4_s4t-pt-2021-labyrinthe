@@ -87,4 +87,9 @@ public class MouvementController {
 		}
 		if (modeVerbeux)System.out.println("fin reculer");
 	}
+	
+	public void stop() {
+		Motor.A.stop();
+		Motor.B.stop();
+	}
 }
