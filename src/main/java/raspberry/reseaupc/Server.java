@@ -1,4 +1,4 @@
-package raspberry.reseaulego;
+package raspberry.reseaupc;
 
 import java.net.*;
 import java.io.*;
