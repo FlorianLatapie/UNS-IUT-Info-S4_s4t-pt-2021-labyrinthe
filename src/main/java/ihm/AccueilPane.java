@@ -93,12 +93,12 @@ public class AccueilPane extends StackPane {
 		button1.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button1);
 
-		button2 = new RadioButton("Mur de gauche");
+		button2 = new RadioButton("Mur de droite");
 		button2.setToggleGroup(group);
 		button2.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button2);
 
-		button3 = new RadioButton("Mur de droite");
+		button3 = new RadioButton("Mur de gauche");
 		button3.setToggleGroup(group);
 		button3.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button3);

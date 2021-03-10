@@ -5,8 +5,8 @@ import lejos.utility.Delay;
 
 public class MouvementController {
 	private int gearRatio = 24 / 8;
-	private double rotation = 1.45;
-	private double distance = 1.35;
+	private double rotation = 0.75;
+	private double distance = 1.45;
 	private boolean modeVerbeux = false;
 	
 	
@@ -60,10 +60,11 @@ public class MouvementController {
 	
 	public void avancer() {
 		if (modeVerbeux)System.out.println("j'avance");
-		double correction = 0;
+		double correctionG = 0;
+		double correctionD = 0;//.2;
 
-		int objectifA = (int) (-360 * (distance+correction) * gearRatio);
-		int objectifB = (int) (-360 * (distance+correction) * gearRatio);
+		int objectifA = (int) (-360 * (distance+correctionD) * gearRatio);
+		int objectifB = (int) (-360 * (distance+correctionG) * gearRatio);
 
 		Motor.B.rotate(objectifB, true);
 		Motor.A.rotate(objectifA, true);
