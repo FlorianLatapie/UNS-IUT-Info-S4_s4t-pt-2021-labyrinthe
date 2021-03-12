@@ -5,9 +5,9 @@ import java.net.*;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-    	String hostName = "172.20.10.10"; // ip address of lego 
+    	String hostName = args[0]; // "172.20.10.10"ip address of lego 
         int portNumber = 8888;
-        System.out.println("client lancé");
+        System.out.println("client lancé sur IP "+hostName+" en attente du serveur...");
         try (
                 Socket echoSocket = new Socket(hostName, portNumber);
                 PrintWriter out =
@@ -19,7 +19,7 @@ public class Client {
                         new BufferedReader(
                                 new InputStreamReader(System.in))
         ) {
-            System.out.println("client connecté ");
+            System.out.println("client connecté");
         	String userInput;
             while ((userInput = stdIn.readLine()) != null) {
                 if(userInput.equalsIgnoreCase("EXIT")){
