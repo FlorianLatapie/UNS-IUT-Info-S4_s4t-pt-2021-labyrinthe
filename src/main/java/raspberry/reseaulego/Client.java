@@ -6,7 +6,12 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) throws IOException {
     	//String hostName = "172.20.10.10"; // ip address of lego 
-    	String hostName = "127.0.0.1";
+    	if (args.length != 1) {
+            System.err.println(
+                    "Usage: java Client <host name> ");
+            System.exit(1);
+        }
+    	String hostName = args[0];//"127.0.0.1";
         int portNumber = 8888;
         System.out.println("client lancé");
         try (
