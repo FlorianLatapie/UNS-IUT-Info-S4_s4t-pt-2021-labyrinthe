@@ -1,15 +1,13 @@
 /**
  * 
  */
-package raspberry.reseaulego;
+package raspberry.reseau;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.util.Vector;
 
-import raspberry.reseaulego.*;
 
 /**
  * @author Remy
@@ -45,7 +43,7 @@ public class MultiServer {
 		System.out.println("--------");
 	}
 
-	synchronized public void sendAll(String message, String sLast) {
+	public synchronized void sendAll(String message, String sLast) {
 		PrintWriter out;
 		for (int i = 0; i < tabClients.size(); i++)
 		{
@@ -58,7 +56,7 @@ public class MultiServer {
 		}
 	}
 
-	synchronized public void delClient(int i) {
+	public synchronized void delClient(int i) {
 		nbClients--;
 		if (tabClients.elementAt(i) != null) 
 		{
@@ -67,13 +65,13 @@ public class MultiServer {
 	}
 
 
-	synchronized public int addClient(PrintWriter out) {
+	public synchronized int addClient(PrintWriter out) {
 		nbClients++;
 		tabClients.addElement(out); 
 		return tabClients.size() - 1;
 	}
 
-	synchronized public int getNbClients() {
+	public synchronized int getNbClients() {
 		return nbClients;
 	}
 }

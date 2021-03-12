@@ -1,7 +1,7 @@
 /**
  * 
  */
-package raspberry.reseaulego;
+package raspberry.reseau;
 
 import java.io.BufferedReader;
 import java.io.IOException;

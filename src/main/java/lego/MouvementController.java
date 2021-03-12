@@ -61,7 +61,7 @@ public class MouvementController {
 	public void avancer() {
 		if (modeVerbeux)System.out.println("j'avance");
 		double correctionG = 0;
-		double correctionD = 0;//.2;
+		double correctionD = 0;
 
 		int objectifA = (int) (-360 * (distance+correctionD) * gearRatio);
 		int objectifB = (int) (-360 * (distance+correctionG) * gearRatio);

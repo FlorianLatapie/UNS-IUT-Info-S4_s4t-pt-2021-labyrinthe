@@ -119,9 +119,9 @@ public class RobotPane extends StackPane {
 		hbtitreG.setPadding(new Insets(10));
 
 		bpG = new BorderPane();
-		bpG.setMinSize(c.getLargeur() / 2, c.getHauteur());
-		bpG.setMaxSize(c.getLargeur() / 2, c.getHauteur());
-		bpG.setPrefSize(c.getLargeur() / 2, c.getHauteur());
+		bpG.setMinSize(c.getLargeur() / 2.0, c.getHauteur());
+		bpG.setMaxSize(c.getLargeur() / 2.0, c.getHauteur());
+		bpG.setPrefSize(c.getLargeur() / 2.0, c.getHauteur());
 		bpG.setTranslateX(-(c.getLargeur() / 4));
 		bpG.setPadding(new Insets(margeTitre, margeTitre, marge, margeTitre));
 		bpG.setTop(hbtitreG);
@@ -208,9 +208,9 @@ public class RobotPane extends StackPane {
 		hbtitreD.setPadding(new Insets(10));
 
 		bpD = new BorderPane();
-		bpD.setMinSize(c.getLargeur() / 2, c.getHauteur());
-		bpD.setMaxSize(c.getLargeur() / 2, c.getHauteur());
-		bpD.setPrefSize(c.getLargeur() / 2, c.getHauteur());
+		bpD.setMinSize(c.getLargeur() / 2.0, c.getHauteur());
+		bpD.setMaxSize(c.getLargeur() / 2.0, c.getHauteur());
+		bpD.setPrefSize(c.getLargeur() / 2.0, c.getHauteur());
 		bpD.setTranslateX((c.getLargeur() / 4));
 		bpD.setPadding(new Insets(margeTitre));
 		bpD.setTop(hbtitreD);
