@@ -5,6 +5,12 @@ import java.net.*;
 
 public class Client {
     public static void main(String[] args) throws IOException {
+    	if (args.length != 1) {
+            System.err.println(
+                    "Usage: java Client <host name> ");
+            System.exit(1);
+        }
+    	
     	String hostName = args[0]; // "172.20.10.10"ip address of lego 
         int portNumber = 8888;
         System.out.println("client lancé sur IP "+hostName+" en attente du serveur...");
