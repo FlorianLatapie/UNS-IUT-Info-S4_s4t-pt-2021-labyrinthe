@@ -5,7 +5,8 @@ import java.net.*;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-    	String hostName = "172.20.10.10"; // ip address of lego 
+    	//String hostName = "172.20.10.10"; // ip address of lego 
+    	String hostName = "127.0.0.1";
         int portNumber = 8888;
         System.out.println("client lancé");
         try (
