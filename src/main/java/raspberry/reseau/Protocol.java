@@ -31,6 +31,7 @@ public class Protocol  {
 		}
 		else if(input.equalsIgnoreCase("broadcast")){
 			multiServer.sendAll(input);
+			output = "je fais un broadcast";
 		}
 
 		return output;

@@ -13,7 +13,7 @@ public class Client {
         }
     	String hostName = args[0];//"127.0.0.1";
         int portNumber = 8888;
-        System.out.println("client lancé");
+        System.out.println("client lancï¿½");
         try (
                 Socket echoSocket = new Socket(hostName, portNumber);
                 PrintWriter out =
@@ -27,16 +27,32 @@ public class Client {
         ) {
             System.out.println("client connectÃ© ");
             String fromServer;
-        	String fromClient;
+        	
+        	
+        	new Thread(new Runnable() {
+        		String fromClient;
+				@Override
+				public void run() {
+					while (true) {
+						try {
+							fromClient = stdIn.readLine();
+							if (fromClient!=null) {
+								 System.out.println("Client: " + fromClient);
+				                 out.println(fromClient);
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						
+					}
+				}
+			}).start();
+        	
+        	
         	while ((fromServer = in.readLine()) != null) {
                 System.out.println("Server: " + fromServer);
                 if (fromServer.equals("Bye."))
                     break;
-                fromClient = stdIn.readLine();
-                if (fromClient != null) {
-                    System.out.println("Client: " + fromClient);
-                    out.println(fromClient);
-                }
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);

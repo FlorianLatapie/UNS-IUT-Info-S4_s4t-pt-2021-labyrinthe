@@ -47,21 +47,15 @@ public class MultiServer {
 	}
 
 	public synchronized void sendAll(String message) {
-		//PrintWriter out;
+		System.out.println(tabClients.toString());
 		for (PrintWriter printWriter : tabClients) {
-			printWriter.println(message);
-		}
-		
-		/*for (int i = 0; i < tabClients.size(); i++)
-		{
-			System.out.println(tabClients.size());
-			out = tabClients.get(i); 
-			if (out != null)
-			{
-				out.println(message + sLast);
-				out.flush(); // envoi dans le flux de sortie
+			if(printWriter!=null) {
+				printWriter.println(message);
 			}
-		}*/
+			else {
+				System.err.println("un pw est null");
+			}
+		}
 	}
 
 	public synchronized void delClient(int i) {
