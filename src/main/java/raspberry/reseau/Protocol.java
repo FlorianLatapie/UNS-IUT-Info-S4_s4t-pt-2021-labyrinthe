@@ -19,22 +19,22 @@ public class Protocol  {
 
 
 	public String processInfo(String input) {
-		String output=  null;
-		if(input.equalsIgnoreCase(null)) {
-			output = "T nul";
-		}
-		else if(input.equalsIgnoreCase("")) {
-			output = "Protocl c ok";
+
+		if(input.equalsIgnoreCase(null) || input.equalsIgnoreCase("")) {
+			return  "client input is null : "+input;
 		}
 		else if(input.equalsIgnoreCase("test")) {
-			output = "TEst ok frere";
+			return  "le protocol existe";
 		}
-		else if(input.equalsIgnoreCase("broadcast")){
+		else if(input.startsWith("broadcast")){
+			//output = "je fais un broadcast";
 			multiServer.sendAll(input);
-			output = "je fais un broadcast";
+			return "bc effectue";
+			
 		}
-
-		return output;
+		else {
+			return "commande inconnue";
+		}
 	}
 	
 }

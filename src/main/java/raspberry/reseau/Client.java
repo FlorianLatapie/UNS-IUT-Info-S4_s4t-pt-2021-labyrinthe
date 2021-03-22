@@ -3,17 +3,18 @@ package raspberry.reseau;
 import java.io.*;
 import java.net.*;
 
+//cette classe est pour les tests locaux, les classes pour pc et lego sont dans leurs packages respectifs 
+
 public class Client {
     public static void main(String[] args) throws IOException {
-    	//String hostName = "172.20.10.10"; // ip address of lego 
     	if (args.length != 1) {
             System.err.println(
                     "Usage: java Client <host name> ");
             System.exit(1);
         }
-    	String hostName = args[0];//"127.0.0.1";
+    	String hostName = args[0];//"127.0.0.1" ou ip du raspberry pi 
         int portNumber = 8888;
-        System.out.println("client lanc�");
+        System.out.println("client lancé");
         try (
                 Socket echoSocket = new Socket(hostName, portNumber);
                 PrintWriter out =
