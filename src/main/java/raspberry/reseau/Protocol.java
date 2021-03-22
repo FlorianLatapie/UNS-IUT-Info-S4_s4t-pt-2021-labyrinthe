@@ -31,6 +31,9 @@ public class Protocol implements Runnable {
 			while ((strProtocol = in.readLine()) != null) {
 				if (strProtocol.equalsIgnoreCase("quit"))
 					System.exit(0); // 
+				else if (strProtocol.equalsIgnoreCase("test")) {
+					multiServer.sendAll("Ceci est un test", "PD");
+				}
 				else if (strProtocol.equalsIgnoreCase("total")) 
 				{
 					System.out.println("Nombre de connectes : " + multiServer.getNbClients());

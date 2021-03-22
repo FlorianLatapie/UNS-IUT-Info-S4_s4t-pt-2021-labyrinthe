@@ -14,7 +14,7 @@ import java.util.Vector;
  *
  */
 public class MultiServer {
-	private Vector tabClients = new Vector();
+	private Vector<PrintWriter> tabClients = new Vector<PrintWriter>();
 	private int nbClients = 0;
 
 	public static void main(String[] args) throws IOException {
@@ -67,7 +67,7 @@ public class MultiServer {
 
 	public synchronized int addClient(PrintWriter out) {
 		nbClients++;
-		tabClients.addElement(out); 
+		tabClients.add(out); 
 		return tabClients.size() - 1;
 	}
 
