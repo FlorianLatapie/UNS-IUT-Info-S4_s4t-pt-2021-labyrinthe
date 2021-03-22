@@ -6,12 +6,12 @@ import java.net.*;
 //cette classe est pour les tests locaux, les classes pour pc et lego sont dans leurs packages respectifs 
 
 public class ClientLego {
-	public void runClient(String[] args) throws IOException {
-		if (args.length != 1) {
+	public void runClient(String args) throws IOException {
+		if (args == null) {
 			System.err.println("Usage: java Client <host name> ");
 			System.exit(1);
 		}
-		String hostName = args[0];// "127.0.0.1" ou ip du raspberry pi
+		String hostName = args;// "127.0.0.1" ou ip du raspberry pi
 		int portNumber = 8888;
 		System.out.println("client lancé");
 		try (Socket echoSocket = new Socket(hostName, portNumber);
@@ -20,20 +20,6 @@ public class ClientLego {
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
 			System.out.println("client connecté ");
 			String fromServer;
-
-			/*new Thread(new Runnable() {
-				String fromClient;
-
-				@Override
-				public void run() {
-					fromClient = "bonjour je suis la brique";// stdIn.readLine();
-					if (fromClient != null) {
-						System.out.println("Client: " + fromClient);
-						out.println(fromClient);
-					}
-
-				}
-			}).start();*/
 
 			while ((fromServer = in.readLine()) != null) {
 				ProtocolLego pl = new ProtocolLego();
@@ -44,7 +30,6 @@ public class ClientLego {
 						System.out.println("\"" + fromServer + "\" :\nMouvement done");
 					}
 				} else {
-					//out.println("\"" + fromServer + "\" est incorrect");
 					System.out.println(fromServer);
 				}
 			}

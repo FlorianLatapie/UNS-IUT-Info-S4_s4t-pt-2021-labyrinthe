@@ -35,10 +35,8 @@ public class MultiServerThread implements Runnable {
 			System.out.println("Un nouveau client s'est connecte, no " + numClient);
 			String inputLine, outputLine;
             Protocol protocol = new Protocol(multiServer);
-            if(numClient > 0)
-				protocol.processInfo("broadcast");
-            outputLine = protocol.processInfo("");
-            out.println(outputLine);
+           
+       
 			while ((inputLine = in.readLine()) != null) {
 				outputLine = protocol.processInfo(inputLine);
 				out.println(outputLine);
