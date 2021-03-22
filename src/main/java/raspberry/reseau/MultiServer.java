@@ -6,7 +6,10 @@ package raspberry.reseau;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+
 
 
 /**
@@ -14,7 +17,7 @@ import java.util.Vector;
  *
  */
 public class MultiServer {
-	private Vector<PrintWriter> tabClients = new Vector<PrintWriter>();
+	private List<PrintWriter> tabClients = new ArrayList<>();
 	private int nbClients = 0;
 
 	public static void main(String[] args) throws IOException {
@@ -47,7 +50,7 @@ public class MultiServer {
 		PrintWriter out;
 		for (int i = 0; i < tabClients.size(); i++)
 		{
-			out = (PrintWriter) tabClients.elementAt(i); 
+			out = tabClients.get(i); 
 			if (out != null)
 			{
 				out.print(message + sLast);
@@ -58,9 +61,9 @@ public class MultiServer {
 
 	public synchronized void delClient(int i) {
 		nbClients--;
-		if (tabClients.elementAt(i) != null) 
+		if (tabClients.get(i) != null) 
 		{
-			tabClients.removeElementAt(i); 
+			tabClients.remove(i);
 		}
 	}
 

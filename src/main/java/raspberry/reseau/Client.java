@@ -13,7 +13,7 @@ public class Client {
         }
     	String hostName = args[0];//"127.0.0.1";
         int portNumber = 8888;
-        System.out.println("client lancé");
+        System.out.println("client lanc�");
         try (
                 Socket echoSocket = new Socket(hostName, portNumber);
                 PrintWriter out =
@@ -26,16 +26,17 @@ public class Client {
                                 new InputStreamReader(System.in))
         ) {
             System.out.println("client connecté ");
-        	String userInput;
-            while ((userInput = stdIn.readLine()) != null) {
-                if(userInput.equalsIgnoreCase("EXIT")){
-                	out.println(userInput.toUpperCase());
-                    out.close();
-                    in.close();
-                    echoSocket.close();
+            String fromServer;
+        	String fromClient;
+        	while ((fromServer = in.readLine()) != null) {
+                System.out.println("Server: " + fromServer);
+                if (fromServer.equals("Bye."))
+                    break;
+                fromClient = stdIn.readLine();
+                if (fromClient != null) {
+                    System.out.println("Client: " + fromClient);
+                    out.println(fromClient);
                 }
-                out.println(userInput.toUpperCase());
-                System.out.println("LEGO a repondu '" + in.readLine()+"'");
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);

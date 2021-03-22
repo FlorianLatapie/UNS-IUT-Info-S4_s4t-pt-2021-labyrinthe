@@ -16,46 +16,34 @@ import java.net.Socket;
 public class MultiServerThread implements Runnable {
 	private Thread t; 
 	private Socket s; 
-	private PrintWriter out; 
-	private BufferedReader in; 
 	private MultiServer multiServer;
 	private int numClient = 0; 
 
 	public MultiServerThread(Socket socket, MultiServer multiServ) {
 		this.multiServer = multiServ;
 		this.s = socket;
-		try {
-			out = new PrintWriter(s.getOutputStream());
-			in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-			numClient = multiServer.addClient(out);
-		} catch (IOException e) {
-			e.getMessage();
-		}
 		t = new Thread(this);
 		t.start();
 	}
 
 	public void run() {
-		String message = "";
 		System.out.println("Un nouveau client s'est connecte, no " + numClient);
-		try {
-
-			char charCur[] = new char[1]; 
-			while (in.read(charCur, 0, 1) != -1)			{
-				if (charCur[0] != '\u0000' && charCur[0] != '\n' && charCur[0] != '\r')
-					message += charCur[0];
-				else if (!message.equalsIgnoreCase("")) 
-				{
-					if (charCur[0] == '\u0000') 
-						multiServer.sendAll(message, "" + charCur[0]);
-					else
-						multiServer.sendAll(message, "");
-					message = "";
-				}
+		try (
+			PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+		){
+			numClient = multiServer.addClient(out);
+			String inputLine, outputLine;
+            Protocol protocol = new Protocol();
+            outputLine = protocol.processInfo("");
+            out.println(outputLine);
+			while ((inputLine = in.readLine()) != null) {
+				outputLine = protocol.processInfo(inputLine);
+				out.println(outputLine);
 			}
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.getMessage();
-		} 
+		}
 		finally 
 		{
 			try {
