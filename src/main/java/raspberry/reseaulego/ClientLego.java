@@ -26,19 +26,12 @@ public class ClientLego {
 
 				@Override
 				public void run() {
-					while (true) {
-						try {
-							fromClient = "bonjour je suis la brique";// stdIn.readLine();
-							if (fromClient != null) {
-								System.out.println("Client: " + fromClient);
-								out.println(fromClient);
-							}
-							Thread.sleep(500);
-						} catch (/* IOException | */ InterruptedException e) {
-							e.printStackTrace();
-						}
-
+					fromClient = "bonjour je suis la brique";// stdIn.readLine();
+					if (fromClient != null) {
+						System.out.println("Client: " + fromClient);
+						out.println(fromClient);
 					}
+
 				}
 			}).start();
 

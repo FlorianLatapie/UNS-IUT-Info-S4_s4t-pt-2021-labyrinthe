@@ -10,7 +10,7 @@ public class LegoMain {
 	public static void main(String[] args) throws IOException {
 		System.out.println("+---------------+\n|  Labyrinthe   |\n+---------------+");
 		ClientLego clientLego = new ClientLego();
-		String[] argsCli = {"10.188.182.91"};
+		String[] argsCli = {"172.20.10.6"};
 		clientLego.runClient(argsCli);
 		
 		while(Button.waitForAnyPress()!=Button.ID_ESCAPE) {}
