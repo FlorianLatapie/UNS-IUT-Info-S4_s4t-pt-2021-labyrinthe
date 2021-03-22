@@ -3,9 +3,9 @@ import socket
 import time
 import grovepi
 
-line_finder_right = 7
-line_finder_middle = 8
-line_finder_left = 9
+line_finder_right = 2
+line_finder_middle = 3
+line_finder_left = 4
 
 grovepi.pinMode(line_finder_right,"INPUT")
 grovepi.pinMode(line_finder_middle,"INPUT")
