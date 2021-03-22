@@ -21,7 +21,7 @@ public class ClientLego {
 			System.out.println("client connecté ");
 			String fromServer;
 
-			new Thread(new Runnable() {
+			/*new Thread(new Runnable() {
 				String fromClient;
 
 				@Override
@@ -33,19 +33,19 @@ public class ClientLego {
 					}
 
 				}
-			}).start();
+			}).start();*/
 
 			while ((fromServer = in.readLine()) != null) {
 				ProtocolLego pl = new ProtocolLego();
-				if (fromServer.startsWith("broadcast")) {
+				if (fromServer.startsWith("broadcast ")) {
 					fromServer = fromServer.substring(10);
 					if (pl.traitement(fromServer)) {
 						out.println(fromServer + " Mouvement effectue");
-						System.out.println("je reponds \"" + fromServer + "\" :\nMouvement done");
+						System.out.println("\"" + fromServer + "\" :\nMouvement done");
 					}
 				} else {
-					out.println("\"" + fromServer + "\" est incorrect");
-					System.out.println("je reponds " + fromServer + "\nEst incorrect");
+					//out.println("\"" + fromServer + "\" est incorrect");
+					System.out.println(fromServer);
 				}
 			}
 		} catch (UnknownHostException e) {
