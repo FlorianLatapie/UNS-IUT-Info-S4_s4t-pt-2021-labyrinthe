@@ -6,9 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 public class AlgoDeplacement {
-	public String[] runAlgoMurDroite(Integer lecture) throws IOException {
+	private static String algo = "murDroite";
+
+	public static String[] runAlgoMurDroite(Integer lecture) {
 
 		int arrive = 0;
 
@@ -43,5 +46,16 @@ public class AlgoDeplacement {
 		}
 		String[] retour = { "ERR" };
 		return retour;
+	}
+
+	public static void run(int parseInt) {
+		switch (algo) {
+		case "murDroite":
+			System.out.println(Arrays.toString(runAlgoMurDroite(parseInt)));
+			//TODO faire bouger le robot a l'aide d'un client qui fait un broadcast svp
+			break;
+		default:
+			System.out.println("algo inconnu : " + algo);
+		}
 	}
 }
