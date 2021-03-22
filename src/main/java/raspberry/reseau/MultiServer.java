@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
+
 
 
 
@@ -46,17 +46,22 @@ public class MultiServer {
 		System.out.println("--------");
 	}
 
-	public synchronized void sendAll(String message, String sLast) {
-		PrintWriter out;
-		for (int i = 0; i < tabClients.size(); i++)
+	public synchronized void sendAll(String message) {
+		//PrintWriter out;
+		for (PrintWriter printWriter : tabClients) {
+			printWriter.println(message);
+		}
+		
+		/*for (int i = 0; i < tabClients.size(); i++)
 		{
+			System.out.println(tabClients.size());
 			out = tabClients.get(i); 
 			if (out != null)
 			{
-				out.print(message + sLast);
+				out.println(message + sLast);
 				out.flush(); // envoi dans le flux de sortie
 			}
-		}
+		}*/
 	}
 
 	public synchronized void delClient(int i) {

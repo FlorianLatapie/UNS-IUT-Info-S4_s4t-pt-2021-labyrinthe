@@ -8,7 +8,16 @@ package raspberry.reseau;
  *
  */
 public class Protocol  {
+	private MultiServer multiServer;
 	
+	
+	
+	public Protocol(MultiServer multiServer) {
+		this.multiServer = multiServer;
+	}
+
+
+
 	public String processInfo(String input) {
 		String output=  null;
 		if(input.equalsIgnoreCase(null)) {
@@ -19,6 +28,9 @@ public class Protocol  {
 		}
 		else if(input.equalsIgnoreCase("test")) {
 			output = "TEst ok frere";
+		}
+		else if(input.equalsIgnoreCase("broadcast")){
+			multiServer.sendAll(input);
 		}
 
 		return output;
