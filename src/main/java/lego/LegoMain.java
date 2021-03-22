@@ -1,5 +1,7 @@
 package lego;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 import lejos.hardware.Button;
@@ -10,8 +12,12 @@ public class LegoMain {
 	public static void main(String[] args) throws IOException {
 		System.out.println("+---------------+\n|  Labyrinthe   |\n+---------------+");
 		ClientLego clientLego = new ClientLego();
-		String argsCli = "172.20.10.6"; //ip de l'ordinateur auquel il faut se connecter
-		clientLego.runClient(argsCli);
+		BufferedReader in = new BufferedReader(new FileReader("src/main/java/lego/ip"));
+		String ip;
+		ip = in.readLine();
+		in.close();
+		System.out.println(ip);
+		clientLego.runClient(ip);
 		
 		while(Button.waitForAnyPress()!=Button.ID_ESCAPE) {}
 	}
