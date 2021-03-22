@@ -2,7 +2,7 @@ package pc;
 
 public class ProtocolPC {
 
-	public boolean traitement(String fromServer) {
+	public static boolean traitement(String fromServer) {
 		switch (fromServer) {
 		case "A":
 			//avancer sur l'ig 
