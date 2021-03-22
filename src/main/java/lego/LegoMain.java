@@ -12,7 +12,7 @@ public class LegoMain {
 	public static void main(String[] args) throws IOException {
 		System.out.println("+---------------+\n|  Labyrinthe   |\n+---------------+");
 		ClientLego clientLego = new ClientLego();
-		BufferedReader in = new BufferedReader(new FileReader("src/main/java/lego/ip"));
+		BufferedReader in = new BufferedReader(new FileReader("./ip"));
 		String ip;
 		ip = in.readLine();
 		in.close();

@@ -22,8 +22,6 @@ public class ProtocolLego {
 		case "S":
 			mouvementController.stop();
 			return true;
-		case "EXIT":
-			return true;
 		default:
 			System.out.println("mouvement inconnu");
 			return false;
