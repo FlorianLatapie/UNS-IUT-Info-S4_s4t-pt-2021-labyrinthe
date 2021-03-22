@@ -1,4 +1,4 @@
-package raspberry.model;
+package raspberry.algo;
 
 public class AlgoSuivreMurDeDroite implements AlgoStrategy {
 

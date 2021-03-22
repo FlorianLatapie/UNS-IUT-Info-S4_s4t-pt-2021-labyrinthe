@@ -1,7 +1,7 @@
 /**
  * 
  */
-package pc;
+package ihm;
 
 /**
  * @author Remy

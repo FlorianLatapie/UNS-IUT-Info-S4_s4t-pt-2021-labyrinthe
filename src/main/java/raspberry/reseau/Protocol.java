@@ -3,7 +3,7 @@
  */
 package raspberry.reseau;
 
-import raspberry.model.RecommandationAlgo;
+import raspberry.algo.RecommandationAlgo;
 
 /**
  * @author Remy

@@ -1,4 +1,4 @@
-package pc;
+package raspberry.reseaupc;
 
 public class ProtocolPC {
 
