@@ -3,7 +3,7 @@
  */
 package raspberry.reseau;
 
-import raspberry.AlgoDeplacement;
+import raspberry.model.RecommandationAlgo;
 
 /**
  * @author Remy
@@ -11,6 +11,7 @@ import raspberry.AlgoDeplacement;
  */
 public class Protocol{
 	private MultiServer multiServer;
+	private RecommandationAlgo recommandationAlgo = new RecommandationAlgo();
 		
 	public Protocol(MultiServer multiServer) {
 		this.multiServer = multiServer;
@@ -32,7 +33,7 @@ public class Protocol{
 		}
 		
 		else if(input.startsWith("valCapteur ")){
-			AlgoDeplacement.run(Integer.parseInt((input).substring(11)));
+			recommandationAlgo.executer(Integer.parseInt((input).substring(11)));
 			return "";	
 		}
 		
