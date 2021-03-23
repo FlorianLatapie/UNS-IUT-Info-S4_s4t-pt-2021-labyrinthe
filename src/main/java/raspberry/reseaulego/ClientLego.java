@@ -23,15 +23,12 @@ public class ClientLego {
 
 			while ((fromServer = in.readLine()) != null) {
 				ProtocolLego pl = new ProtocolLego();
-				if (fromServer.startsWith("broadcast ")) {
-					fromServer = fromServer.substring(10);
-					if (pl.traitement(fromServer)) {
-						out.println(fromServer + " Mouvement effectue");
-						System.out.println("\"" + fromServer + "\" :\nMouvement done");
-					}
-				} else {
-					System.out.println(fromServer);
+
+				if (pl.traitement(fromServer)) {
+					out.println(fromServer + " Mouvement effectue");
+					System.out.println("\"" + fromServer + "\" :\nMouvement done");
 				}
+
 			}
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host " + hostName);

@@ -1,28 +1,26 @@
 package raspberry.algo;
 
+import raspberry.reseau.StaticProtocolMessages;
+
 public class AlgoSuivreMurDeDroite implements AlgoStrategy {
 
     @Override
-    public String[] executer(Integer capteur) {
+    public String executer(Integer capteur) {
         int arrive = 0;
 
         if ((capteur.equals(101)) || (capteur.equals(001))) {
-            String[] retour = { "A" };
-            return retour;
+            return StaticProtocolMessages.AVANCER;
         }
 
         else if (capteur.equals(100) || (capteur.equals(110)) || (capteur.equals(010)) || capteur.equals(000)) {
-            String[] retour = { "D", "A" };
-            return retour;
+            return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
         }
 
         else if (capteur.equals(011)) {
-            String[] retour = { "G", "A" };
-            return retour;
+            return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
 
         } else if (capteur.equals(111)) {
-            String[] retour = { "G", "G" };
-            return retour;
+            return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE;
         }
 
         else if (capteur.equals(000)) {
@@ -30,12 +28,10 @@ public class AlgoSuivreMurDeDroite implements AlgoStrategy {
                 capteur = null;
             } else {
                 arrive = 1;
-                String[] retour = { "ARR" };
-                return retour;
+                return StaticProtocolMessages.ARRIVE;
 
             }
         }
-        String[] retour = { "ERR" };
-        return retour;
+        return null;
     }
 }

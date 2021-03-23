@@ -51,7 +51,7 @@ public class ClientManuel {
         	
         	while ((fromServer = in.readLine()) != null) {
                 System.out.println("Server: " + fromServer);
-                if (fromServer.equals("Bye."))
+                if (fromServer.equals(StaticProtocolMessages.TERMINER))
                     break;
             }
         } catch (UnknownHostException e) {

@@ -41,9 +41,7 @@ public class MultiServer {
 	}
 
 	private static void checkConnexion(int port) {
-		System.out.println("--------");
-		System.out.println("Demarre sur le port : " + port);
-		System.out.println("--------");
+		System.out.println("--------\nDemarre sur le port : " + port+"\n--------");
 	}
 
 	public synchronized void sendAll(String message) {
@@ -52,7 +50,7 @@ public class MultiServer {
 				printWriter.println(message);
 			}
 			else {
-				System.err.println("un pw est null");
+				System.err.println("un printwriter est null");
 			}
 		}
 	}

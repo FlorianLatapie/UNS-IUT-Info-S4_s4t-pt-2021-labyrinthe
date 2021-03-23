@@ -1,25 +1,26 @@
 package raspberry.reseaulego;
 
 import lego.MouvementController;
+import raspberry.reseau.StaticProtocolMessages;
 
 public class ProtocolLego {
 
 	public boolean traitement(String fromServer) {
 		MouvementController mouvementController = new MouvementController(true);
 		switch (fromServer) {
-		case "A":
+		case StaticProtocolMessages.AVANCER:
 			mouvementController.avancer();
 			return true;
-		case "D":
+		case StaticProtocolMessages.DROITE:
 			mouvementController.droite();
 			return true;
-		case "G":
+		case StaticProtocolMessages.GAUCHE:
 			mouvementController.gauche();
 			return true;
-		case "R":
+		case StaticProtocolMessages.RECULER:
 			mouvementController.reculer();
 			return true;
-		case "S":
+		case StaticProtocolMessages.STOP:
 			mouvementController.stop();
 			return true;
 		default:

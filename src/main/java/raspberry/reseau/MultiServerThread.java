@@ -30,7 +30,7 @@ public class MultiServerThread implements Runnable {
 		try (PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));) {
 			numClient = multiServer.addClient(out);
-			System.out.println("Un nouveau client s'est connecte, no " + numClient);
+			System.out.println("Un nouveau client s'est connecté : #" + numClient);
 			String inputLine, outputLine;
 			Protocol protocol = new Protocol(multiServer);
 
@@ -44,7 +44,7 @@ public class MultiServerThread implements Runnable {
 			e.getMessage();
 		} finally {
 			try {
-				System.out.println("Le client no " + numClient + " s'est deconnecte");
+				System.out.println("Le client #" + numClient + " s'est deconnecté");
 				multiServer.delClient(numClient);
 				s.close();
 			} catch (IOException e) {

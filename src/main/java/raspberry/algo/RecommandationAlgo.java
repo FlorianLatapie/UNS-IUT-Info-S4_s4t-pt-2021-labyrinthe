@@ -15,7 +15,8 @@ public class RecommandationAlgo {
         this.algoStrategy = algoStrategy;
     }
 
-    public String[] executer(int capteur){
+    public String executer(int capteur){
         return algoStrategy.executer(capteur);
     }
 }
+ 

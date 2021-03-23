@@ -1,7 +1,5 @@
 package raspberry.reseaupc;
 
-import raspberry.reseau.Protocol;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -55,16 +53,10 @@ public class ClientPC {
 				}
 			}).start();
 
-
 			while ((fromServer = in.readLine()) != null) {
-				if(fromServer.startsWith("broadcast ")) {
-					fromServer = fromServer.substring(10);
-					System.out.println("Ceci est un broadcast "+fromServer);
-					protocolPC.traitement(fromServer);
-				}
-				else{
-					System.out.println("Ce n'est pas un broadcast");
-				}
+
+				ProtocolPC.traitement(fromServer);
+
 			}
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host " + hostName);
