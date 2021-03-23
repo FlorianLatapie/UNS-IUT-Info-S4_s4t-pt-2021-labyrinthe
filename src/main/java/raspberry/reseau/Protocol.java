@@ -29,7 +29,7 @@ public class Protocol {
 			return "client input is null : " + input;
 		}
 
-		else if (input.equalsIgnoreCase(StaticProtocolMessages.ENTETE_VERBOSE)) {
+		else if (input.startsWith(StaticProtocolMessages.ENTETE_VERBOSE)) {
 			input = input.substring(StaticProtocolMessages.ENTETE_VERBOSE.length());
 			switch (input) {
 			case "0":
@@ -70,8 +70,13 @@ public class Protocol {
 			if (verbose) {
 				System.out.println("execution de l'algo");
 			}
-			recommandationAlgo
+			String commandes = recommandationAlgo
 					.executer(Integer.parseInt((input).substring(StaticProtocolMessages.ENTETE_CAPTEUR.length())));
+			String[] commandesTab = commandes.split("");
+			for (int i = 0; i < commandes.length(); i++) {
+				multiServer.sendAll(commandesTab[i]);
+			}
+
 			return "";
 		}
 

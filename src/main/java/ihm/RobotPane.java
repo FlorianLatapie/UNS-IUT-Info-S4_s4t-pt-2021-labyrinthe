@@ -90,20 +90,23 @@ public class RobotPane extends StackPane {
 		}
 
 
-		ProtocolPC protocolPC = new ProtocolPC(this);
-		new Thread(()-> {
-			ClientPC clientPC = new ClientPC();
-			String[] args = {"localhost"};
-			clientPC.runClient(args);
-			while(true) {
-				if (protocolPC.getCoordRobot() != null) {
-					for (int i = 0; i < matriceImg.length; i++) {
-						for (int j = 0; j < matriceImg.length; j++) {
-							int[] newCoordRobot = protocolPC.getCoordRobot();
-							if (newCoordRobot[0] == i && newCoordRobot[1] == j)
-								matriceIconRobot[i][j].setVisible(true);
-							else
-								matriceIconRobot[i][j].setVisible(false);
+		final ProtocolPC protocolPC = new ProtocolPC(this);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				ClientPC clientPC = new ClientPC();
+				String[] args = {"localhost"};
+				clientPC.runClient(args);
+				while(true) {
+					if (protocolPC.getCoordRobot() != null) {
+						for (int i = 0; i < matriceImg.length; i++) {
+							for (int j = 0; j < matriceImg.length; j++) {
+								int[] newCoordRobot = protocolPC.getCoordRobot();
+								if (newCoordRobot[0] == i && newCoordRobot[1] == j)
+									matriceIconRobot[i][j].setVisible(true);
+								else
+									matriceIconRobot[i][j].setVisible(false);
+							}
 						}
 					}
 				}

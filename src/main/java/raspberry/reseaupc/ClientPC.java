@@ -55,7 +55,7 @@ public class ClientPC {
 
 			while ((fromServer = in.readLine()) != null) {
 
-				ProtocolPC.traitement(fromServer);
+				new ProtocolPC().traitement(fromServer);
 
 			}
 		} catch (UnknownHostException e) {

@@ -33,7 +33,7 @@ while 1 :
             toReturn += ("1")
     else:
             toReturn += ("0")
-    msgsend=jpysocket.jpyencode("valCapteur "+toReturn) #Encript The Msg
+    msgsend=jpysocket.jpyencode("VAL_CAPTEUR:"+toReturn) #Encript The Msg
     connection.send(msgsend) #Send Msg
     java_msg=connection.recv(1024) #Recieve msg
     java_msg=jpysocket.jpydecode(java_msg) #Decript msg
