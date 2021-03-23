@@ -1,5 +1,7 @@
 package ihm;
 
+import javafx.scene.control.TextField;
+
 import ihm.DataControl.ApplicationPane;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -27,24 +30,42 @@ public class AccueilPane extends StackPane {
 	private static final ApplicationPane paneName = ApplicationPane.ACCUEIL;
 	private int largeurTitre = c.getLargeurTitre();
 	private int hauteurTitre = c.getHauteurTitre();
+	private int hauteurTF = 50;
 	private int hBouton = c.gethBouton();
 	private int lBouton = c.getlBouton();
 	private String nomPolice = c.getNomPolice();
+	private double tailleSousTitre = 45;
 	private Font policeBouton = Font.font(nomPolice, FontWeight.BOLD, 33);
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
+	
 
 	VBox vbTitre;
 	VBox vbCentre;
 	VBox radioAlignment;
 	HBox hbBottom;
 	Label titre;
+	
 	Label choixAlgo;
 	Label vitesse;
+	Label reglageRobot;
+	
+	TextField reglageAvancer;
+	TextField reglageTourner;
+	TextField reglageGauche;
+	TextField reglageDroit;
+	
+	Label titreRAvancer;
+	Label titreRTourner;
+	Label titreRGauche;
+	Label titreRDroit;
+	
 	BorderPane bp;
+	
 	Button bLancer;
 	Button bQuitter;
+	
 	RadioButton button1;
 	RadioButton button2;
 	RadioButton button3;
@@ -74,10 +95,13 @@ public class AccueilPane extends StackPane {
 
 		vbCentre = new VBox();
 		vbCentre.setAlignment(Pos.CENTER);
-		vbCentre.setSpacing(50);
+		vbCentre.setSpacing(10);
 
+		
+		// choix algo 
+		
 		choixAlgo = new Label("Choisir un algorithme");
-		choixAlgo.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
+		choixAlgo.setFont(Font.font(nomPolice, FontWeight.BOLD, tailleSousTitre));
 		choixAlgo.setStyle(c.getCouleurPolice());
 
 		ToggleGroup group = new ToggleGroup();
@@ -103,8 +127,11 @@ public class AccueilPane extends StackPane {
 		button3.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button3);
 
+		
+		// choix de la vitesse 
+		
 		vitesse = new Label("Choix de la vitesse");
-		vitesse.setFont(Font.font(nomPolice, FontWeight.BOLD, 45));
+		vitesse.setFont(Font.font(nomPolice, FontWeight.BOLD, tailleSousTitre));
 		vitesse.setStyle(c.getCouleurPolice());
 
 		Slider slider = new Slider(1, 3, 1);
@@ -114,8 +141,58 @@ public class AccueilPane extends StackPane {
 		slider.setValue(2);
 		slider.setMaxWidth(500);
 		slider.setStyle(c.getCouleurPolice());
+		
+		// réglage robot 
+		
+		reglageRobot = new Label("Réglages du Robot");
+		reglageRobot.setFont(Font.font(nomPolice, FontWeight.BOLD, tailleSousTitre));
+		reglageRobot.setStyle(c.getCouleurPolice());
+		
+		reglageAvancer = new TextField();
+		reglageAvancer.setMinHeight(hauteurTF);
+		reglageTourner = new TextField();
+		reglageTourner.setMinHeight(hauteurTF);
+		reglageGauche = new TextField();
+		reglageGauche.setMinHeight(hauteurTF);
+		reglageDroit = new TextField();
+		reglageDroit.setMinHeight(hauteurTF);
+		
+		titreRAvancer = new Label("Distance avancer/reculer");
+		titreRAvancer.setStyle(c.getCouleurPolice());
+		titreRAvancer.setFont(Font.font(nomPolice, 30));
+		
+		titreRTourner = new Label("Angle gauche/droite");
+		titreRTourner.setStyle(c.getCouleurPolice());
+		titreRTourner.setFont(Font.font(nomPolice, 30));
+		
+		titreRGauche = new Label("Trim gauche");
+		titreRGauche.setStyle(c.getCouleurPolice());
+		titreRGauche.setFont(Font.font(nomPolice, 30));
+		titreRGauche.setPadding(new Insets(30,0,0,0));
+		
+		titreRDroit = new Label("Trim droit");
+		titreRDroit.setStyle(c.getCouleurPolice());
+		titreRDroit.setFont(Font.font(nomPolice, 30));
+		titreRDroit.setPadding(new Insets(30,0,0,0));
 
-		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, vitesse, slider);
+		
+		
+		GridPane gpReglages = new GridPane();
+		gpReglages.setAlignment(Pos.CENTER);
+		gpReglages.setHgap(10);
+		gpReglages.setVgap(10);
+		
+		gpReglages.add(titreRAvancer, 0, 0);
+		gpReglages.add(titreRTourner, 1, 0);
+		gpReglages.add(reglageAvancer, 0, 1);
+		gpReglages.add(reglageTourner, 1, 1);
+		gpReglages.add(titreRGauche, 0, 2);
+		gpReglages.add(titreRDroit, 1, 2);
+		gpReglages.add(reglageGauche, 0, 3);
+		gpReglages.add(reglageDroit, 1, 3);
+		
+
+		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, vitesse, slider, reglageRobot,gpReglages);
 
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
