@@ -11,14 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import raspberry.reseaupc.ClientPC;
+import raspberry.reseaupc.ProtocolPC;
 
 public class RobotPane extends StackPane {
 	private ScreenControl sControl = null;
@@ -51,6 +49,7 @@ public class RobotPane extends StackPane {
 			{ null, null, null, "H", null }, 
 			{ null, null, null, "H", null }};
 
+	private int[] coordRobot = new int[2];
 
 	VBox vbCentreG;
 	VBox vbTitre;
@@ -82,13 +81,37 @@ public class RobotPane extends StackPane {
 		for (int i = 0; i < matriceImg.length; i++) {
 			for (int j = 0; j < matriceImg.length; j++) {
 				matriceImg[i][j] = new ImageView(buildMatrice(matriceLaby[i][j]));
-				if(matriceLaby[i][j] == "CD")
+				if(matriceLaby[i][j] == "CD") {
 					matriceIconRobot[i][j].setVisible(true);
+					coordRobot[0] = i;
+					coordRobot[1] = j;
+				}
 			}
 		}
-		
-		
-		
+
+
+		ProtocolPC protocolPC = new ProtocolPC(this);
+		new Thread(()-> {
+			ClientPC clientPC = new ClientPC();
+			String[] args = {"localhost"};
+			clientPC.runClient(args);
+			while(true) {
+				if (protocolPC.getCoordRobot() != null) {
+					for (int i = 0; i < matriceImg.length; i++) {
+						for (int j = 0; j < matriceImg.length; j++) {
+							int[] newCoordRobot = protocolPC.getCoordRobot();
+							if (newCoordRobot[0] == i && newCoordRobot[1] == j)
+								matriceIconRobot[i][j].setVisible(true);
+							else
+								matriceIconRobot[i][j].setVisible(false);
+						}
+					}
+				}
+			}
+		}).start();
+
+
+
 		titre = new Label(DataControl.TITRE);
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
 		titre.setStyle(c.getCouleurPoliceTitre());
@@ -282,4 +305,11 @@ public class RobotPane extends StackPane {
 		}
 	}
 
+	public int[] getCoordRobot() {
+		return coordRobot;
+	}
+
+	public String getOrientationRobot(){
+		return matriceRobot[coordRobot[0]][coordRobot[1]];
+	}
 }

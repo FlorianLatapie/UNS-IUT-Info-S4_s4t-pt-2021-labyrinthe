@@ -9,7 +9,7 @@ package ihm;
  */
 public class TraitementDirection {
 
-	public int[] getdCoordByDeplacement(int[] coordRobot, String positionRobot, String[] deplacement) {
+	public int[] getdCoordByDeplacement(int[] coordRobot, String rotationRobot, String[] deplacement) {
 		String rotation = null;
 		String direction = null;
 		if (deplacement.length > 1) {
@@ -18,24 +18,24 @@ public class TraitementDirection {
 		} else {
 			direction = deplacement[0];
 		}
-		if (positionRobot.equals("H") && rotation.equals("G") && direction.equals("A")
-				|| positionRobot.equals("G") && rotation.equals(null) && direction.equals("A")
-				|| positionRobot.equals("B") && rotation.equals("D") && direction.equals("A")) {
+		if (rotationRobot.equals("H") && rotation.equals("G") && direction.equals("A")
+				|| rotationRobot.equals("G") && rotation.equals(null) && direction.equals("A")
+				|| rotationRobot.equals("B") && rotation.equals("D") && direction.equals("A")) {
 			coordRobot[1] = (coordRobot[1]) - 1;
 			return coordRobot;
-		} else if (positionRobot.equals("H") && rotation.equals(null) && direction.equals("A")
-				|| positionRobot.equals("G") && rotation.equals("D") && direction.equals("A")
-				|| positionRobot.equals("D") && rotation.equals("G") && direction.equals("A")) {
+		} else if (rotationRobot.equals("H") && rotation.equals(null) && direction.equals("A")
+				|| rotationRobot.equals("G") && rotation.equals("D") && direction.equals("A")
+				|| rotationRobot.equals("D") && rotation.equals("G") && direction.equals("A")) {
 			coordRobot[0] = (coordRobot[0]) - 1;
 			return coordRobot;
-		} else if (positionRobot.equals("H") && rotation.equals("D") && direction.equals("A")
-				|| positionRobot.equals("D") && rotation.equals(null) && direction.equals("A")
-				|| positionRobot.equals("B") && rotation.equals("G") && direction.equals("A")) {
+		} else if (rotationRobot.equals("H") && rotation.equals("D") && direction.equals("A")
+				|| rotationRobot.equals("D") && rotation.equals(null) && direction.equals("A")
+				|| rotationRobot.equals("B") && rotation.equals("G") && direction.equals("A")) {
 			coordRobot[1] = (coordRobot[1]) + 1;
 			return coordRobot;
-		} else if (positionRobot.equals("G") && rotation.equals("G") && direction.equals("A")
-				|| positionRobot.equals("D") && rotation.equals("D") && direction.equals("A")
-				|| positionRobot.equals("B") && rotation.equals(null) && direction.equals("A")) {
+		} else if (rotationRobot.equals("G") && rotation.equals("G") && direction.equals("A")
+				|| rotationRobot.equals("D") && rotation.equals("D") && direction.equals("A")
+				|| rotationRobot.equals("B") && rotation.equals(null) && direction.equals("A")) {
 			coordRobot[0] = (coordRobot[1]) + 1;
 			return coordRobot;
 		}
