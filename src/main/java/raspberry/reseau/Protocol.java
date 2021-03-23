@@ -29,7 +29,7 @@ public class Protocol{
 		
 		else if(input.startsWith("broadcast")){
 			multiServer.sendAll(input);
-			return "bc effectue";	
+			return "";	
 		}
 		
 		else if(input.startsWith("valCapteur ")){

@@ -20,7 +20,7 @@ public class MultiServer {
 	private List<PrintWriter> tabClients = new ArrayList<>();
 	private int nbClients = 0;
 
-	public static void main(String[] args) throws IOException {
+	public void runServer(String[] args) throws IOException {
 		MultiServer multiServ = new MultiServer();
 		try {
 			int port;
@@ -47,7 +47,6 @@ public class MultiServer {
 	}
 
 	public synchronized void sendAll(String message) {
-		System.out.println(tabClients.toString());
 		for (PrintWriter printWriter : tabClients) {
 			if(printWriter!=null) {
 				printWriter.println(message);

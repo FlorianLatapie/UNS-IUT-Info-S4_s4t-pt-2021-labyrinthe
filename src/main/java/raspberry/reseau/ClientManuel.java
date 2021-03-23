@@ -5,7 +5,7 @@ import java.net.*;
 
 //cette classe est pour les tests locaux, les classes pour pc et lego sont dans leurs packages respectifs 
 
-public class Client {
+public class ClientManuel {
     public static void main(String[] args) throws IOException {
     	if (args.length != 1) {
             System.err.println(
@@ -38,7 +38,6 @@ public class Client {
 						try {
 							fromClient = stdIn.readLine();
 							if (fromClient!=null) {
-								 System.out.println("Client: " + fromClient);
 				                 out.println(fromClient);
 							}
 						} catch (IOException e) {

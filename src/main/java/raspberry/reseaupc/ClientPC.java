@@ -33,14 +33,14 @@ public class ClientPC {
 			System.out.println("Pc client connecté ");
 			String fromServer;
 
-			/*new Thread(new Runnable() {
+			new Thread(new Runnable() {
 				String fromClient;
 
 				@Override
 				public void run() {
 					while (true) {
 						try {
-							fromClient = stdIn.readLine();
+							fromClient = stdIn.readLine();// modifier ca par un appel à un protocol 
 							if (fromClient != null) {
 
 							}
@@ -50,7 +50,7 @@ public class ClientPC {
 
 					}
 				}
-			}).start();*/
+			}).start();
 
 
 			while ((fromServer = in.readLine()) != null) {
