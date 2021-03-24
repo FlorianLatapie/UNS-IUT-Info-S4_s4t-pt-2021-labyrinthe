@@ -1,5 +1,5 @@
 package raspberry.algo;
 
 public interface AlgoStrategy {
-    String executer(String capteur);
+	String executer(Integer capteur);
 }
