@@ -19,23 +19,23 @@ public class TraitementDirection {
 			direction = deplacement[0];
 		}
 		if (rotationRobot.equals("H") && rotation.equals("G") && direction.equals("A")
-				|| rotationRobot.equals("G") && rotation.equals(null) && direction.equals("A")
+				|| rotationRobot.equals("G") && rotation.equals("A") && direction.equals(null)
 				|| rotationRobot.equals("B") && rotation.equals("D") && direction.equals("A")) {
 			coordRobot[1] = (coordRobot[1]) - 1;
 			return coordRobot;
-		} else if (rotationRobot.equals("H") && rotation.equals(null) && direction.equals("A")
+		} else if (rotationRobot.equals("H") && rotation.equals("A") && direction.equals(null)
 				|| rotationRobot.equals("G") && rotation.equals("D") && direction.equals("A")
 				|| rotationRobot.equals("D") && rotation.equals("G") && direction.equals("A")) {
 			coordRobot[0] = (coordRobot[0]) - 1;
 			return coordRobot;
 		} else if (rotationRobot.equals("H") && rotation.equals("D") && direction.equals("A")
-				|| rotationRobot.equals("D") && rotation.equals(null) && direction.equals("A")
+				|| rotationRobot.equals("D") && rotation.equals("A") && direction.equals(null)
 				|| rotationRobot.equals("B") && rotation.equals("G") && direction.equals("A")) {
 			coordRobot[1] = (coordRobot[1]) + 1;
 			return coordRobot;
 		} else if (rotationRobot.equals("G") && rotation.equals("G") && direction.equals("A")
 				|| rotationRobot.equals("D") && rotation.equals("D") && direction.equals("A")
-				|| rotationRobot.equals("B") && rotation.equals(null) && direction.equals("A")) {
+				|| rotationRobot.equals("B") && rotation.equals("A") && direction.equals(null)) {
 			coordRobot[0] = (coordRobot[1]) + 1;
 			return coordRobot;
 		}
