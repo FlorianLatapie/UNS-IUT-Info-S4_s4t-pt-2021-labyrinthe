@@ -1,5 +1,6 @@
 package raspberry.reseaupc;
 
+import ihm.Evenement;
 import ihm.RobotPane;
 import ihm.TraitementDirection;
 
@@ -31,7 +32,7 @@ public class ProtocolPC {
 		System.out.println("Déplacement : "+Arrays.toString(deplacement));
 		if(fromServer != null) {
 			System.out.println(coordRobot);
-			coordRobot = TraitementDirection.getdCoordByDeplacement(coordRobot, rotation, deplacement);
+			Evenement.deplacementRobot(coordRobot, TraitementDirection.getdCoordByDeplacement(coordRobot, rotation, deplacement));
 		}
 
 		System.out.println("Nouvelle coordonnée : "+Arrays.toString(coordRobot));
