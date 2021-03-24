@@ -26,7 +26,6 @@ public class ProtocolPC {
 
 	private void ihmPaneDroit(String fromServer) {
 		// ajouter ici l'algo de résolution d'images
-		
 	}
 
 	private void ihmPaneGauche(String fromServer) {
@@ -53,7 +52,7 @@ public class ProtocolPC {
 		
 	}
 	
-	public String getAttAlgoSelected() {
-		return Evenement.getAttAlgoSelected();
+	public void getAttAlgoSelected() {
+		Evenement.getAttAlgoSelected();
 	}
 }

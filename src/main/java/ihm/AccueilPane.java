@@ -71,7 +71,6 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	RadioButton button1;
 	RadioButton button2;
 	RadioButton button3;
-
 	
 	public AccueilPane(final ScreenControl sc) {
 		sControl = sc;

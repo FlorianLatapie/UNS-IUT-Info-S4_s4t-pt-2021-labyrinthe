@@ -7,11 +7,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import ihm.AccueilPane;
 import raspberry.reseau.StaticProtocolMessages;
 
 public class ClientPC {
 	private String action;
 	private ProtocolPC protocolPC = new ProtocolPC();
+	private AccueilPane ac;
 
 	public void runClient(String[] args) {
 		if (args.length != 1) {
@@ -39,8 +41,7 @@ public class ClientPC {
 						try {
 							fromClient = stdIn.readLine();// modifier ca par un appel à un protocol
 							if (fromClient != null) {
-								
-								out.println(protocolPC.getAttAlgoSelected());
+								out.println(ac.getAttAlgoSelected());
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -66,4 +67,6 @@ public class ClientPC {
 			System.exit(1);
 		}
 	}
+	
+	
 }
