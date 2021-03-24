@@ -24,7 +24,7 @@ public class ProtocolLego {
 			mouvementController.stop();
 			return true;
 		default:
-			System.out.println("mouvement inconnu");
+			System.out.println("mouvement inconnu\n"+fromServer);
 			return false;
 		}
 	}
