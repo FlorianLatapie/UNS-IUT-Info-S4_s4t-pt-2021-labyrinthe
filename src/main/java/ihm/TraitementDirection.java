@@ -16,7 +16,7 @@ public class TraitementDirection {
 			rotation = deplacement[0];
 			direction = deplacement[1];
 		} else {
-			direction = deplacement[0];
+			rotation = deplacement[0];
 		}
 		if (rotationRobot.equals("H") && rotation.equals("G") && direction.equals("A")
 				|| rotationRobot.equals("G") && rotation.equals("A") && direction.equals(null)
