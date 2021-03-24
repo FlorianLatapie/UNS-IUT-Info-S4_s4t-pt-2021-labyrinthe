@@ -19,18 +19,22 @@ public class ProtocolPC {
 
 	public void traitement(String fromServer) {
 		System.out.println("je suis passé "+fromServer);
-		coordRobot = robotPane.getCoordRobot();
-		String rotation = robotPane.getOrientationRobot();
+		coordRobot = RobotPane.getCoordRobot();
+		System.out.println(Arrays.toString(coordRobot));
+		String rotation = RobotPane.getOrientationRobot();
+		System.out.println("Rotation : "+rotation);
 		String[] deplacement = new String[2];
-		if (fromServer.length()<=1) {
+		if (fromServer.length()<=1)
 			deplacement[0] = fromServer;
-		}
-		else{
+		else
 			deplacement = fromServer.split("");
+		System.out.println("Déplacement : "+Arrays.toString(deplacement));
+		if(fromServer != null) {
+			System.out.println(coordRobot);
+			coordRobot = TraitementDirection.getdCoordByDeplacement(coordRobot, rotation, deplacement);
 		}
-		System.out.println(Arrays.toString(deplacement));
-		if(fromServer != null)
-			coordRobot = new TraitementDirection().getdCoordByDeplacement(coordRobot, rotation, deplacement);
+
+		System.out.println("Nouvelle coordonnée : "+Arrays.toString(coordRobot));
 	}
 
 	public int[] getCoordRobot() {

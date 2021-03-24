@@ -18,6 +18,8 @@ import javafx.scene.text.FontWeight;
 import raspberry.reseaupc.ClientPC;
 import raspberry.reseaupc.ProtocolPC;
 
+import java.util.Arrays;
+
 public class RobotPane extends StackPane implements IRobotPane{
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
@@ -42,14 +44,14 @@ public class RobotPane extends StackPane implements IRobotPane{
 			{ null, null, null,   "DLV", null }, 
 			{ null, null, null, "CD", null }};
 	
-	private String[][] matriceRobot = { 
+	private static String[][] matriceRobot = {
 			{ null, null, null, null, null }, 
 			{ "G", "G", "G", "G", null },
 			{ null, null, null, "H", null }, 
 			{ null, null, null, "H", null }, 
 			{ null, null, null, "H", null }};
 
-	private int[] coordRobot = new int[2];
+	private static int[] coordRobot = new int[2];
 
 	VBox vbCentreG;
 	VBox vbTitre;
@@ -91,29 +93,9 @@ public class RobotPane extends StackPane implements IRobotPane{
 
 
 		final ProtocolPC protocolPC = new ProtocolPC(this);
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				ClientPC clientPC = new ClientPC();
-				String[] args = {"localhost"};
-				clientPC.runClient(args);
-				while(true) {
-					if (protocolPC.getCoordRobot() != null) {
-						for (int i = 0; i < matriceImg.length; i++) {
-							for (int j = 0; j < matriceImg.length; j++) {
-								int[] newCoordRobot = protocolPC.getCoordRobot();
-								if (newCoordRobot[0] == i && newCoordRobot[1] == j)
-									matriceIconRobot[i][j].setVisible(true);
-								else
-									matriceIconRobot[i][j].setVisible(false);
-							}
-						}
-					}
-				}
-			}
-		}).start();
-
-
+		if(protocolPC.getCoordRobot() != null) {
+			this.deplacementRobot(coordRobot, protocolPC.getCoordRobot());
+		}
 
 		titre = new Label(DataControl.TITRE);
 		titre.setFont(Font.font(nomPolice, FontWeight.BOLD, 60));
@@ -308,11 +290,11 @@ public class RobotPane extends StackPane implements IRobotPane{
 		}
 	}
 
-	public int[] getCoordRobot() {
+	public static int[] getCoordRobot() {
 		return coordRobot;
 	}
 
-	public String getOrientationRobot(){
+	public static String getOrientationRobot(){
 		return matriceRobot[coordRobot[0]][coordRobot[1]];
 	}
 	
