@@ -33,5 +33,10 @@ public class Evenement {
 		for (IRobotPane rl : listIRobot)
 			rl.deplacementRobot(currentCoord, newCoord);
 	}
+	
+	public static void deplacementRobotVirtuel(String valcapteur, String directions) {
+		for (IRobotPane rl : listIRobot)
+			rl.deplacementRobotVirtuel(valcapteur, directions);
+	}
 }
 

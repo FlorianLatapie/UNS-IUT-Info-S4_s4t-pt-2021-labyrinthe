@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class TraitementDirection {
 
 	public static int[] getdCoordByDeplacement(int[] coordRobot, String rotationRobot, String[] deplacement) {
-		System.out.println("coord "+Arrays.toString(coordRobot)+" rota "+ rotationRobot+" deplaceemnt "+ Arrays.toString(deplacement));
+		//System.out.println("coord "+Arrays.toString(coordRobot)+" rota "+ rotationRobot+" deplaceemnt "+ Arrays.toString(deplacement));
 		String rotation = "";
 		String direction = "";
 		int[] res = new int[2];

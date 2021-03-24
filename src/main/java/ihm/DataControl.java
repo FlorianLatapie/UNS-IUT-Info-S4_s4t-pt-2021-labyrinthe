@@ -12,6 +12,10 @@ public class DataControl {
 
 	public static final String FOND = "Images/fond.jpg";
 	public static final String ROBOT = "Images/icon_robot.png";
+	public static final String ROBOT_H = "Images/icon_robotH.png";
+	public static final String ROBOT_D = "Images/icon_robotD.png";
+	public static final String ROBOT_B = "Images/icon_robotB.png";
+	public static final String ROBOT_G = "Images/icon_robotG.png";
 	
 	// Images Labyrinthe 
 	public static final String LIGNE_HAUT = "Images/Labyrinthe/ligne0.png";
@@ -32,6 +36,7 @@ public class DataControl {
 	public static final String CARRE_BLANC = "Images/Labyrinthe/CarreBlanc.png";
 	public static final String CARRE_DEPART = "Images/Labyrinthe/CaseDepart.png";
 	public static final String CARRE_ARRIVEE = "Images/Labyrinthe/CaseArrivee.png";
+	public static final String CARRE_TRANSPARENT = "Images/Labyrinthe/CaseTransparent.png";
 	
 	
 	
