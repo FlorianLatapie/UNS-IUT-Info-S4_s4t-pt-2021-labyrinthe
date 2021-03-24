@@ -7,7 +7,7 @@ import ihm.TraitementDirection;
 import java.util.Arrays;
 
 public class ProtocolPC {
-	private int[] coordRobot;
+	private int[] currentCoord;
 	private RobotPane robotPane;
 
 	public ProtocolPC(){
@@ -20,8 +20,7 @@ public class ProtocolPC {
 
 	public void traitement(String fromServer) {
 		System.out.println("je suis passé "+fromServer);
-		coordRobot = RobotPane.getCoordRobot();
-		System.out.println(Arrays.toString(coordRobot));
+		currentCoord = RobotPane.getCurrentCoordRobot();
 		String rotation = RobotPane.getOrientationRobot();
 		System.out.println("Rotation : "+rotation);
 		String[] deplacement = new String[2];
@@ -30,15 +29,15 @@ public class ProtocolPC {
 		else
 			deplacement = fromServer.split("");
 		System.out.println("Déplacement : "+Arrays.toString(deplacement));
+		int[] newCoord =  TraitementDirection.getdCoordByDeplacement(currentCoord, rotation, deplacement);
 		if(fromServer != null) {
-			System.out.println(coordRobot);
-			Evenement.deplacementRobot(coordRobot, TraitementDirection.getdCoordByDeplacement(coordRobot, rotation, deplacement));
+			System.out.println("new coord : "+Arrays.toString(newCoord));
+			System.out.println("Current coord : "+Arrays.toString(currentCoord));
+			Evenement.deplacementRobot(currentCoord, newCoord);
 		}
-
-		System.out.println("Nouvelle coordonnée : "+Arrays.toString(coordRobot));
 	}
 
-	public int[] getCoordRobot() {
-		return coordRobot;
+	public int[] getCurrentCoord() {
+		return currentCoord;
 	}
 }

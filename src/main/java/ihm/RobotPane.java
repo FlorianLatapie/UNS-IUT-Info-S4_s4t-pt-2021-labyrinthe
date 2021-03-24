@@ -15,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import org.w3c.dom.ls.LSOutput;
 import raspberry.reseaupc.ClientPC;
 import raspberry.reseaupc.ProtocolPC;
 
@@ -67,7 +68,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 	GridPane gp;
 	GridPane gpRobot;
 	ImageView[][] matriceImg = new ImageView[5][5];
-	ImageView[][] matriceIconRobot = new ImageView[5][5];
+	static ImageView[][] matriceIconRobot = new ImageView[5][5];
 	public RobotPane(ScreenControl sc) {
 		sControl = sc;
 
@@ -85,16 +86,8 @@ public class RobotPane extends StackPane implements IRobotPane{
 				matriceImg[i][j] = new ImageView(buildMatrice(matriceLaby[i][j]));
 				if(matriceLaby[i][j] == "CD") {
 					matriceIconRobot[i][j].setVisible(true);
-					coordRobot[0] = i;
-					coordRobot[1] = j;
 				}
 			}
-		}
-
-
-		final ProtocolPC protocolPC = new ProtocolPC(this);
-		if(protocolPC.getCoordRobot() != null) {
-			this.deplacementRobot(coordRobot, protocolPC.getCoordRobot());
 		}
 
 		titre = new Label(DataControl.TITRE);
@@ -162,7 +155,17 @@ public class RobotPane extends StackPane implements IRobotPane{
 		}
 		
 		stackCenter.getChildren().addAll(gp, gpRobot);
-		
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(true) {
+					ClientPC clientPC = new ClientPC();
+					String[] args = {"localhost"};
+					clientPC.runClient(args);
+				}
+			}
+		}).start();
 		
 		BorderPane.setAlignment(gp, Pos.CENTER);
 		hbBottom = new HBox();
@@ -295,17 +298,19 @@ public class RobotPane extends StackPane implements IRobotPane{
 	}
 
 	public static String getOrientationRobot(){
-		return matriceRobot[coordRobot[0]][coordRobot[1]];
+		int[] coord = getCurrentCoordRobot();
+		return matriceRobot[coord[0]][coord[1]];
 	}
 	
-	public int[] getCurrentCoordRobot() {
+	public static int[] getCurrentCoordRobot() {
 		int[] res = new  int[2];
 		for (int i = 0; i < matriceIconRobot.length; i++) {
 			for (int j = 0; j < matriceIconRobot.length; j++) {
-				if(matriceIconRobot[i][j].isVisible())
+				if(matriceIconRobot[i][j].isVisible()) {
 					res[0] = i;
 					res[1] = j;
 					return res;
+				}
 			}
 		}
 		return res;
@@ -313,9 +318,12 @@ public class RobotPane extends StackPane implements IRobotPane{
 	
 	@Override
 	public void deplacementRobot(int[] currentCoord, int[] newCoord) {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
+		System.out.println("triggered");
+		System.out.println(Arrays.toString(currentCoord));
+		System.out.println(Arrays.toString(newCoord));
+//		Platform.runLater(new Runnable() {
+//			@Override
+//			public void run() {
 				if(currentCoord == newCoord) {
 					matriceIconRobot[currentCoord[0]][currentCoord[1]].setRotate(180);
 				}
@@ -323,7 +331,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 					matriceIconRobot[currentCoord[0]][currentCoord[1]].setVisible(false);
 					matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
 				}
-			}
-		});
+//			}
+///		});
 	}
 }

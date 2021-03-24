@@ -51,7 +51,9 @@ public class ClientPC {
 				 if (fromServer.equals(StaticProtocolMessages.TERMINER)) {
 	                    System.exit(0);
 	                    }
-				new ProtocolPC().traitement(fromServer);
+				 if(fromServer != null){
+					 new ProtocolPC().traitement(fromServer);
+				 }
 			}
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host " + hostName);

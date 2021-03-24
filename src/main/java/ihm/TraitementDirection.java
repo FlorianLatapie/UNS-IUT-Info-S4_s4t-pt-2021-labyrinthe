@@ -10,6 +10,7 @@ package ihm;
 public class TraitementDirection {
 
 	public static int[] getdCoordByDeplacement(int[] coordRobot, String rotationRobot, String[] deplacement) {
+		System.out.println("yo");
 		String rotation = "";
 		String direction = "";
 		if (deplacement[1] != null) {

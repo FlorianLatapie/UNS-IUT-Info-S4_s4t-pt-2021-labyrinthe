@@ -4,6 +4,7 @@
 package ihm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 /**
  * @author Remy
@@ -19,6 +20,8 @@ public class Evenement {
 	}
 	
 	public static void deplacementRobot(int[] currentCoord, int[] newCoord) {
+		System.out.println(Arrays.toString(currentCoord));
+		System.out.println(Arrays.toString(newCoord));
 		for (IRobotPane rl : listIRobot)
 			rl.deplacementRobot(currentCoord, newCoord);
 	}
