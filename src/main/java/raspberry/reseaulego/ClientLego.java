@@ -3,6 +3,8 @@ package raspberry.reseaulego;
 import java.io.*;
 import java.net.*;
 
+import raspberry.reseau.StaticProtocolMessages;
+
 //cette classe est pour les tests locaux, les classes pour pc et lego sont dans leurs packages respectifs 
 
 public class ClientLego {
@@ -23,7 +25,9 @@ public class ClientLego {
 
 			while ((fromServer = in.readLine()) != null) {
 				ProtocolLego pl = new ProtocolLego();
-
+				 if (fromServer.equals(StaticProtocolMessages.TERMINER)) {
+					 System.exit(0);
+				 }
 				if (pl.traitement(fromServer)) {
 					out.println(fromServer + " Mouvement effectue");
 					System.out.println("\"" + fromServer + "\" :\nMouvement done");
