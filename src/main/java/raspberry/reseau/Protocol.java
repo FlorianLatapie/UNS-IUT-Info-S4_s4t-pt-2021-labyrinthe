@@ -71,17 +71,19 @@ public class Protocol {
 				System.out.println("execution de l'algo");
 			}
 			String commandes = recommandationAlgo
-					.executer(Integer.parseInt((input).substring(StaticProtocolMessages.ENTETE_CAPTEUR.length())));
-			String[] commandesTab = commandes.split("");
-			for (int i = 0; i < commandes.length(); i++) {
-				multiServer.sendAll(commandesTab[i]);
-			}
+					.executer(input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
+			
 
+			if (multiServer.getTabClients().containsKey("PC")) {
+					System.out.println("contient pc");
+					multiServer.sendTo("PC", input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
+			}
+			multiServer.sendAll(commandes);
+		
 			return "";
 		}
 
 		else {
 			return "commande inconnue";
 		}
-	}
-}
+	}}

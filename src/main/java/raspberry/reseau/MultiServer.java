@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -17,7 +19,9 @@ import java.util.List;
  *
  */
 public class MultiServer {
-	private List<PrintWriter> tabClients = new ArrayList<>();
+	private Map<String, PrintWriter> tabClients = new HashMap<>();
+	
+
 	private int nbClients = 0;
 
 	public void runServer(String[] args) throws IOException {
@@ -45,7 +49,7 @@ public class MultiServer {
 	}
 
 	public synchronized void sendAll(String message) {
-		for (PrintWriter printWriter : tabClients) {
+		for (PrintWriter printWriter : tabClients.values()) {
 			if(printWriter!=null) {
 				printWriter.println(message);
 			}
@@ -64,13 +68,23 @@ public class MultiServer {
 	}
 
 
-	public synchronized int addClient(PrintWriter out) {
+	public synchronized int addClient(String nom, PrintWriter out) {
+		System.out.println(nom+"#"+nbClients+" connecté et ajouté");
 		nbClients++;
-		tabClients.add(out); 
+		tabClients.put(nom, out); 
 		return tabClients.size() - 1;
 	}
 
 	public synchronized int getNbClients() {
 		return nbClients;
+	}
+	
+	public Map<String, PrintWriter> getTabClients() {
+		return tabClients;
+	}
+
+	public void sendTo(String nomCli, String message) {
+		tabClients.get(nomCli).print(message);
+		
 	}
 }

@@ -27,6 +27,8 @@ public class ClientPC {
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
 			System.out.println("Pc client connecté ");
 			String fromServer;
+			
+			out.println("PC");
 
 			new Thread(new Runnable() {
 				String fromClient;

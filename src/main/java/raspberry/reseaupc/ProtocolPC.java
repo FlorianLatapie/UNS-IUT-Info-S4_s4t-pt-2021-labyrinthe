@@ -19,6 +19,16 @@ public class ProtocolPC {
 	}
 
 	public void traitement(String fromServer) {
+		ihmPaneGauche(fromServer.substring(3));
+		ihmPaneDroit(fromServer);
+	}
+
+	private void ihmPaneDroit(String fromServer) {
+		// ajouter ici l'algo de résolution d'images
+		
+	}
+
+	private void ihmPaneGauche(String fromServer) {
 		currentCoord = RobotPane.getCurrentCoordRobot();
 		int[] currentTemp = currentCoord;
 		String rotation = RobotPane.getOrientationRobot();
@@ -31,6 +41,7 @@ public class ProtocolPC {
 		if(fromServer != null) {
 			Evenement.deplacementRobot(currentCoord, newCoord);
 		}
+		
 	}
 
 	public int[] getCurrentCoord() {

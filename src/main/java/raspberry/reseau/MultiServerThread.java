@@ -29,8 +29,8 @@ public class MultiServerThread implements Runnable {
 	public void run() {
 		try (PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));) {
-			numClient = multiServer.addClient(out);
-			System.out.println("Un nouveau client s'est connecté : #" + numClient);
+			numClient = multiServer.addClient(in.readLine(),out);
+			//System.out.println("Un nouveau client s'est connecté : #" + numClient);
 			String inputLine, outputLine;
 			Protocol protocol = new Protocol(multiServer);
 
