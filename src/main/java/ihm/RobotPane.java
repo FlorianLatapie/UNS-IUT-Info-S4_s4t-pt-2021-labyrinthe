@@ -70,6 +70,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 	ImageView[][] matriceImg = new ImageView[5][5];
 	static ImageView[][] matriceIconRobot = new ImageView[5][5];
 	public RobotPane(ScreenControl sc) {
+		
 		sControl = sc;
 
 		for (int i = 0; i < matriceIconRobot.length; i++) {
@@ -156,16 +157,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 		
 		stackCenter.getChildren().addAll(gp, gpRobot);
 
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while(true) {
-					ClientPC clientPC = new ClientPC();
-					String[] args = {"localhost"};
-					clientPC.runClient(args);
-				}
-			}
-		}).start();
+		
 		
 		BorderPane.setAlignment(gp, Pos.CENTER);
 		hbBottom = new HBox();

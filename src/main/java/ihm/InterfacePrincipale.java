@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
+import raspberry.reseaupc.ClientPC;
 
 public class InterfacePrincipale extends Application {
 	private StackPane root = new StackPane();
@@ -30,6 +31,19 @@ public class InterfacePrincipale extends Application {
 					event.consume();
 			}
 		});
+		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(true) {
+					ClientPC clientPC = new ClientPC();
+					String[] args = {"localhost"};
+					clientPC.runClient(args);
+				}
+			}
+		}).start();
+		
+		
 		sControl = new ScreenControl(this, core);
 
 		primaryStage.setTitle(DataControl.TITRE);
