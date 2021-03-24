@@ -334,6 +334,9 @@ public class RobotPane extends StackPane implements IRobotPane{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				if(currentCoord == newCoord) {
+					matriceIconRobot[currentCoord[0]][currentCoord[1]].setRotate(180);
+				}
 				matriceIconRobot[currentCoord[0]][currentCoord[1]].setVisible(false);
 				matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
 			}
