@@ -18,7 +18,7 @@ import javafx.scene.text.FontWeight;
 import raspberry.reseaupc.ClientPC;
 import raspberry.reseaupc.ProtocolPC;
 
-public class RobotPane extends StackPane {
+public class RobotPane extends StackPane implements IRobotPane{
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
 	private static final ApplicationPane paneName = ApplicationPane.ROBOT;
@@ -314,5 +314,29 @@ public class RobotPane extends StackPane {
 
 	public String getOrientationRobot(){
 		return matriceRobot[coordRobot[0]][coordRobot[1]];
+	}
+	
+	public int[] getCurrentCoordRobot() {
+		int[] res = new  int[2];
+		for (int i = 0; i < matriceIconRobot.length; i++) {
+			for (int j = 0; j < matriceIconRobot.length; j++) {
+				if(matriceIconRobot[i][j].isVisible())
+					res[0] = i;
+					res[1] = j;
+					return res;
+			}
+		}
+		return res;
+	}
+	
+	@Override
+	public void deplacementRobot(int[] currentCoord, int[] newCoord) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				matriceIconRobot[currentCoord[0]][currentCoord[1]].setVisible(false);
+				matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
+			}
+		});
 	}
 }
