@@ -24,11 +24,9 @@ public class Evenement {
 		listIAccueil.add(toAdd);
 	}
 	
-	public static String getAttAlgoSelected() {
-		for (IAccueilPane il : listIAccueil) {
-			return il.getAttAlgoSelected();
-		}
-		return "";
+	public static void getAttAlgoSelected() {
+		for (IAccueilPane il : listIAccueil) 
+			il.getAttAlgoSelected();
 	}
 	
 	public static void deplacementRobot(int[] currentCoord, int[] newCoord) {
