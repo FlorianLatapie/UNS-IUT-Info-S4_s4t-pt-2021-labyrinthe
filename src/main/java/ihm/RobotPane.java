@@ -317,7 +317,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 	}
 	
 	@Override
-	public void deplacementRobot(int[] currentCoord, int[] newCoord) {
+	public void deplacementRobot(final int[] currentCoord, final int[] newCoord) {
 		System.out.println("triggered");
 		System.out.println(Arrays.toString(currentCoord));
 		System.out.println(Arrays.toString(newCoord));

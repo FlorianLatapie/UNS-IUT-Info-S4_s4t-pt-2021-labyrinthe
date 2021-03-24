@@ -107,7 +107,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		choixAlgo.setFont(Font.font(nomPolice, FontWeight.BOLD, tailleSousTitre));
 		choixAlgo.setStyle(c.getCouleurPolice());
 
-		ToggleGroup group = new ToggleGroup();
+		final ToggleGroup group = new ToggleGroup();
 
 		radioAlignment = new VBox();
 		radioAlignment.setAlignment(Pos.CENTER_LEFT);
