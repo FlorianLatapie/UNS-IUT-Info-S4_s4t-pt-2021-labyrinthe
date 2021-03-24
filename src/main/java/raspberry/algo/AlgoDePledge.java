@@ -22,11 +22,11 @@ public class AlgoDePledge implements AlgoStrategy {
 
         if (capteur.equals(101)) {
         	if (direction == 0 || direction ==2){
-        		TraceAlgoArrivé.grille[x][y+1]=1;
-        		TraceAlgoArrivé.grille[x][y-1]=1;
+        		TraceAlgoArrive.grille[x][y+1]=1;
+        		TraceAlgoArrive.grille[x][y-1]=1;
         	}else if (direction == 1 || direction == 3) {
-        		TraceAlgoArrivé.grille[x+1][y]=1;
-        		TraceAlgoArrivé.grille[x-1][y]=1;
+        		TraceAlgoArrive.grille[x+1][y]=1;
+        		TraceAlgoArrive.grille[x-1][y]=1;
         	}
         	arrive = 0;
             return StaticProtocolMessages.AVANCER;
@@ -34,21 +34,21 @@ public class AlgoDePledge implements AlgoStrategy {
         
         else if (capteur.equals(111)) {
         	if (direction == 0){
-        		TraceAlgoArrivé.grille[x][y+1]=1;
-        		TraceAlgoArrivé.grille[x][y-1]=1;
-        		TraceAlgoArrivé.grille[x-1][y]=1;
+        		TraceAlgoArrive.grille[x][y+1]=1;
+        		TraceAlgoArrive.grille[x][y-1]=1;
+        		TraceAlgoArrive.grille[x-1][y]=1;
         	}else if (direction == 1) {
-        		TraceAlgoArrivé.grille[x+1][y]=1;
-        		TraceAlgoArrivé.grille[x-1][y]=1;
-        		TraceAlgoArrivé.grille[x][y-1]=1;
+        		TraceAlgoArrive.grille[x+1][y]=1;
+        		TraceAlgoArrive.grille[x-1][y]=1;
+        		TraceAlgoArrive.grille[x][y-1]=1;
         	}else if (direction == 2) {
-        		TraceAlgoArrivé.grille[x][y+1]=1;
-        		TraceAlgoArrivé.grille[x][y-1]=1;
-        		TraceAlgoArrivé.grille[x+1][y]=1;
+        		TraceAlgoArrive.grille[x][y+1]=1;
+        		TraceAlgoArrive.grille[x][y-1]=1;
+        		TraceAlgoArrive.grille[x+1][y]=1;
         	}else if (direction == 3) {
-        		TraceAlgoArrivé.grille[x+1][y]=1;
-        		TraceAlgoArrivé.grille[x-1][y]=1;
-        		TraceAlgoArrivé.grille[x][y+1]=1;
+        		TraceAlgoArrive.grille[x+1][y]=1;
+        		TraceAlgoArrive.grille[x-1][y]=1;
+        		TraceAlgoArrive.grille[x][y+1]=1;
         	}
         	arrive = 0;
         	direction = direction +2;
@@ -58,17 +58,17 @@ public class AlgoDePledge implements AlgoStrategy {
         
          else if (capteur.equals(011)) {
         	 if (direction == 0){
-         		TraceAlgoArrivé.grille[x][y+1]=1;
-         		TraceAlgoArrivé.grille[x-1][y]=1;
+         		TraceAlgoArrive.grille[x][y+1]=1;
+         		TraceAlgoArrive.grille[x-1][y]=1;
          	}else if (direction == 1) {
-         		TraceAlgoArrivé.grille[x-1][y]=1;
-         		TraceAlgoArrivé.grille[x][y-1]=1;
+         		TraceAlgoArrive.grille[x-1][y]=1;
+         		TraceAlgoArrive.grille[x][y-1]=1;
          	}else if (direction == 2) {
-         		TraceAlgoArrivé.grille[x][y-1]=1;
-         		TraceAlgoArrivé.grille[x+1][y]=1;
+         		TraceAlgoArrive.grille[x][y-1]=1;
+         		TraceAlgoArrive.grille[x+1][y]=1;
          	}else if (direction == 3) {
-         		TraceAlgoArrivé.grille[x+1][y]=1;
-         		TraceAlgoArrivé.grille[x][y+1]=1;
+         		TraceAlgoArrive.grille[x+1][y]=1;
+         		TraceAlgoArrive.grille[x][y+1]=1;
          	}
         	arrive = 0;
     		direction++;
@@ -79,17 +79,17 @@ public class AlgoDePledge implements AlgoStrategy {
         
         else if (capteur.equals(110)) {
         	if (direction == 0){
-         		TraceAlgoArrivé.grille[x][y-1]=1;
-         		TraceAlgoArrivé.grille[x-1][y]=1;
+         		TraceAlgoArrive.grille[x][y-1]=1;
+         		TraceAlgoArrive.grille[x-1][y]=1;
          	}else if (direction == 1) {
-         		TraceAlgoArrivé.grille[x+1][y]=1;
-         		TraceAlgoArrivé.grille[x][y-1]=1;
+         		TraceAlgoArrive.grille[x+1][y]=1;
+         		TraceAlgoArrive.grille[x][y-1]=1;
          	}else if (direction == 2) {
-         		TraceAlgoArrivé.grille[x][y+1]=1;
-         		TraceAlgoArrivé.grille[x+1][y]=1;
+         		TraceAlgoArrive.grille[x][y+1]=1;
+         		TraceAlgoArrive.grille[x+1][y]=1;
          	}else if (direction == 3) {
-         		TraceAlgoArrivé.grille[x-1][y]=1;
-         		TraceAlgoArrivé.grille[x][y+1]=1;
+         		TraceAlgoArrive.grille[x-1][y]=1;
+         		TraceAlgoArrive.grille[x][y+1]=1;
          	}
         	arrive = 0;
     		direction++;
@@ -101,13 +101,13 @@ public class AlgoDePledge implements AlgoStrategy {
         
         else if (capteur.equals(100)) {
         	if (direction == 0){
-         		TraceAlgoArrivé.grille[x][y-1]=1;
+         		TraceAlgoArrive.grille[x][y-1]=1;
          	}else if (direction == 1) {
-         		TraceAlgoArrivé.grille[x+1][y]=1;
+         		TraceAlgoArrive.grille[x+1][y]=1;
          	}else if (direction == 2) {
-         		TraceAlgoArrivé.grille[x][y+1]=1;
+         		TraceAlgoArrive.grille[x][y+1]=1;
          	}else if (direction == 3) {
-         		TraceAlgoArrivé.grille[x-1][y]=1;
+         		TraceAlgoArrive.grille[x-1][y]=1;
          	}
         	arrive = 0;
         	Random r = new Random();
@@ -122,13 +122,13 @@ public class AlgoDePledge implements AlgoStrategy {
         
         else if (capteur.equals(001)) {
         	if (direction == 0){
-         		TraceAlgoArrivé.grille[x][y+1]=1;
+         		TraceAlgoArrive.grille[x][y+1]=1;
          	}else if (direction == 1) {
-         		TraceAlgoArrivé.grille[x-1][y]=1;
+         		TraceAlgoArrive.grille[x-1][y]=1;
          	}else if (direction == 2) {
-         		TraceAlgoArrivé.grille[x][y-1]=1;
+         		TraceAlgoArrive.grille[x][y-1]=1;
          	}else if (direction == 3) {
-         		TraceAlgoArrivé.grille[x+1][y]=1;
+         		TraceAlgoArrive.grille[x+1][y]=1;
          	}
         	arrive = 0;
         	
@@ -136,13 +136,13 @@ public class AlgoDePledge implements AlgoStrategy {
         
         else if (capteur.equals(010)) {
         	if (direction == 0){
-         		TraceAlgoArrivé.grille[x-1][y]=1;
+         		TraceAlgoArrive.grille[x-1][y]=1;
          	}else if (direction == 1) {
-         		TraceAlgoArrivé.grille[x][y-1]=1;
+         		TraceAlgoArrive.grille[x][y-1]=1;
          	}else if (direction == 2) {
-         		TraceAlgoArrivé.grille[x+1][y]=1;
+         		TraceAlgoArrive.grille[x+1][y]=1;
          	}else if (direction == 3) {
-         		TraceAlgoArrivé.grille[x][y+1]=1;
+         		TraceAlgoArrive.grille[x][y+1]=1;
          	}
         	arrive = 0;
         }

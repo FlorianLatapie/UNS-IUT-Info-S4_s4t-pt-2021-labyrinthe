@@ -1,6 +1,6 @@
 package raspberry.algo;
 
-public class TraceAlgoArrivé {
+public class TraceAlgoArrive {
 	public static int[][] grille = {
 		    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
