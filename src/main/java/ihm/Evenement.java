@@ -13,15 +13,25 @@ import java.util.List;
 
 public class Evenement {
 	private static final List<IRobotPane> listIRobot = new ArrayList<>();
+	private static final List<IAccueilPane> listIAccueil = new ArrayList<>();
 	
 	
 	public static void addListener(IRobotPane toAdd) {
 		listIRobot.add(toAdd);
 	}
 	
+	public static void addListener(IAccueilPane toAdd) {
+		listIAccueil.add(toAdd);
+	}
+	
+	public static String getAttAlgoSelected() {
+		for (IAccueilPane il : listIAccueil) {
+			return il.getAttAlgoSelected();
+		}
+		return "";
+	}
+	
 	public static void deplacementRobot(int[] currentCoord, int[] newCoord) {
-		System.out.println(Arrays.toString(currentCoord));
-		System.out.println(Arrays.toString(newCoord));
 		for (IRobotPane rl : listIRobot)
 			rl.deplacementRobot(currentCoord, newCoord);
 	}

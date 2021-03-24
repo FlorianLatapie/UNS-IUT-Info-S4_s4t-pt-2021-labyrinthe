@@ -21,6 +21,7 @@ public class ProtocolPC {
 	public void traitement(String fromServer) {
 		ihmPaneGauche(fromServer.substring(3));
 		ihmPaneDroit(fromServer);
+		deplacementRobot(fromServer);
 	}
 
 	private void ihmPaneDroit(String fromServer) {
@@ -29,8 +30,16 @@ public class ProtocolPC {
 	}
 
 	private void ihmPaneGauche(String fromServer) {
+		deplacementRobot(fromServer);
+	}
+
+	public int[] getCurrentCoord() {
+		return currentCoord;
+	}
+	
+	public void deplacementRobot(String fromServer) {
+
 		currentCoord = RobotPane.getCurrentCoordRobot();
-		int[] currentTemp = currentCoord;
 		String rotation = RobotPane.getOrientationRobot();
 		String[] deplacement = new String[2];
 		if (fromServer.length()<=1)
@@ -43,8 +52,8 @@ public class ProtocolPC {
 		}
 		
 	}
-
-	public int[] getCurrentCoord() {
-		return currentCoord;
+	
+	public String getAttAlgoSelected() {
+		return Evenement.getAttAlgoSelected();
 	}
 }

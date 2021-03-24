@@ -321,9 +321,9 @@ public class RobotPane extends StackPane implements IRobotPane{
 		System.out.println("triggered");
 		System.out.println(Arrays.toString(currentCoord));
 		System.out.println(Arrays.toString(newCoord));
-//		Platform.runLater(new Runnable() {
-//			@Override
-//			public void run() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
 				if(currentCoord == newCoord) {
 					matriceIconRobot[currentCoord[0]][currentCoord[1]].setRotate(180);
 				}
@@ -331,7 +331,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 					matriceIconRobot[currentCoord[0]][currentCoord[1]].setVisible(false);
 					matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
 				}
-//			}
-///		});
+			}
+		});
 	}
 }

@@ -23,8 +23,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import raspberry.reseau.StaticProtocolMessages;
 
-public class AccueilPane extends StackPane {
+public class AccueilPane extends StackPane implements IAccueilPane{
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
 	private static final ApplicationPane paneName = ApplicationPane.ACCUEIL;
@@ -39,6 +40,7 @@ public class AccueilPane extends StackPane {
 	private String styleBoutons = c.getStyleBouton();
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
+	private String algoSelected = "";
 	
 
 	VBox vbTitre;
@@ -70,6 +72,7 @@ public class AccueilPane extends StackPane {
 	RadioButton button2;
 	RadioButton button3;
 
+	
 	public AccueilPane(final ScreenControl sc) {
 		sControl = sc;
 
@@ -111,21 +114,21 @@ public class AccueilPane extends StackPane {
 		radioAlignment.setTranslateX(800);
 		radioAlignment.setSpacing(20);
 
-		button1 = new RadioButton("Aléatoire");
+		button1 = new RadioButton("Mur de droite");
 		button1.setToggleGroup(group);
 		button1.setSelected(true);
 		button1.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button1);
 
-		button2 = new RadioButton("Mur de droite");
+		button2 = new RadioButton("Treaux");
 		button2.setToggleGroup(group);
 		button2.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button2);
 
 		button3 = new RadioButton("Mur de gauche");
-		button3.setToggleGroup(group);
+	//	button3.setToggleGroup(group);
 		button3.setStyle(c.getCouleurPolice());
-		radioAlignment.getChildren().add(button3);
+	//	radioAlignment.getChildren().add(button3);
 
 		
 		// choix de la vitesse 
@@ -219,6 +222,8 @@ public class AccueilPane extends StackPane {
 			@Override
 			public void handle(ActionEvent event) {
 				sc.setPaneOnTop(ApplicationPane.ROBOT);
+				algoSelected = getAlgoSelected(group.getSelectedToggle().toString());
+				
 			}
 		});
 
@@ -264,6 +269,23 @@ public class AccueilPane extends StackPane {
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
 
+	}
+	
+	
+	public String getAlgoSelected(String input) {
+		switch(input.substring(46, input.length()-1)) {
+		case "Mur de droite":
+			return StaticProtocolMessages.ALGO_MUR_DROIT;
+		case "Tremaux":
+			return StaticProtocolMessages.ALGO_TREMAUX;
+		default:
+			return StaticProtocolMessages.ALGO_MUR_DROIT;
+		}
+	}
+	
+	@Override
+	public String getAttAlgoSelected() {
+		return this.algoSelected;
 	}
 }
 

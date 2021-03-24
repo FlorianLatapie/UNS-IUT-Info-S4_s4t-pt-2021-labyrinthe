@@ -12,6 +12,7 @@ public class StaticProtocolMessages {
 	
 	public final static String ENTETE_ALGO = "ALGO:";
 	public final static String ALGO_MUR_DROIT = "MUR_DROIT";
+	public final static String ALGO_TREMAUX = "TREMAUX";
 	
 	public final static String ENTETE_BROADCAST = "BROADCAST:";
 

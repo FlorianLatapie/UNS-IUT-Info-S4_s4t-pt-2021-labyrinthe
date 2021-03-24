@@ -39,7 +39,8 @@ public class ClientPC {
 						try {
 							fromClient = stdIn.readLine();// modifier ca par un appel à un protocol
 							if (fromClient != null) {
-
+								
+								out.println(protocolPC.getAttAlgoSelected());
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -54,7 +55,7 @@ public class ClientPC {
 	                    System.exit(0);
 	                    }
 				 if(fromServer != null){
-					 new ProtocolPC().traitement(fromServer);
+					 protocolPC.traitement(fromServer);
 				 }
 			}
 		} catch (UnknownHostException e) {
