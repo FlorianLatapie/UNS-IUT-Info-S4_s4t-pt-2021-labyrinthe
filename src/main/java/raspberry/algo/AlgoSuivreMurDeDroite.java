@@ -5,16 +5,16 @@ import raspberry.reseau.StaticProtocolMessages;
 public class AlgoSuivreMurDeDroite implements AlgoStrategy {
 	private static int arrive=0;
 	@Override
-    public String executer(Integer capteur) {
+    public String executer(String capteur) {
 
-        if ((capteur.equals(101)) || (capteur.equals(001))) {
+        if ((capteur.equals("101")) || (capteur.equals("001"))) {
         	arrive = 0;
             return StaticProtocolMessages.AVANCER;
         }
 
-        else if (capteur.equals(100) || (capteur.equals(110)) || (capteur.equals(010)) || capteur.equals(000)) {
+        else if (capteur.equals("100") || (capteur.equals("110")) || (capteur.equals("010")) || capteur.equals("000")) {
             
-        	if (capteur.equals(000)) {
+        	if (capteur.equals("000")) {
                 if (arrive == 1) {
                     capteur = null;
                 } else {
@@ -28,11 +28,11 @@ public class AlgoSuivreMurDeDroite implements AlgoStrategy {
             }
         }
 
-        else if (capteur.equals(011)) {
+        else if (capteur.equals("011")) {
         	arrive =0;
             return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
 
-        } else if (capteur.equals(111)) {
+        } else if (capteur.equals("111")) {
         	arrive = 0;
             return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE;
         }

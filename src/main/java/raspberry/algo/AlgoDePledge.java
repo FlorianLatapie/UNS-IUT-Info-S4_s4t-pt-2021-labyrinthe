@@ -15,7 +15,7 @@ public class AlgoDePledge implements AlgoStrategy {
 
 	
     @Override
-    public String executer(Integer capteur) {
+    public String executer(String capteur) {
          
          
          
@@ -32,7 +32,7 @@ public class AlgoDePledge implements AlgoStrategy {
             return StaticProtocolMessages.AVANCER;
         }
         
-        else if (capteur.equals(111)) {
+        else if (capteur.equals("111")) {
         	if (direction == 0){
         		TraceAlgoArrive.grille[x][y+1]=1;
         		TraceAlgoArrive.grille[x][y-1]=1;
@@ -56,7 +56,7 @@ public class AlgoDePledge implements AlgoStrategy {
             return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE;
         }
         
-         else if (capteur.equals(011)) {
+         else if (capteur.equals("011")) {
         	 if (direction == 0){
          		TraceAlgoArrive.grille[x][y+1]=1;
          		TraceAlgoArrive.grille[x-1][y]=1;
@@ -77,7 +77,7 @@ public class AlgoDePledge implements AlgoStrategy {
 
         } 
         
-        else if (capteur.equals(110)) {
+        else if (capteur.equals("110")) {
         	if (direction == 0){
          		TraceAlgoArrive.grille[x][y-1]=1;
          		TraceAlgoArrive.grille[x-1][y]=1;
@@ -99,7 +99,7 @@ public class AlgoDePledge implements AlgoStrategy {
 
         }
         
-        else if (capteur.equals(100)) {
+        else if (capteur.equals("100")) {
         	if (direction == 0){
          		TraceAlgoArrive.grille[x][y-1]=1;
          	}else if (direction == 1) {
@@ -120,7 +120,7 @@ public class AlgoDePledge implements AlgoStrategy {
         		
         }
         
-        else if (capteur.equals(001)) {
+        else if (capteur.equals("001")) {
         	if (direction == 0){
          		TraceAlgoArrive.grille[x][y+1]=1;
          	}else if (direction == 1) {
@@ -134,7 +134,7 @@ public class AlgoDePledge implements AlgoStrategy {
         	
         }
         
-        else if (capteur.equals(010)) {
+        else if (capteur.equals("010")) {
         	if (direction == 0){
          		TraceAlgoArrive.grille[x-1][y]=1;
          	}else if (direction == 1) {
@@ -147,7 +147,7 @@ public class AlgoDePledge implements AlgoStrategy {
         	arrive = 0;
         }
         
-        else if (capteur.equals(000)) {
+        else if (capteur.equals("000")) {
         	
                 if (arrive == 1) {
                     capteur = null;
