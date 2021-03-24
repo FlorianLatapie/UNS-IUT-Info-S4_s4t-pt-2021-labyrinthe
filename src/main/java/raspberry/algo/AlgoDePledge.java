@@ -20,13 +20,24 @@ public class AlgoDePledge implements AlgoStrategy {
          
          
 
-        if (capteur.equals(101)) {
-        	if (direction == 0 || direction ==2){
+        if (capteur.equals("101")) {
+        	if (direction == 0){
         		TraceAlgoArrive.grille[x][y+1]=1;
         		TraceAlgoArrive.grille[x][y-1]=1;
-        	}else if (direction == 1 || direction == 3) {
+        		x--;
+        	}else if (direction ==2){
+        		TraceAlgoArrive.grille[x][y+1]=1;
+        		TraceAlgoArrive.grille[x][y-1]=1;
+        		x++;
+        	}
+        	else if (direction == 1) {
         		TraceAlgoArrive.grille[x+1][y]=1;
         		TraceAlgoArrive.grille[x-1][y]=1;
+        		y--;
+        	}else if (direction == 3) {
+        		TraceAlgoArrive.grille[x+1][y]=1;
+        		TraceAlgoArrive.grille[x-1][y]=1;
+        		y++;
         	}
         	arrive = 0;
             return StaticProtocolMessages.AVANCER;
@@ -60,15 +71,19 @@ public class AlgoDePledge implements AlgoStrategy {
         	 if (direction == 0){
          		TraceAlgoArrive.grille[x][y+1]=1;
          		TraceAlgoArrive.grille[x-1][y]=1;
+         		y--;
          	}else if (direction == 1) {
          		TraceAlgoArrive.grille[x-1][y]=1;
          		TraceAlgoArrive.grille[x][y-1]=1;
+         		x++;
          	}else if (direction == 2) {
          		TraceAlgoArrive.grille[x][y-1]=1;
          		TraceAlgoArrive.grille[x+1][y]=1;
+         		y++;
          	}else if (direction == 3) {
          		TraceAlgoArrive.grille[x+1][y]=1;
          		TraceAlgoArrive.grille[x][y+1]=1;
+         		x--;
          	}
         	arrive = 0;
     		direction++;
@@ -81,19 +96,23 @@ public class AlgoDePledge implements AlgoStrategy {
         	if (direction == 0){
          		TraceAlgoArrive.grille[x][y-1]=1;
          		TraceAlgoArrive.grille[x-1][y]=1;
+         		y++;
          	}else if (direction == 1) {
          		TraceAlgoArrive.grille[x+1][y]=1;
          		TraceAlgoArrive.grille[x][y-1]=1;
+         		x++;
          	}else if (direction == 2) {
          		TraceAlgoArrive.grille[x][y+1]=1;
          		TraceAlgoArrive.grille[x+1][y]=1;
+         		y--;
          	}else if (direction == 3) {
          		TraceAlgoArrive.grille[x-1][y]=1;
          		TraceAlgoArrive.grille[x][y+1]=1;
+         		x--;
          	}
         	arrive = 0;
-    		direction++;
-        	if (direction >= 4) {direction = direction -4;}
+    		direction--;
+        	if (direction < 0) {direction = 3;}
 
             return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
 
@@ -113,8 +132,30 @@ public class AlgoDePledge implements AlgoStrategy {
         	Random r = new Random();
         	int rand =r.nextInt(2);
         	if (rand== 0) {
+        		if (direction == 0){
+        			y++;
+             	}else if (direction == 1) {
+             		x--;
+             	}else if (direction == 2) {
+             		y--;
+             	}else if (direction == 3) {
+             		x++;
+             	}
+        		
+        		direction --;
+        		if (direction < 0) {direction = 3;}
+        		
                 return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
         	}else {
+        		if (direction == 0){
+        			x--;
+             	}else if (direction == 1) {
+             		y--;
+             	}else if (direction == 2) {
+             		x++;
+             	}else if (direction == 3) {
+             		y++;
+             	}
         		return StaticProtocolMessages.AVANCER;
         	}
         		
@@ -131,7 +172,34 @@ public class AlgoDePledge implements AlgoStrategy {
          		TraceAlgoArrive.grille[x+1][y]=1;
          	}
         	arrive = 0;
-        	
+        	Random r = new Random();
+        	int rand =r.nextInt(2);
+        	if (rand== 0) {
+        		if (direction == 0){
+        			y--;
+             	}else if (direction == 1) {
+             		x++;
+             	}else if (direction == 2) {
+             		y++;
+             	}else if (direction == 3) {
+             		x--;
+             	}
+        		direction++;
+            	if (direction >= 4) {direction = direction -4;}
+                return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+        	}else {
+        		
+        		if (direction == 0){
+        			x--;
+             	}else if (direction == 1) {
+             		y--;
+             	}else if (direction == 2) {
+             		x++;
+             	}else if (direction == 3) {
+             		y++;
+             	}
+        		return StaticProtocolMessages.AVANCER;
+        	}
         }
         
         else if (capteur.equals("010")) {
@@ -145,6 +213,36 @@ public class AlgoDePledge implements AlgoStrategy {
          		TraceAlgoArrive.grille[x][y+1]=1;
          	}
         	arrive = 0;
+        	
+        	Random r = new Random();
+        	int rand =r.nextInt(2);
+        	if (rand== 0) {
+        		if (direction == 0){
+        			y--;
+             	}else if (direction == 1) {
+             		x++;
+             	}else if (direction == 2) {
+             		y++;
+             	}else if (direction == 3) {
+             		x--;
+             	}
+        		direction++;
+            	if (direction >= 4) {direction = direction -4;}
+                return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+        	}else {
+        		if (direction == 0){
+        			y++;
+             	}else if (direction == 1) {
+             		x--;
+             	}else if (direction == 2) {
+             		y--;
+             	}else if (direction == 3) {
+             		x++;
+             	}
+        		direction--;
+            	if (direction < 0) {direction = 3;}
+                return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
+        	}
         }
         
         else if (capteur.equals("000")) {
@@ -153,8 +251,46 @@ public class AlgoDePledge implements AlgoStrategy {
                     capteur = null;
                 } else {
                     arrive = 1;
-                    return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
-
+                    Random r = new Random();
+                	int rand =r.nextInt(3);
+                	if (rand== 0) {
+                		if (direction == 0){
+                			y--;
+                     	}else if (direction == 1) {
+                     		x++;
+                     	}else if (direction == 2) {
+                     		y++;
+                     	}else if (direction == 3) {
+                     		y--;
+                     	}
+                		direction++;
+                    	if (direction >= 4) {direction = direction -4;}
+                        return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+                	}else if (rand==1){
+                		if (direction == 0){
+                			y++;
+                     	}else if (direction == 1) {
+                     		x--;
+                     	}else if (direction == 2) {
+                     		y--;
+                     	}else if (direction == 3) {
+                     		x++;
+                     	}
+                		direction--;
+                    	if (direction < 0) {direction = 3;}
+                        return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
+                	}else {
+                		if (direction == 0){
+                			x--;
+                     	}else if (direction == 1) {
+                     		y--;
+                     	}else if (direction == 2) {
+                     		x++;
+                     	}else if (direction == 3) {
+                     		y++;
+                     	}
+                		return StaticProtocolMessages.AVANCER;
+                	}
                 }
         }
         return null;
