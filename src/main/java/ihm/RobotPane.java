@@ -47,7 +47,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 	
 	private static String[][] matriceRobot = {
 			{ null, null, null, null, null }, 
-			{ "G", "G", "G", "G", null },
+			{ "G", "G", "G", "H", null },
 			{ null, null, null, "H", null }, 
 			{ null, null, null, "H", null }, 
 			{ null, null, null, "H", null }};
