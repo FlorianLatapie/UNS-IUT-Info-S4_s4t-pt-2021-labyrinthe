@@ -25,7 +25,7 @@ public class Protocol {
 
 	public String processInfo(String input) {
 
-		if ((""+input).equalsIgnoreCase(""+null) || input.equalsIgnoreCase("")) {
+		if (input.equalsIgnoreCase(null) || input.equalsIgnoreCase("")) {
 			return "client input is null : " + input;
 		}
 
@@ -86,13 +86,4 @@ public class Protocol {
 		else {
 			return "commande inconnue";
 		}
-	}
-
-	public Boolean getVerbose() {
-		return verbose;
-	}
-
-	public void setVerbose(Boolean verbose) {
-		this.verbose = verbose;
-	}
-}
+	}}
