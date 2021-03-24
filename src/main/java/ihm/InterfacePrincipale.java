@@ -45,6 +45,7 @@ public class InterfacePrincipale extends Application {
 		AccueilPane accueilPane = new AccueilPane(sControl);
 		
 		Evenement.addListener(robotPane);
+		Evenement.addListener(accueilPane);
 
 		scene.getStylesheets().add(DataControl.CSS);
 

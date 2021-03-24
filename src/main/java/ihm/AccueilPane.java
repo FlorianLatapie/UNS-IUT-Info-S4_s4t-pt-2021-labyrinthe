@@ -24,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import raspberry.reseau.StaticProtocolMessages;
+import raspberry.reseaupc.ClientPC;
 
 public class AccueilPane extends StackPane implements IAccueilPane{
 	private ScreenControl sControl = null;
@@ -41,7 +42,6 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
 	private String algoSelected = "";
-	
 
 	VBox vbTitre;
 	VBox vbCentre;
@@ -255,6 +255,17 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 			}
 		});
 
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(true) {
+					ClientPC clientPC = new ClientPC();
+					String[] args = {"localhost"};
+					clientPC.runClient(args);
+				}
+			}
+		}).start();
+
 		hbBottom.getChildren().addAll(bQuitter, bLancer);
 		BorderPane.setAlignment(vbTitre, Pos.CENTER);
 		bp.setTop(vbTitre);
@@ -273,7 +284,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	
 	
 	public String getAlgoSelected(String input) {
-		switch(input.substring(46, input.length()-1)) {
+		switch(input.split("'")[1]) {
 		case "Mur de droite":
 			return StaticProtocolMessages.ALGO_MUR_DROIT;
 		case "Tremaux":
@@ -285,7 +296,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	
 	@Override
 	public String getAttAlgoSelected() {
-		return StaticProtocolMessages.ENTETE_ALGO+":"+this.algoSelected;
+		return StaticProtocolMessages.ENTETE_ALGO+this.algoSelected;
 	}
 }
 
