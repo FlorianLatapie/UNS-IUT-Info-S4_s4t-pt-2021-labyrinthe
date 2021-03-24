@@ -285,7 +285,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	
 	@Override
 	public String getAttAlgoSelected() {
-		return this.algoSelected;
+		return StaticProtocolMessages.ENTETE_ALGO+":"+this.algoSelected;
 	}
 }
 
