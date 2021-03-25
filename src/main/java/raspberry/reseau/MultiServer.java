@@ -25,14 +25,15 @@ public class MultiServer {
 	private int nbClients = 0;
 
 	public void runServer(String[] args) throws IOException {
+		int port;
+		if (args.length <= 0)
+			port = 8888;
+		else
+			port = Integer.parseInt(args[0]);
+		System.out.println("Serveur prêt");
 		MultiServer multiServ = new MultiServer();
+		
 		try {
-			int port;
-			if (args.length <= 0)
-				port = 8888;
-			else
-				port = Integer.parseInt(args[0]);
-
 			ServerSocket ss = new ServerSocket(port);
 			checkConnexion(port);
 			while (true) {
@@ -45,7 +46,7 @@ public class MultiServer {
 	}
 
 	private static void checkConnexion(int port) {
-		System.out.println("--------\nDemarre sur le port : " + port+"\n--------");
+		System.out.println("Serveur en écoute sur le port : " + port);
 	}
 
 	public synchronized void sendAll(String message) {
@@ -84,7 +85,22 @@ public class MultiServer {
 	}
 
 	public void sendTo(String nomCli, String message) {
-		tabClients.get(nomCli).print(message);
+		if (tabClients.containsKey(nomCli)) {
+			tabClients.get(nomCli).print(message);
+		}
+		else {
+			System.out.println("client "+nomCli+" inconnu");
+		}
+		
+	}
+
+	public void sendToLn(String nomCli, String message) {
+		if (tabClients.containsKey(nomCli)) {
+			tabClients.get(nomCli).println(message);
+		}
+		else {
+			System.out.println("client "+nomCli+" inconnu");
+		}
 		
 	}
 }

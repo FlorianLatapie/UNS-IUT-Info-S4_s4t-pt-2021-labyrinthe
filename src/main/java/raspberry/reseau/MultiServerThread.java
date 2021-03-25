@@ -42,6 +42,7 @@ public class MultiServerThread implements Runnable {
 				}
 				if (!protocol.processInfo(inputLine).equals("")) {
 					outputLine = protocol.processInfo(inputLine);
+					System.out.println("envoyé : "+outputLine);
 					out.println(outputLine);
 				}
 			}

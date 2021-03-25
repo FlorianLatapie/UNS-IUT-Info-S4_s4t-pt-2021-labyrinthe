@@ -15,7 +15,7 @@ public class StaticProtocolMessages {
 	
 	public static final String ENTETE_ALGO = "ALGO:";
 	public static final String ALGO_MUR_DROIT = "MUR_DROIT";
-	public static final String ALGO_TREMAUX = "TREMAUX";
+	public static final String ALGO_PLEDGE = "PLEDGE";
 	
 	public static final String RUN_ALGO = "LANCER";
 	

@@ -3,16 +3,14 @@
  */
 package raspberry.reseau;
 
+import raspberry.algo.AlgoDePledge;
+import raspberry.algo.AlgoSuivreMurDeDroite;
 import raspberry.algo.RecommandationAlgo;
 
-/**
- * @author Remy
- *
- */
 public class Protocol {
 	private MultiServer multiServer;
 	private RecommandationAlgo recommandationAlgo = new RecommandationAlgo();
-	private Boolean verbose = true;
+	private Boolean verbose = false;
 
 	public Protocol(MultiServer multiServer) {
 		this.multiServer = multiServer;
@@ -26,7 +24,23 @@ public class Protocol {
 	public String processInfo(String input) {
 
 		if (("" + input).equalsIgnoreCase("" + null) || input.equalsIgnoreCase("")) {
-			return "client input is null : " + input;
+			System.out.println("client input is null, sending \"\"");
+			return "";
+		}
+
+		else if (input.startsWith(StaticProtocolMessages.ENTETE_ALGO)) {
+			input = input.substring(StaticProtocolMessages.ENTETE_ALGO.length());
+			switch (input) {
+			case StaticProtocolMessages.ALGO_MUR_DROIT:
+				recommandationAlgo.changerStrategy(new AlgoSuivreMurDeDroite());
+				break;
+			case StaticProtocolMessages.ALGO_PLEDGE:
+				recommandationAlgo.changerStrategy(new AlgoDePledge());
+				break;
+			default:
+				System.out.println("strat défaut : algo mur droit");
+			}
+			return "";
 		}
 
 		else if (input.startsWith(StaticProtocolMessages.ENTETE_VERBOSE)) {
@@ -89,17 +103,25 @@ public class Protocol {
 
 		if (input.startsWith(StaticProtocolMessages.RUN_ALGO)
 				|| input.startsWith(StaticProtocolMessages.MOUVEMENT_EFFECTUE)) {
-			multiServer.sendAll(StaticProtocolMessages.GET_VAL_CAPTEUR);
-			return "";
+			if (multiServer.getTabClients().containsKey("CAPTEUR")) {
+				multiServer.sendToLn("CAPTEUR",StaticProtocolMessages.GET_VAL_CAPTEUR);
+				return "";
+			}
+			else {
+				System.out.println("pas de capteur dans la hashmap");
+				return "pas de capteur";
+			}
+			
+			
 		}
 		
 		if (input.startsWith(StaticProtocolMessages.ENTETE_REGLAGE)) {
-			multiServer.sendAll(input);
+			multiServer.sendToLn("LEGO",input);
 			return "";
 		}
 
 		else {
-			return "commande inconnue";
+			return "commande inconnue : "+input;
 		}
 	}
 

@@ -38,10 +38,13 @@ public class ClientPC {
 				@Override
 				public void run() {
 					while (true) {
-						//System.out.println(protocolPC.isTriggered()); // Si rien ne s'affiche dans RaspMain, rajouter cette ligne !
+						// System.out.println(protocolPC.isTriggered()); // Si rien ne s'affiche dans
+						// RaspMain, rajouter cette ligne !
 						if (protocolPC.isTriggered()) {
 							out.println(protocolPC.getAttAlgoSelected());
-							out.println(protocolPC.getReglageValeur());
+							if (protocolPC.getReglageValeur() != null || protocolPC.getReglageValeur() != "") {
+								out.println(protocolPC.getReglageValeur());
+							}
 							out.println(StaticProtocolMessages.RUN_ALGO);
 							break;
 						}

@@ -6,9 +6,6 @@ public class AlgoSuivreMurDeDroite implements AlgoStrategy {
 	static int arrive = 0;
     @Override
     public String executer(String capteur) {
-        
-        System.out.println(capteur);
-
         if ((capteur.equals("101")) || (capteur.equals("001"))) {
         	arrive = 0;
             return StaticProtocolMessages.AVANCER;

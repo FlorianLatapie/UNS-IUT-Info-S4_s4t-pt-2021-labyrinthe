@@ -125,7 +125,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		button1.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button1);
 
-		button2 = new RadioButton("Treaux");
+		button2 = new RadioButton("Pledge");
 		button2.setToggleGroup(group);
 		button2.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button2);
@@ -230,7 +230,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 				algoSelected = getAlgoSelected(group.getSelectedToggle().toString());
 				valeurReglage = checkValueInsered();
 				isTriggered = true;
-				System.out.println(valeurReglage);
+				//System.out.println("valeur reglage : "+valeurReglage);
 			}
 		});
 
@@ -284,8 +284,8 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		switch(input.split("'")[1]) {
 		case "Mur de droite":
 			return StaticProtocolMessages.ALGO_MUR_DROIT;
-		case "Tremaux":
-			return StaticProtocolMessages.ALGO_TREMAUX;
+		case "Pledge":
+			return StaticProtocolMessages.ALGO_PLEDGE;
 		default:
 			return StaticProtocolMessages.ALGO_MUR_DROIT;
 		}
@@ -301,6 +301,9 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_TRIM_GAUCHE+reglageGauche.getText()+"\n";
 		if(!reglageDroit.getText().equals(""))
 			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_TRIM_DROIT+reglageDroit.getText()+"\n";
+		if (toReturn.length() > 0) {
+			toReturn = toReturn.substring(0, (toReturn.length() - 1));
+		}
 		return toReturn;
 	}
 	
