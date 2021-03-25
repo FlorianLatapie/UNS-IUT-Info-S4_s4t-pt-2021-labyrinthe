@@ -25,25 +25,26 @@ public class InterfacePrincipale extends Application {
 			@Override
 			public void handle(WindowEvent event) {
 				boolean resultat = ConfirmationPane.afficher();
-				if (resultat)
+				if (resultat) {
 					Platform.exit();
-				else
+					System.exit(0);
+				} else {
 					event.consume();
+				}
 			}
 		});
-		
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				while(true) {
+				while (true) {
 					ClientPC clientPC = new ClientPC();
-					
+
 					clientPC.runClient(core.getIP());
 				}
 			}
 		}).start();
-		
-		
+
 		sControl = new ScreenControl(this, core);
 
 		primaryStage.setTitle(DataControl.TITRE);
@@ -57,7 +58,7 @@ public class InterfacePrincipale extends Application {
 
 		RobotPane robotPane = new RobotPane(sControl);
 		AccueilPane accueilPane = new AccueilPane(sControl);
-		
+
 		Evenement.addListener(robotPane);
 		Evenement.addListener(accueilPane);
 
