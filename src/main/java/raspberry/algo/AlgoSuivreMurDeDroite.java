@@ -31,10 +31,11 @@ public class AlgoSuivreMurDeDroite implements AlgoStrategy {
 
         else if (capteur.equals("000")) {
             if (arrive == 1) {
-            	return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
+            	return StaticProtocolMessages.ARRIVE;
             } else {
                 arrive = 1;
-                return StaticProtocolMessages.ARRIVE;
+                return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
+
 
             }
         }
