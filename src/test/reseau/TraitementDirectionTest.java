@@ -1,7 +1,9 @@
-package test;
+package reseau;
 
 import ihm.TraitementDirection;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -102,23 +104,15 @@ class TraitementDirectionTest {
 
         ////////////////////////////////////////////////////////////
 
-        rotationRobot = "X";
+        rotationRobot = "H";
         this.assignValues(deplacement,"A","");
         res = TraitementDirection.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res, coordRobot);
+        assertEquals(Arrays.toString(res), "[0, 2, 1]"); // 0,2 correspond aux nouvelles coordonnées du robot dans la matrice et 1 son orientation opposé (dans ce cas "1", soit bas car notre direction est vers le haut)
 
         rotationRobot = "G";
         this.assignValues(deplacement,"x","");
         res = TraitementDirection.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res, coordRobot);
-
-
-
-
-
-
-
-
+        assertEquals(Arrays.toString(res), "[1, 2, 2]");
     }
 
     void assignValues(String[] tab, String d1, String d2){

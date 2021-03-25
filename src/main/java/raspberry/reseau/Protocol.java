@@ -72,7 +72,6 @@ public class Protocol {
 			}
 
 			if (input.startsWith(StaticProtocolMessages.ENTETE_CAPTEUR)) {
-				input = input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length());
 				String commandes = recommandationAlgo
 						.executer(input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
 

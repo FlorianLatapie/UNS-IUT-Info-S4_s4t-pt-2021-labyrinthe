@@ -1,11 +1,11 @@
-package test;
+package reseau;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import raspberry.reseau.MultiServer;
 import raspberry.reseau.Protocol;
 import raspberry.reseau.StaticProtocolMessages;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ProtocolTest {
 
@@ -22,7 +22,7 @@ class ProtocolTest {
         assertEquals(p.processInfo(""), ("client input is null : "));
 
         // check values for verbose prefix
-        assertFalse(p.getVerbose());
+        assertTrue(p.getVerbose());
         p.processInfo(StaticProtocolMessages.ENTETE_VERBOSE + 0);
         assertFalse(p.getVerbose());
         p.processInfo(StaticProtocolMessages.ENTETE_VERBOSE + "false");
@@ -49,7 +49,8 @@ class ProtocolTest {
         assertEquals(p.processInfo(StaticProtocolMessages.ENTETE_BROADCAST), "");
 
         //Check value for sensor prefix
-        assertEquals(p.processInfo(StaticProtocolMessages.ENTETE_CAPTEUR+"1"), "");
+        String message = StaticProtocolMessages.ENTETE_CAPTEUR+"1";
+        assertEquals(p.processInfo(message), "");
 
         //Check unknown values
         assertEquals(p.processInfo("random"), "commande inconnue");

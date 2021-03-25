@@ -1,10 +1,10 @@
-package test;
+package algo;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import raspberry.algo.AlgoSuivreMurDeDroite;
 import raspberry.reseau.StaticProtocolMessages;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AlgoSuivreMurDeDroiteTest {
 
@@ -31,11 +31,6 @@ class AlgoSuivreMurDeDroiteTest {
 
         //End of maze
         assertEquals(algo.executer("000"),StaticProtocolMessages.ARRIVE);
-
-
-
-
-
     }
 
 }
