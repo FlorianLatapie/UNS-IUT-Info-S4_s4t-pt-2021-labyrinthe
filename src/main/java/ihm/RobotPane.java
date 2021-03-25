@@ -410,21 +410,38 @@ public class RobotPane extends StackPane implements IRobotPane{
 	
 	@Override
 	public void deplacementRobot(final int[] currentCoord, final int[] newCoord) {
-		/*System.out.println("triggered");
-		System.out.println(Arrays.toString(currentCoord));
-		System.out.println(Arrays.toString(newCoord));*/
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				String[] rotateImage = getRotationImage(newCoord[2]).split(" ");
 				if(currentCoord == newCoord) {
-					matriceIconRobot[currentCoord[0]][currentCoord[1]].setRotate(180);
+					matriceIconRobot[newCoord[0]][newCoord[1]].setImage(new Image(rotateImage[0]));
+					matriceRobot[newCoord[0]][newCoord[1]] = rotateImage[1];
+					matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
 				}
 				else {
 					matriceIconRobot[currentCoord[0]][currentCoord[1]].setVisible(false);
+					matriceIconRobot[newCoord[0]][newCoord[1]].setImage(new Image(rotateImage[0]));
+					matriceRobot[newCoord[0]][newCoord[1]] = rotateImage[1];
 					matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
 				}
 			}
 		});
+	}
+	
+	public String getRotationImage(int val) {
+		switch(val) {
+		case 0:
+			return DataControl.ROBOT_G+" "+"G";
+		case 1:
+			return DataControl.ROBOT_H+" "+"H";
+		case 2:
+			return DataControl.ROBOT_D+" "+"D";
+		case 3:
+			return DataControl.ROBOT_B+" "+"B";
+		default:
+			return DataControl.ROBOT_H+" "+"H";
+		}
 	}
 
 	@Override

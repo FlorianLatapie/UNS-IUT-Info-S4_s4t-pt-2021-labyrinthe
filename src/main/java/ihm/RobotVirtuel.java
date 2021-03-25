@@ -63,11 +63,6 @@ public class RobotVirtuel {
 		for (int i = 0; i < tabMouvement.length; i++) {
 			nouveauMur(valCapteur, mRobot, mLaby);
 			bougerRobot(tabMouvement[i], mRobot);
-			
-				
-			
-			
-
 		}
 		nouveauMur(valCapteur, mRobot, mLaby);
 
