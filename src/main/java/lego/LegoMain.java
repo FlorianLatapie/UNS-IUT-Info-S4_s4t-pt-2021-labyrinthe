@@ -13,8 +13,7 @@ public class LegoMain {
 		System.out.println("+---------------+\n|  Labyrinthe   |\n+---------------+");
 		ClientLego clientLego = new ClientLego();
 		BufferedReader in = new BufferedReader(new FileReader("./ip"));
-		String ip;
-		ip = in.readLine();
+		String ip = in.readLine();
 		in.close();
 		System.out.println(ip);
 		clientLego.runClient(ip);

@@ -29,7 +29,7 @@ public class ClientLego {
 					 System.exit(0);
 				 }
 				if (pl.traitement(fromServer)) {
-					out.println(fromServer + " Mouvement effectue");
+					out.println(StaticProtocolMessages.MOUVEMENT_EFFECTUE);
 					System.out.println("\"" + fromServer + "\" :\nMouvement done");
 				}
 

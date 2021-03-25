@@ -25,7 +25,7 @@ public class Protocol {
 
 	public String processInfo(String input) {
 
-		if ((""+input).equalsIgnoreCase(""+null) || input.equalsIgnoreCase("")) {
+		if (("" + input).equalsIgnoreCase("" + null) || input.equalsIgnoreCase("")) {
 			return "client input is null : " + input;
 		}
 
@@ -70,16 +70,27 @@ public class Protocol {
 			if (verbose) {
 				System.out.println("execution de l'algo");
 			}
-			String commandes = recommandationAlgo
-					.executer(input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
-			
 
-			if (multiServer.getTabClients().containsKey("PC")) {
-					System.out.println("contient pc");
+			if (input.startsWith(StaticProtocolMessages.ENTETE_CAPTEUR)) {
+				input = input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length());
+				String commandes = recommandationAlgo
+						.executer(input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
+
+				if (multiServer.getTabClients().containsKey("PC")) {
 					multiServer.sendTo("PC", input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
+				}
+				multiServer.sendAll(commandes);
+
+				return "";
+			} else {
+				System.out.println("erreur algo " + input);
+				return "erreur algo " + input;
 			}
-			multiServer.sendAll(commandes);
-		
+		}
+
+		if (input.startsWith(StaticProtocolMessages.RUN_ALGO)
+				|| input.startsWith(StaticProtocolMessages.MOUVEMENT_EFFECTUE)) {
+			multiServer.sendAll(StaticProtocolMessages.GET_VAL_CAPTEUR);
 			return "";
 		}
 
