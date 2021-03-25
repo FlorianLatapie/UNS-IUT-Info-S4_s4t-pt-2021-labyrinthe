@@ -8,7 +8,7 @@ public class App {
 		Core c = new Core();
 		if (args.length != 1) {
 			System.out.println("Aucune ip entrée, lancement sur localhost");
-			c.setIP("locahost");
+			c.setIP("localhost");
 		} else {
 			c.setIP(args[0]);
 		}

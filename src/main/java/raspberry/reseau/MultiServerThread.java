@@ -35,6 +35,7 @@ public class MultiServerThread implements Runnable {
 			Protocol protocol = new Protocol(multiServer);
 
 			while ((inputLine = in.readLine()) != null) {
+				System.out.println("recu : "+inputLine);
 				if (inputLine.equals(StaticProtocolMessages.TERMINER)) {
 					multiServer.sendAll(StaticProtocolMessages.TERMINER);
 					System.exit(0);

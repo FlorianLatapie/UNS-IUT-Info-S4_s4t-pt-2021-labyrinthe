@@ -1,44 +1,57 @@
-import jpysocket
-import socket
-import time
+#!/usr/bin/env python
 import grovepi
+import socket
 
-line_finder_right = 2
-line_finder_middle = 3
-line_finder_left = 4
+line_finder = 6
+line_finder_gauche = 8
+line_finder_droit = 4
 
-grovepi.pinMode(line_finder_right,"INPUT")
-grovepi.pinMode(line_finder_middle,"INPUT")
-grovepi.pinMode(line_finder_left,"INPUT")
+grovepi.pinMode(line_finder, "INPUT")
+grovepi.pinMode(line_finder_gauche,"INPUT")
+grovepi.pinMode(line_finder_droit, "INPUT")
 
-host='localhost' #Host Name
-port=8888    #Port Number
-s=socket.socket() #Create Socket
-s.bind((host,port)) #Bind Port And Host
-s.listen(5) #Socket is Listening
-print("Socket Is Listening....")
-connection,address=s.accept() #Accept the Connection
-print("Connected To ",address)
-while 1 :
-    toReturn = ""
-    if grovepi.digitalRead(line_finder_right) == 1:
-            toReturn += ("1")
-    else:
-            toReturn += ("0")
-    if grovepi.digitalRead(line_finder_right) == 1:
-            toReturn += ("1")
-    else:
-            toReturn += ("0")
-    if grovepi.digitalRead(line_finder_right) == 1:
-            toReturn += ("1")
-    else:
-            toReturn += ("0")
-    msgsend=jpysocket.jpyencode("VAL_CAPTEUR:"+toReturn) #Encript The Msg
-    connection.send(msgsend) #Send Msg
-    java_msg=connection.recv(1024) #Recieve msg
-    java_msg=jpysocket.jpydecode(java_msg) #Decript msg
-    print("From java: ",java_msg)
-    if(java_msg == "Exit"):
-        break
-s.close() #Close connection
-print("Connection Closed.")
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(("localhost", 8888))
+
+client_socket.send("CAPTEUR\n".encode())
+
+retour = ""
+
+while True:
+        from_server = client_socket.recv(4096)
+        print("fromserver : ",from_server.decode())
+        if (from_server.decode().startswith("QUIT")):
+            break
+        if (from_server.decode().startswith("getCapteur")):
+            
+            retour = ""
+            # Return HIGH when black line is detected, and LOW when white line is detected
+            if grovepi.digitalRead(line_finder_gauche) == 1:
+                #print ("lfc 0")
+                retour += "0"
+            else:
+                #print ("lfc 1")
+                retour += "1"
+
+            if grovepi.digitalRead(line_finder) == 1:
+                #print ("lfg 0")
+                retour += "0"
+            else:
+                #print ("lfg 1")
+                retour += "1"
+
+            if grovepi.digitalRead(line_finder_droit) == 1:
+                #print ("lfd 0")
+                retour += "0"
+            else:
+                #print ("lfd 1")
+                retour += "1"
+            
+
+            toServer = "VAL_CAPTEUR:"+retour+"\n"
+            print("toServer : ",toServer)
+            client_socket.send(toServer.encode())
+            retour = ""
+
+
+client_socket.close()

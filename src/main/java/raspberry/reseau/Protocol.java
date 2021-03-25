@@ -12,7 +12,7 @@ import raspberry.algo.RecommandationAlgo;
 public class Protocol {
 	private MultiServer multiServer;
 	private RecommandationAlgo recommandationAlgo = new RecommandationAlgo();
-	private Boolean verbose = false;
+	private Boolean verbose = true;
 
 	public Protocol(MultiServer multiServer) {
 		this.multiServer = multiServer;
