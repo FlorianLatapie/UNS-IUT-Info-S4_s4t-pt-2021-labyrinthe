@@ -4,7 +4,6 @@
 package ihm;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 /**
  * @author Remy
@@ -24,9 +23,10 @@ public class Evenement {
 		listIAccueil.add(toAdd);
 	}
 	
-	public static void getAttAlgoSelected() {
+	public static String getAttAlgoSelected() {
 		for (IAccueilPane il : listIAccueil) 
-			il.getAttAlgoSelected();
+			return il.getAttAlgoSelected();
+		return null;
 	}
 	
 	public static void deplacementRobot(int[] currentCoord, int[] newCoord) {
@@ -37,6 +37,20 @@ public class Evenement {
 	public static void deplacementRobotVirtuel(String valcapteur, String directions) {
 		for (IRobotPane rl : listIRobot)
 			rl.deplacementRobotVirtuel(valcapteur, directions);
+	}
+
+	public static String getReglageValeur(){
+		for(IAccueilPane il : listIAccueil){
+			return il.getReglageValeur();
+		}
+		return null;
+	}
+
+	public static boolean isTriggered(){
+		for (IAccueilPane il : listIAccueil){
+			return il.isTriggered();
+		}
+		return false;
 	}
 }
 

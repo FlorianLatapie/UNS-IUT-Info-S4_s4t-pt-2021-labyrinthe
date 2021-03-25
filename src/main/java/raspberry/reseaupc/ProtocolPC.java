@@ -49,7 +49,13 @@ public class ProtocolPC {
 		return currentCoord;
 	}
 	
-	public void getAttAlgoSelected() {
-		Evenement.getAttAlgoSelected();
+	public String getAttAlgoSelected() {
+		return Evenement.getAttAlgoSelected();
+	}
+	public String getReglageValeur() {
+		return Evenement.getReglageValeur();
+	}
+	public boolean isTriggered() {
+		return Evenement.isTriggered();
 	}
 }

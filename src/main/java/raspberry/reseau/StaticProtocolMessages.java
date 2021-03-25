@@ -22,7 +22,13 @@ public class StaticProtocolMessages {
 	public static final String ENTETE_BROADCAST = "BROADCAST:";
 
 	public static final String ENTETE_CAPTEUR = "VAL_CAPTEUR:";
-	public static final String GET_VAL_CAPTEUR = "getCapteur"; 
+	public static final String GET_VAL_CAPTEUR = "getCapteur";
+
+	public static final String ENTETE_REGLAGE = "REGLAGE:";
+	public static final String ENTETE_TRIM_GAUCHE = "TRIM_GAUCHE:";
+	public static final String ENTETE_TRIM_DROIT = "TRIM_DROIT:";
+	public static final String ENTETE_AVANCE = "AVANCE:";
+	public static final String ENTETE_ROTATION = "ROTATION:";
 	
 	public static final String ENTETE_VERBOSE = "VERBOSE:"; 
 	public static final String TEST = "test";

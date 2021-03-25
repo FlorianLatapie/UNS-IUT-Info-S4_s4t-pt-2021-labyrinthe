@@ -26,6 +26,9 @@ import javafx.scene.text.FontWeight;
 import raspberry.reseau.StaticProtocolMessages;
 import raspberry.reseaupc.ClientPC;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AccueilPane extends StackPane implements IAccueilPane{
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
@@ -42,6 +45,8 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
 	private String algoSelected = "";
+	private String valeurReglage = "";
+	private boolean isTriggered = false;
 
 	VBox vbTitre;
 	VBox vbCentre;
@@ -223,7 +228,9 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 			public void handle(ActionEvent event) {
 				sc.setPaneOnTop(ApplicationPane.ROBOT);
 				algoSelected = getAlgoSelected(group.getSelectedToggle().toString());
-				
+				valeurReglage = checkValueInsered();
+				isTriggered = true;
+				System.out.println(valeurReglage);
 			}
 		});
 
@@ -272,8 +279,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		sControl.setPaneOnTop(paneName);
 
 	}
-	
-	
+
 	public String getAlgoSelected(String input) {
 		switch(input.split("'")[1]) {
 		case "Mur de droite":
@@ -284,10 +290,32 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 			return StaticProtocolMessages.ALGO_MUR_DROIT;
 		}
 	}
+
+	public String checkValueInsered(){
+		String toReturn = "";
+		if(!reglageAvancer.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_AVANCE+reglageAvancer.getText()+"\n";
+		if(!reglageTourner.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_ROTATION+reglageTourner.getText()+"\n";
+		if(!reglageGauche.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_TRIM_GAUCHE+reglageGauche.getText()+"\n";
+		if(!reglageDroit.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_TRIM_DROIT+reglageDroit.getText()+"\n";
+		return toReturn;
+	}
 	
 	@Override
 	public String getAttAlgoSelected() {
 		return StaticProtocolMessages.ENTETE_ALGO+this.algoSelected;
+	}
+
+	@Override
+	public String getReglageValeur() {
+		return valeurReglage;
+	}
+
+	public boolean isTriggered(){
+		return isTriggered;
 	}
 }
 

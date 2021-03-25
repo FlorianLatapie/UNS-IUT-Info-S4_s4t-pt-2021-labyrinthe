@@ -9,4 +9,6 @@ package ihm;
  */
 public interface IAccueilPane {
 	String getAttAlgoSelected();
+	String getReglageValeur();
+	boolean isTriggered();
 }
