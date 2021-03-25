@@ -87,8 +87,8 @@ public class RobotPane extends StackPane implements IRobotPane{
 
 		for (int i = 0; i < matriceIconRobot.length; i++) {
 			for (int j = 0; j < matriceIconRobot.length; j++) {
-				matriceIconRobot[i][j] = new ImageView(DataControl.ROBOT);
-				matriceIconRobot[i][j].setTranslateX(13);
+				matriceIconRobot[i][j] = new ImageView(DataControl.ROBOT_H);
+				
 				positionRobot(matriceRobot[i][j], matriceIconRobot[i][j]);
 				
 			}

@@ -51,7 +51,8 @@ public class TraitementDirection {
 			
 		}
 		else {
-			res = coordRobot;
+			res[0] = coordRobot[0];
+			res[1] = coordRobot[1];
 			res[2] = getOppositeIdRotation(rotationRobot);
 		}
 		return res;
