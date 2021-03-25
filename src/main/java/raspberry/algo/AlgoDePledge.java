@@ -133,30 +133,41 @@ public class AlgoDePledge implements AlgoStrategy {
         	if (direction == 0){
     			if ((TraceAlgoArrive.grille[x-1][y]==2) && (TraceAlgoArrive.grille[x][y+1]==2)) {
     				TraceAlgoArrive.grille[x+1][y]=3;
+    				x++;
+    				direction = direction -2;
+    	        	if (direction < 0) {direction= direction +4;}
     				return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x-1][y]==2) && (TraceAlgoArrive.grille[x][y+1]==3)) {
     				TraceAlgoArrive.grille[x-1][y]=3;
     				TraceAlgoArrive.grille[x+1][y]=3;
+    				x--;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x-1][y]==3) && (TraceAlgoArrive.grille[x][y+1]==2)) {
     				TraceAlgoArrive.grille[x][y+1]=3;
     				TraceAlgoArrive.grille[x+1][y]=3;
+    				y++;
+    				direction = direction -1;
+    	        	if (direction < 0) {direction= direction +4;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x-1][y]==2) && (TraceAlgoArrive.grille[x][y+1]==0)) {
     				TraceAlgoArrive.grille[x][y+1]=2;
     				TraceAlgoArrive.grille[x+1][y]=3;
+    				y++;
+    				direction = direction -1;
+    	        	if (direction < 0) {direction= direction +4;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x-1][y]==0) && (TraceAlgoArrive.grille[x][y+1]==2)) {
     				TraceAlgoArrive.grille[x-1][y]=2;
     				TraceAlgoArrive.grille[x+1][y]=3;
+    				x--;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
@@ -180,30 +191,41 @@ public class AlgoDePledge implements AlgoStrategy {
          	}else if (direction == 1) {
          		if ((TraceAlgoArrive.grille[x][y-1]==2) && (TraceAlgoArrive.grille[x-1][y]==2)) {
     				TraceAlgoArrive.grille[x][y+1]=3;
+    				y++;
+	        		direction -= 2;
+	        		if (direction < 0) {direction += 4;}
     				return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y-1]==2) && (TraceAlgoArrive.grille[x-1][y]==3)) {
     				TraceAlgoArrive.grille[x][y-1]=3;
     				TraceAlgoArrive.grille[x][y+1]=3;
+    				y--;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y-1]==3) && (TraceAlgoArrive.grille[x-1][y]==2)) {
     				TraceAlgoArrive.grille[x][y+1]=3;
     				TraceAlgoArrive.grille[x-1][y]=3;
+    				x--;
+	        		direction --;
+	        		if (direction < 0) {direction = 3;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y-1]==2) && (TraceAlgoArrive.grille[x-1][y]==0)) {
     				TraceAlgoArrive.grille[x-1][y]=2;
     				TraceAlgoArrive.grille[x][y+1]=3;
+    				x--;
+	        		direction --;
+	        		if (direction < 0) {direction = 3;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y-1]==0) && (TraceAlgoArrive.grille[x-1][y]==2)) {
     				TraceAlgoArrive.grille[x][y-1]=2;
     				TraceAlgoArrive.grille[x][y+1]=3;
+    				y--;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
@@ -228,30 +250,41 @@ public class AlgoDePledge implements AlgoStrategy {
          	}else if (direction == 2) {
          		if ((TraceAlgoArrive.grille[x+1][y]==2) && (TraceAlgoArrive.grille[x][y-1]==2)) {
     				TraceAlgoArrive.grille[x-1][y]=3;
+    				x--;
+	        		direction -=2;
+	        		if (direction < 0) {direction += 4;}
     				return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x+1][y]==2) && (TraceAlgoArrive.grille[x][y-1]==3)) {
     				TraceAlgoArrive.grille[x-1][y]=3;
     				TraceAlgoArrive.grille[x+1][y]=3;
+    				x++;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x+1][y]==3) && (TraceAlgoArrive.grille[x][y-1]==2)) {
     				TraceAlgoArrive.grille[x-1][y]=3;
     				TraceAlgoArrive.grille[x][y-1]=3;
+    				y--;
+	        		direction --;
+	        		if (direction < 0) {direction = 3;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x+1][y]==2) && (TraceAlgoArrive.grille[x][y-1]==0)) {
     				TraceAlgoArrive.grille[x][y-1]=2;
     				TraceAlgoArrive.grille[x-1][y]=3;
+    				y--;
+	        		direction --;
+	        		if (direction < 0) {direction = 3;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x+1][y]==0) && (TraceAlgoArrive.grille[x][y-1]==2)) {
     				TraceAlgoArrive.grille[x+1][y]=2;
     				TraceAlgoArrive.grille[x-1][y]=3;
+    				x++;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
@@ -275,30 +308,41 @@ public class AlgoDePledge implements AlgoStrategy {
          	}else if (direction == 3) {
          		if ((TraceAlgoArrive.grille[x][y+1]==2) && (TraceAlgoArrive.grille[x+1][y]==2)) {
     				TraceAlgoArrive.grille[x][y-1]=3;
+    				y-=2;
+	        		direction -=2;
+	        		if (direction < 0) {direction += 4;}
     				return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y+1]==2) && (TraceAlgoArrive.grille[x+1][y]==3)) {
     				TraceAlgoArrive.grille[x][y-1]=3;
     				TraceAlgoArrive.grille[x][y+1]=3;
+    				y++;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y+1]==3) && (TraceAlgoArrive.grille[x+1][y]==2)) {
     				TraceAlgoArrive.grille[x+1][y]=3;
     				TraceAlgoArrive.grille[x][y-1]=3;
+    				x++;
+	        		direction --;
+	        		if (direction < 0) {direction = 3;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y+1]==2) && (TraceAlgoArrive.grille[x+1][y]==0)) {
     				TraceAlgoArrive.grille[x+1][y]=2;
     				TraceAlgoArrive.grille[x][y-1]=3;
+    				x++;
+	        		direction --;
+	        		if (direction < 0) {direction = 3;}
     				return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
     			}
     			
     			else if ((TraceAlgoArrive.grille[x][y+1]==0) && (TraceAlgoArrive.grille[x+1][y]==2)) {
     				TraceAlgoArrive.grille[x][y+1]=2;
     				TraceAlgoArrive.grille[x][y-1]=3;
+    				y++;
     				return StaticProtocolMessages.AVANCER;
     			}
     			
