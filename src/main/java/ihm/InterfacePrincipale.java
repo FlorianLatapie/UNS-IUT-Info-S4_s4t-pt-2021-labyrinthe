@@ -37,8 +37,8 @@ public class InterfacePrincipale extends Application {
 			public void run() {
 				while(true) {
 					ClientPC clientPC = new ClientPC();
-					String[] args = {"localhost"};
-					clientPC.runClient(args);
+					
+					clientPC.runClient(core.getIP());
 				}
 			}
 		}).start();
