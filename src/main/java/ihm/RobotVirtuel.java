@@ -5,53 +5,30 @@ import raspberry.reseau.StaticProtocolMessages;
 public class RobotVirtuel {
 	public void méthodeExemple() {
 		int tailleX = 5, tailleY = 5;
-		int[] posDepart = {4,4};
-		int[] posArrivee = {0,0};
+		int[] posDepart = {3,4};
 		
-		String[][] matriceRobot = creerMatriceRobot(tailleX, tailleY, posDepart, "H");
-			/*{ 	{ null, null, null, null, null},
-										{ null, null, null, null, null},
-										{ null, null, "H" , null, null}, 
-										{ null, null, null, null, null}, 
-										{ null, null, null, null, null}};*/
+		String[][] matriceRobot = creerMatriceRobot(tailleX, tailleY, posDepart, "G");
 
-		String[][] matriceLaby = creerMatriceLaby(tailleX, tailleY, posDepart, posArrivee);
-			/*{	{ null, null, null, null, null }, 
-									{ null, null, null, null, null },
-									{ null, null, "CD", null, null }, 
-									{ null, null, null, null, null }, 
-									{ null, null, null, null, null }};*/
-		
-		
-		
-		//afficheMatrice(matriceRobot);
+
+		String[][] matriceLaby = creerMatriceLaby(tailleX, tailleY, posDepart);
+
 		affiche2Matrices(matriceRobot, matriceLaby);
-		//System.out.println(Arrays.toString(getPosRobot(matriceRobot)));
-		//System.out.println(getDirRobot(matriceRobot));
+
 		
-		/*gauche(matriceRobot);
-		gauche(matriceRobot);
-		gauche(matriceRobot);
-		gauche(matriceRobot);*/
+		bouger("A", "101", matriceRobot, matriceLaby);
+		bouger("A", "101", matriceRobot, matriceLaby);
 		
-		/*droite(matriceRobot);
-		droite(matriceRobot);
-		avancer(matriceRobot);*/
+		bouger("GA", "011", matriceRobot, matriceLaby);
+		bouger("DA", "110", matriceRobot, matriceLaby);
 		
-		bouger("AG", 011, matriceRobot, matriceLaby);
-		bouger("A", 101, matriceRobot, matriceLaby);
-		bouger("AD", 110, matriceRobot, matriceLaby);
-		bouger("A", 101, matriceRobot, matriceLaby);
-		bouger("A", 101, matriceRobot, matriceLaby);
-		bouger("AG", 011, matriceRobot, matriceLaby);
-		bouger("A", 101, matriceRobot, matriceLaby);
-		bouger("A", 101, matriceRobot, matriceLaby);
+		bouger("A", "101", matriceRobot, matriceLaby);
+		
 		
 		affiche2Matrices(matriceRobot, matriceLaby);
 		//afficheMatrice(matriceRobot);
 	}
 
-	private String[][] creerMatriceRobot(int tailleX, int tailleY, int[] posDepart, String dirRobot) {
+	public String[][] creerMatriceRobot(int tailleX, int tailleY, int[] posDepart, String dirRobot) {
 		String[][] retour = new String[tailleX][tailleY];
 		for (int i = 0; i < tailleX; i++) {
 			for (int j = 0; j < tailleY; j++) {
@@ -65,14 +42,14 @@ public class RobotVirtuel {
 		return retour;
 	}
 
-	private String[][] creerMatriceLaby(int tailleX, int tailleY, int[] posDepart, int[] posArrivee) {
+	public String[][] creerMatriceLaby(int tailleX, int tailleY, int[] posDepart) {
 		String[][] retour = new String[tailleX][tailleY];
 		for (int i = 0; i < tailleX; i++) {
 			for (int j = 0; j < tailleY; j++) {
 				if (i == posDepart[0] && j == posDepart[1]) {
 					retour[i][j] = "CD";
-				} else if (i == posArrivee[0] && j == posArrivee[1]) {
-					retour[i][j] = "CA";
+				/*} else if (i == posArrivee[0] && j == posArrivee[1]) {
+					retour[i][j] = "CA";*/
 				} else {
 					retour[i][j] = null;
 				}
@@ -81,37 +58,35 @@ public class RobotVirtuel {
 		return retour;
 	}
 
-	private void bouger(String mouvement, int valCapteur, String[][] mRobot, String[][] mLaby) {
+	public void bouger(String mouvement, String valCapteur, String[][] mRobot, String[][] mLaby) {
 		String[] tabMouvement = mouvement.split("");
 		for (int i = 0; i < tabMouvement.length; i++) {
+			nouveauMur(valCapteur, mRobot, mLaby);
 			bougerRobot(tabMouvement[i], mRobot);
-			if (i == 0) {
-				nouveauMur(valCapteur, mRobot, mLaby);
-			}
-
 		}
+		nouveauMur(valCapteur, mRobot, mLaby);
 
 	}
 
-	private void nouveauMur(int valCapteur, String[][] mRobot, String[][] mLaby) {
+	public void nouveauMur(String valCapteur, String[][] mRobot, String[][] mLaby) {
 		int[] posRobot = getPosRobot(mRobot);
 
 		String dirRobot = getDirRobot(mRobot);
 
 		switch (valCapteur) {
-		case 111:
+		case "111":
 			U(posRobot, dirRobot, mLaby);
 			break;
 
-		case 011:
+		case "011":
 			angleGauche(posRobot, dirRobot, mLaby);
 			break;
 
-		case 110:
+		case "110":
 			angleDroit(posRobot, dirRobot, mLaby);
 			break;
 
-		case 101:
+		case "101":
 			deuxLignes(posRobot, dirRobot, mLaby);
 			break;
 
@@ -121,7 +96,7 @@ public class RobotVirtuel {
 		}
 	}
 
-	private void deuxLignes(int[] posRobot, String dirRobot, String[][] mLaby) {
+	public void deuxLignes(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
 			mLaby[posRobot[0]][posRobot[1]] = "DLV";
@@ -141,19 +116,19 @@ public class RobotVirtuel {
 
 	}
 
-	private void angleDroit(int[] posRobot, String dirRobot, String[][] mLaby) {
+	public void angleDroit(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
-			mLaby[posRobot[0]][posRobot[1]] = "AHG";
+			mLaby[posRobot[0]][posRobot[1]] = "ABG";
 			break;
 		case "D":
-			mLaby[posRobot[0]][posRobot[1]] = "AHD";
+			mLaby[posRobot[0]][posRobot[1]] = "AHG";
 			break;
 		case "B":
-			mLaby[posRobot[0]][posRobot[1]] = "ABD";
+			mLaby[posRobot[0]][posRobot[1]] = "AHD";
 			break;
 		case "G":
-			mLaby[posRobot[0]][posRobot[1]] = "ABG";
+			mLaby[posRobot[0]][posRobot[1]] = "ABD";
 			break;
 		default:
 			System.out.println("DL impossible à placer " + dirRobot);
@@ -161,19 +136,19 @@ public class RobotVirtuel {
 
 	}
 
-	private void angleGauche(int[] posRobot, String dirRobot, String[][] mLaby) {
+	public void angleGauche(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
-			mLaby[posRobot[0]][posRobot[1]] = "AHD";
-			break;
-		case "D":
 			mLaby[posRobot[0]][posRobot[1]] = "ABD";
 			break;
-		case "B":
+		case "D":
 			mLaby[posRobot[0]][posRobot[1]] = "ABG";
 			break;
-		case "G":
+		case "B":
 			mLaby[posRobot[0]][posRobot[1]] = "AHG";
+			break;
+		case "G":
+			mLaby[posRobot[0]][posRobot[1]] = "AHD";
 			break;
 		default:
 			System.out.println("DL impossible à placer " + dirRobot);
@@ -181,7 +156,7 @@ public class RobotVirtuel {
 
 	}
 
-	private void U(int[] posRobot, String dirRobot, String[][] mLaby) {
+	public void U(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
 			mLaby[posRobot[0]][posRobot[1]] = "UH";
@@ -201,7 +176,7 @@ public class RobotVirtuel {
 
 	}
 
-	private void bougerRobot(String mouvement, String[][] mRobot) {
+	public void bougerRobot(String mouvement, String[][] mRobot) {
 		switch (mouvement) {
 		case StaticProtocolMessages.AVANCER:
 			avancer(mRobot);
@@ -220,7 +195,7 @@ public class RobotVirtuel {
 
 	}
 
-	private void avancer(String[][] mRobot) {
+	public void avancer(String[][] mRobot) {
 		int posX = getPosRobot(mRobot)[0];
 		int posY = getPosRobot(mRobot)[1];
 		switch (getDirRobot(mRobot)) {
@@ -246,7 +221,7 @@ public class RobotVirtuel {
 
 	}
 
-	private void droite(String[][] mRobot) {
+	public void droite(String[][] mRobot) {
 		switch (getDirRobot(mRobot)) {
 		case "H":
 			mRobot[getPosRobot(mRobot)[0]][getPosRobot(mRobot)[1]] = "D";
@@ -266,7 +241,7 @@ public class RobotVirtuel {
 
 	}
 
-	private void gauche(String[][] mRobot) {
+	public void gauche(String[][] mRobot) {
 		switch (getDirRobot(mRobot)) {
 		case "H":
 			mRobot[getPosRobot(mRobot)[0]][getPosRobot(mRobot)[1]] = "G";
@@ -286,11 +261,11 @@ public class RobotVirtuel {
 
 	}
 
-	private String getDirRobot(String[][] mRobot) {
+	public String getDirRobot(String[][] mRobot) {
 		return mRobot[getPosRobot(mRobot)[0]][getPosRobot(mRobot)[1]];
 	}
 
-	private int[] getPosRobot(String[][] mRobot) {
+	public int[] getPosRobot(String[][] mRobot) {
 		for (int i = 0; i < mRobot.length; i++) {
 			for (int j = 0; j < mRobot[0].length; j++) {
 				if (mRobot[i][j] != null) {

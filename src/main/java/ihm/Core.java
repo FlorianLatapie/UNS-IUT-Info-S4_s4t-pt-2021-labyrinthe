@@ -2,6 +2,9 @@ package ihm;
 
 
 public class Core {
+	private String nomPolice = "Segoe UI";
+	private String ip = "localhost";
+	
 	private final int largeur = 1920;
 	private final int hauteur = 1080;
 	
@@ -83,7 +86,7 @@ public class Core {
 		return styleBoutonSouris;
 	}
 
-	private String nomPolice = "Segoe UI";
+	
 
 	public String getNomPolice() {
 		return nomPolice;
@@ -100,6 +103,15 @@ public class Core {
 
 	public int getHauteur() {
 		return hauteur;
+	}
+
+	public void setIP(String string) {
+		this.ip = string;
+		
+	}
+	
+	public String getIP() {
+		return this.ip;
 	}
 
 }

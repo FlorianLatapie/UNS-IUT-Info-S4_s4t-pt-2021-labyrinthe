@@ -1,10 +1,10 @@
 package test;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import raspberry.algo.AlgoSuivreMurDeDroite;
 import raspberry.reseau.StaticProtocolMessages;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 class AlgoSuivreMurDeDroiteTest {
 

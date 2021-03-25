@@ -1,11 +1,11 @@
 package test;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import raspberry.reseau.MultiServer;
 import raspberry.reseau.Protocol;
 import raspberry.reseau.StaticProtocolMessages;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 class ProtocolTest {
 

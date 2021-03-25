@@ -15,12 +15,13 @@ public class ClientPC {
 	private ProtocolPC protocolPC = new ProtocolPC();
 	private AccueilPane ac;
 
-	public void runClient(String[] args) {
-		if (args.length != 1) {
-			System.err.println("Usage: java ClientPC <host name> ");
+	public void runClient(String args) {
+		if (args == null) {
+			System.err.println("aucun argument dans runclient");
 			System.exit(1);
 		}
-		String hostName = args[0];// "127.0.0.1" ou ip du raspberry pi
+		String hostName = args;// "127.0.0.1" ou ip du raspberry pi
+		System.out.println("Recherche d'un serveur sur l'IP : "+hostName);
 		int portNumber = 8888;
 		System.out.println("Pc client lancé");
 		try (Socket echoSocket = new Socket(hostName, portNumber);

@@ -71,6 +71,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	RadioButton button1;
 	RadioButton button2;
 	RadioButton button3;
+
 	
 	public AccueilPane(final ScreenControl sc) {
 		sControl = sc;
@@ -254,16 +255,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 			}
 		});
 
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while(true) {
-					ClientPC clientPC = new ClientPC();
-					String[] args = {"localhost"};
-					clientPC.runClient(args);
-				}
-			}
-		}).start();
+		
 
 		hbBottom.getChildren().addAll(bQuitter, bLancer);
 		BorderPane.setAlignment(vbTitre, Pos.CENTER);

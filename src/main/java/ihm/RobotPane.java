@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -69,7 +70,19 @@ public class RobotPane extends StackPane implements IRobotPane{
 	GridPane gpRobot;
 	ImageView[][] matriceImg = new ImageView[5][5];
 	static ImageView[][] matriceIconRobot = new ImageView[5][5];
+	
+	
+	String[][] matriceFond;
+	ImageView[][] matriceFondImg;
+	String[][] matriceRobotD;
+	ImageView[][] matriceRobotImg;
+	RobotVirtuel rv;
+	int tailleX = 5, tailleY = 5;
+	GridPane gpLaby, gpRobotVirtuel;
+	
+	
 	public RobotPane(ScreenControl sc) {
+		
 		sControl = sc;
 
 		for (int i = 0; i < matriceIconRobot.length; i++) {
@@ -156,16 +169,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 		
 		stackCenter.getChildren().addAll(gp, gpRobot);
 
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while(true) {
-					ClientPC clientPC = new ClientPC();
-					String[] args = {"localhost"};
-					clientPC.runClient(args);
-				}
-			}
-		}).start();
+		
 		
 		BorderPane.setAlignment(gp, Pos.CENTER);
 		hbBottom = new HBox();
@@ -205,8 +209,10 @@ public class RobotPane extends StackPane implements IRobotPane{
 		bpG.setBottom(hbBottom);
 
 		Line line = new Line(c.getLargeur() / 2, margeDivider, c.getLargeur() / 2, c.getHauteur() - margeDivider);
-		line.setStrokeWidth(marge / 10);
-
+		line.setStrokeWidth(marge / 10);		
+		
+		////////////////////////////////////////////////////////////////
+		
 		titreD = new Label("Représentation du labyrinthe");
 		titreD.setFont(Font.font(nomPolice, FontWeight.BOLD, 30));
 		titreD.setStyle(c.getCouleurPoliceTitre());
@@ -217,7 +223,53 @@ public class RobotPane extends StackPane implements IRobotPane{
 		hbtitreD.setAlignment(Pos.CENTER);
 		hbtitreD.setStyle(c.getStyleTitre());
 		hbtitreD.setPadding(new Insets(10));
+		
+		StackPane spD = new StackPane();
+		gpLaby = new GridPane();
+		gpLaby.setMaxSize(100, 100);
+		gpLaby.setAlignment(Pos.CENTER);
+		gpRobotVirtuel = new GridPane();
+		gpRobotVirtuel.setMaxSize(100, 100);
+		gpRobotVirtuel.setAlignment(Pos.CENTER);
+		
+		rv = new RobotVirtuel();
+		int[] posDepart = {4,3};
+		int[] posArrivee = {1,0};
+		String dirRobot = "H";
+	
+		matriceFond = rv.creerMatriceLaby(tailleX, tailleY, posDepart);
+		matriceFondImg = new ImageView[tailleX][tailleY];
+		matriceRobotD = rv.creerMatriceRobot(tailleX, tailleY, posDepart, dirRobot);
+		matriceRobotImg = new ImageView[tailleX][tailleY];
+		
+		for (int i = 0; i < tailleX; i++) {
+			for (int j = 0; j < tailleY; j++) {
+				matriceFondImg[i][j] = new ImageView(buildMatrice(matriceFond[i][j]));
+			}
+		}
+		
+		for (int i = 0; i < tailleX; i++) {
+			for (int j = 0; j < tailleY; j++) {
+				GridPane.setConstraints(matriceFondImg[i][j], j, i);
+				gpLaby.getChildren().addAll(matriceFondImg[i][j]);
+			}
+		}
+		
+		for (int i = 0; i < tailleX; i++) {
+			for (int j = 0; j < tailleY; j++) {
+				matriceRobotImg[i][j] = new ImageView(buildRobot(matriceRobotD[i][j]));
+			}
+		}
+		
+		for (int i = 0; i < tailleX; i++) {
+			for (int j = 0; j < tailleY; j++) {
+				GridPane.setConstraints(matriceRobotImg[i][j], j, i);
+				gpRobotVirtuel.getChildren().addAll(matriceRobotImg[i][j]);
+			}
+		}
 
+		spD.getChildren().addAll(gpLaby,gpRobotVirtuel);
+		
 		bpD = new BorderPane();
 		bpD.setMinSize(c.getLargeur() / 2.0, c.getHauteur());
 		bpD.setMaxSize(c.getLargeur() / 2.0, c.getHauteur());
@@ -225,6 +277,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 		bpD.setTranslateX((c.getLargeur() / 4));
 		bpD.setPadding(new Insets(margeTitre));
 		bpD.setTop(hbtitreD);
+		bpD.setCenter(spD);
 		BorderPane.setAlignment(hbtitreD, Pos.CENTER);
 
 		ImageView imgFond = new ImageView(DataControl.FOND);
@@ -234,6 +287,27 @@ public class RobotPane extends StackPane implements IRobotPane{
 
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
+	}
+
+	private void updateImagesRobotVirtuel() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 0; i < tailleX; i++) {
+					for (int j = 0; j < tailleY; j++) {
+
+						matriceFondImg[i][j].setImage(new Image(buildMatrice(matriceFond[i][j])));
+					}
+				}
+
+				for (int i = 0; i < tailleX; i++) {
+					for (int j = 0; j < tailleY; j++) {
+						matriceRobotImg[i][j].setImage(new Image(buildRobot(matriceRobotD[i][j])));
+					}
+				}
+
+			}
+		});
 	}
 
 	public String buildMatrice(String val) {
@@ -272,6 +346,24 @@ public class RobotPane extends StackPane implements IRobotPane{
 		return DataControl.CARRE_VIDE;
 	}
 	
+	public String buildRobot(String s) {
+		if (s != null) {
+			switch (s) {
+			case "H":
+				return DataControl.ROBOT_H;
+			case "D":
+				return DataControl.ROBOT_D;
+			case "B":
+				return DataControl.ROBOT_B;
+			case "G":
+				return DataControl.ROBOT_G;
+			default:
+				return "img robot inconnue " + s;
+			}
+		}
+		return DataControl.CARRE_TRANSPARENT;
+	}
+
 	public ImageView positionRobot(String s, ImageView v) {
 		if(s == null) {v.setVisible(false); return v;}
 		switch(s) {
@@ -318,20 +410,46 @@ public class RobotPane extends StackPane implements IRobotPane{
 	
 	@Override
 	public void deplacementRobot(final int[] currentCoord, final int[] newCoord) {
-		System.out.println("triggered");
-		System.out.println(Arrays.toString(currentCoord));
-		System.out.println(Arrays.toString(newCoord));
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				String[] rotateImage = getRotationImage(newCoord[2]).split(" ");
 				if(currentCoord == newCoord) {
-					matriceIconRobot[currentCoord[0]][currentCoord[1]].setRotate(180);
+					matriceIconRobot[newCoord[0]][newCoord[1]].setImage(new Image(rotateImage[0]));
+					matriceRobot[newCoord[0]][newCoord[1]] = rotateImage[1];
+					matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
 				}
 				else {
 					matriceIconRobot[currentCoord[0]][currentCoord[1]].setVisible(false);
+					matriceIconRobot[newCoord[0]][newCoord[1]].setImage(new Image(rotateImage[0]));
+					matriceRobot[newCoord[0]][newCoord[1]] = rotateImage[1];
 					matriceIconRobot[newCoord[0]][newCoord[1]].setVisible(true);
 				}
 			}
 		});
+	}
+	
+	public String getRotationImage(int val) {
+		switch(val) {
+		case 0:
+			return DataControl.ROBOT_G+" "+"G";
+		case 1:
+			return DataControl.ROBOT_H+" "+"H";
+		case 2:
+			return DataControl.ROBOT_D+" "+"D";
+		case 3:
+			return DataControl.ROBOT_B+" "+"B";
+		default:
+			return DataControl.ROBOT_H+" "+"H";
+		}
+	}
+
+	@Override
+	public void deplacementRobotVirtuel(String valCapteur, String directions) {
+		System.out.println("déplacement robot virtuel");
+		rv.bouger(directions, valCapteur, matriceRobotD, matriceFond);
+		rv.affiche2Matrices(matriceRobotD, matriceFond);
+		updateImagesRobotVirtuel();
+		
 	}
 }
