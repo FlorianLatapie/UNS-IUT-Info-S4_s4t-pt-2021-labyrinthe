@@ -1,25 +1,32 @@
 package raspberry.reseau;
 
 public class StaticProtocolMessages {
-	public final static String AVANCER = "A"; 
-	public final static String RECULER = "R"; 
-	public final static String GAUCHE = "G"; 
-	public final static String DROITE = "D"; 
-	public final static String STOP = "S";
+	private StaticProtocolMessages() {}
 	
-	public final static String ARRIVE = "ARR";
-	public final static String TERMINER = "QUIT";
+	public static final String AVANCER = "A"; 
+	public static final String RECULER = "R"; 
+	public static final String GAUCHE = "G"; 
+	public static final String DROITE = "D"; 
+	public static final String STOP = "S";
+	public static final String MOUVEMENT_EFFECTUE = "MOUVEMENT:OK";
 	
-	public final static String ENTETE_ALGO = "ALGO:";
-	public final static String ALGO_MUR_DROIT = "MUR_DROIT";
-	public final static String ALGO_TREMAUX = "TREMAUX";
+	public static final String ARRIVE = "ARR";
+	public static final String TERMINER = "QUIT";
 	
-	public final static String ENTETE_BROADCAST = "BROADCAST:";
+	public static final String ENTETE_ALGO = "ALGO:";
+	public static final String ALGO_MUR_DROIT = "MUR_DROIT";
+	public static final String ALGO_TREMAUX = "TREMAUX";
+	
+	public static final String RUN_ALGO = "LANCER";
+	
+	public static final String ENTETE_BROADCAST = "BROADCAST:";
 
-	public final static String ENTETE_CAPTEUR = "VAL_CAPTEUR:";
+	public static final String ENTETE_CAPTEUR = "VAL_CAPTEUR:";
+	public static final String GET_VAL_CAPTEUR = "getCapteur"; 
 	
-	public final static String ENTETE_VERBOSE = "VERBOSE:"; 
-	public final static String TEST = "test";
-	public final static String HELP = "help";
-	public final static String COMMANDE_INCONNUE = "commmande inconnue";
+	public static final String ENTETE_VERBOSE = "VERBOSE:"; 
+	public static final String TEST = "test";
+	public static final String HELP = "help";
+	public static final String COMMANDE_INCONNUE = "commmande inconnue";
+	
 }
