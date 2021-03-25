@@ -40,18 +40,18 @@ public class RobotPane extends StackPane implements IRobotPane{
 	private String styleGp = "-fx-border-color: black; -fx-border-insets: -3; -fx-border-width: 6";
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
 	private String[][] matriceLaby = { 
-			{ null, null, null, null, null }, 
-			{ "CA", "DLH", "DLH", "AHD", null },
-			{ null, null, null, "DLV", null }, 
-			{ null, null, null,   "DLV", null }, 
-			{ null, null, null, "CD", null }};
+			{ "CD", "LH", "LH", "LH", "AHD" }, 
+			{ "ABG", "AHD", "CB", "AHG", "ABD" },
+			{ "LG", "ABD", "LB", "ABG", "LD" }, 
+			{ "LG", "DLV", "CB","LD", "LD" }, 
+			{ "ABG", "LB", "ABD", "ABD", "CA" }};
 	
 	private static String[][] matriceRobot = {
+			{ "D", null, null, null, null }, 
+			{ null, null, null, null, null },
 			{ null, null, null, null, null }, 
-			{ "G", "G", "G", "H", null },
-			{ null, null, null, "H", null }, 
-			{ null, null, null, "H", null }, 
-			{ null, null, null, "H", null }};
+			{ null, null, null, null, null }, 
+			{ null, null, null, null, null }};
 
 	private static int[] coordRobot = new int[2];
 
@@ -146,7 +146,6 @@ public class RobotPane extends StackPane implements IRobotPane{
 		
 		gp = new GridPane();
 		gp.setMaxSize(100, 100);
-		gp.setStyle(styleGp);
 		gp.setAlignment(Pos.CENTER);
 		for (int i = 0; i < matriceImg.length; i++) {
 			for (int j = 0; j < matriceImg.length; j++) {
@@ -339,6 +338,14 @@ public class RobotPane extends StackPane implements IRobotPane{
 				return DataControl.CARRE_ARRIVEE;
 			case "CB":
 				return DataControl.CARRE_BLANC;
+			case "UH":
+				return DataControl.U_HAUT;
+			case "UD":
+				return DataControl.U_DROITE;
+			case "UG":
+				return DataControl.U_GAUCHE;
+			case "UB":
+				return DataControl.U_BAS;
 			default:
 				return DataControl.CARRE_VIDE;
 			}

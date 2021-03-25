@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class TraitementDirection {
 
-	public static int[] getdCoordByDeplacement(int[] coordRobot, String rotationRobot, String[] deplacement) {
+	public int[] getdCoordByDeplacement(int[] coordRobot, String rotationRobot, String[] deplacement) {
 		//System.out.println("coord "+Arrays.toString(coordRobot)+" rota "+ rotationRobot+" deplaceemnt "+ Arrays.toString(deplacement));
 		String rotation = "";
 		String direction = "";
@@ -58,7 +58,7 @@ public class TraitementDirection {
 		return res;
 	}
 	
-	public static int getOppositeIdRotation(String currRotation) {
+	public int getOppositeIdRotation(String currRotation) {
 		switch(currRotation) {
 		case "H":
 			return 3;
