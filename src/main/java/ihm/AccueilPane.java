@@ -294,13 +294,13 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	public String checkValueInsered(){
 		String toReturn = "";
 		if(!reglageAvancer.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_AVANCE+reglageAvancer.getText()+"\n";
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_AVANCE+reglageAvancer.getText()+"\n";
 		if(!reglageTourner.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_ROTATION+reglageTourner.getText()+"\n";
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_ROTATION+reglageTourner.getText()+"\n";
 		if(!reglageGauche.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_TRIM_GAUCHE+reglageGauche.getText()+"\n";
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_TRIM_GAUCHE+reglageGauche.getText()+"\n";
 		if(!reglageDroit.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.ENTETE_TRIM_DROIT+reglageDroit.getText()+"\n";
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_TRIM_DROIT+reglageDroit.getText()+"\n";
 		return toReturn;
 	}
 	

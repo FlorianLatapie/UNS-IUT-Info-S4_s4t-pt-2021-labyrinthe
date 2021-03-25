@@ -42,7 +42,7 @@ public class ClientPC {
 						if (protocolPC.isTriggered()) {
 							out.println(protocolPC.getAttAlgoSelected());
 							out.println(protocolPC.getReglageValeur());
-							//out.println(StaticProtocolMessages.RUN_ALGO);
+							out.println(StaticProtocolMessages.RUN_ALGO);
 							break;
 						}
 					}

@@ -93,6 +93,11 @@ public class Protocol {
 			multiServer.sendAll(StaticProtocolMessages.GET_VAL_CAPTEUR);
 			return "";
 		}
+		
+		if (input.startsWith(StaticProtocolMessages.ENTETE_REGLAGE)) {
+			multiServer.sendAll(input);
+			return "";
+		}
 
 		else {
 			return "commande inconnue";

@@ -446,10 +446,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 
 	@Override
 	public void deplacementRobotVirtuel(String valCapteur, String directions) {
-		System.out.println("déplacement robot virtuel");
 		rv.bouger(directions, valCapteur, matriceRobotD, matriceFond);
-		rv.affiche2Matrices(matriceRobotD, matriceFond);
 		updateImagesRobotVirtuel();
-		
 	}
 }

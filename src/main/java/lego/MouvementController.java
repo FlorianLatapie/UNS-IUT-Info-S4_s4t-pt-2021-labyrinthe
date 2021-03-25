@@ -18,6 +18,22 @@ public class MouvementController {
 		this.modeVerbeux = modeVerbeux;
 	}
 	
+	public double getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(double rotation) {
+		this.rotation = rotation;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+	
 	public void methodeExemple()  {
 		if (modeVerbeux)System.out.println("méthode d'exemple");
 		gauche();
