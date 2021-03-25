@@ -15,7 +15,7 @@ public class TraitementDirection {
 		//System.out.println("coord "+Arrays.toString(coordRobot)+" rota "+ rotationRobot+" deplaceemnt "+ Arrays.toString(deplacement));
 		String rotation = "";
 		String direction = "";
-		int[] res = new int[2];
+		int[] res = new int[3];
 		if (deplacement[1] != null) {
 			rotation = deplacement[0];
 			direction = deplacement[1];
