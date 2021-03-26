@@ -1006,13 +1006,6 @@ public class AlgoDePledge implements AlgoStrategy {
 						
 						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 0) && (TraceAlgoArrive.grille[x - 1][y] == 2)) {
 							TraceAlgoArrive.grille[x+1][y] = 2;
-							TraceAlgoArrive.grille[x-1][y] = 2;
-							x--;
-							return StaticProtocolMessages.AVANCER;
-						}
-						
-						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x - 1][y] == 0)) {
-							TraceAlgoArrive.grille[x+1][y] = 2;
 							TraceAlgoArrive.grille[x][y + 1] = 2;
 							y++;
 							direction--;
@@ -1021,6 +1014,14 @@ public class AlgoDePledge implements AlgoStrategy {
 							}
 							return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
 						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x - 1][y] == 0)) {
+							TraceAlgoArrive.grille[x+1][y] = 2;
+							TraceAlgoArrive.grille[x-1][y] = 2;
+							x--;
+							return StaticProtocolMessages.AVANCER;
+						}
+							
 						
 						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x - 1][y] == 2)) {
 							TraceAlgoArrive.grille[x+1][y] = 3;
@@ -1134,7 +1135,7 @@ public class AlgoDePledge implements AlgoStrategy {
 					}
                     
                     
-                    if (direction == 1) {
+                    else if (direction == 1) {
                     	
 						if ((TraceAlgoArrive.grille[x-1][y] == 0) && (TraceAlgoArrive.grille[x+1][y] == 0) && (TraceAlgoArrive.grille[x][y-1] == 0)) {
 							Random r = new Random();
@@ -1204,7 +1205,7 @@ public class AlgoDePledge implements AlgoStrategy {
 							} else {
 								TraceAlgoArrive.grille[x][y-1] = 2;
 								TraceAlgoArrive.grille[x][y+1] = 2;
-								x--;
+								y--;
 								return StaticProtocolMessages.AVANCER;
 							}
 						}
@@ -1244,6 +1245,10 @@ public class AlgoDePledge implements AlgoStrategy {
 							TraceAlgoArrive.grille[x+1][y] = 2;
 							TraceAlgoArrive.grille[x][y+1] = 2;
 							x++;
+							direction++;
+							if (direction >=4) {
+								direction -= 4;
+							}
 							return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
 						}
 						
@@ -1366,6 +1371,476 @@ public class AlgoDePledge implements AlgoStrategy {
 					}
                     
                     
+                    else if (direction == 2) {
+                    	
+						if ((TraceAlgoArrive.grille[x][y - 1] == 0) && (TraceAlgoArrive.grille[x][y + 1] == 0) && (TraceAlgoArrive.grille[x + 1][y] == 0)) {
+							Random r = new Random();
+							int rand = r.nextInt(3);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								y--;
+								direction--;
+								if (direction <0) {
+									direction = direction + 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else if (rand == 1) {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y + 1] = 2;
+								y++;
+								direction++;
+								if (direction >=4) {
+									direction -= 4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x+1][y] = 2;
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								x++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 0) && (TraceAlgoArrive.grille[x][y + 1] == 0) && (TraceAlgoArrive.grille[x + 1][y] == 2)) {
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								y--;
+								direction--;
+								if (direction <0) {
+									direction = direction + 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y + 1] = 2;
+								y++;
+								direction++;
+								if (direction >=4) {
+									direction -=4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 0) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x + 1][y] == 0)) {
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								y--;
+								direction--;
+								if (direction <0) {
+									direction = direction + 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x+1][y] = 2;
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								x++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 0) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x + 1][y] == 2)) {
+							TraceAlgoArrive.grille[x-1][y] = 2;
+							TraceAlgoArrive.grille[x][y - 1] = 2;
+							y--;
+							direction--;
+							if (direction <0) {
+								direction = direction + 4;
+							}
+							return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+						}
+
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 0) && (TraceAlgoArrive.grille[x + 1][y] == 0)) {
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y + 1] = 2;
+								y++;
+								direction++;
+								if (direction >=4) {
+									direction -= 4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x+1][y] = 2;
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								x++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 0) && (TraceAlgoArrive.grille[x + 1][y] == 2)) {
+							
+							TraceAlgoArrive.grille[x-1][y] = 2;
+							TraceAlgoArrive.grille[x][y + 1] = 2;
+							y++;
+							direction++;
+							if (direction>=4) {
+								direction -= 4;
+							}
+							return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x + 1][y] == 0)) {
+							TraceAlgoArrive.grille[x+1][y] = 2;
+							TraceAlgoArrive.grille[x-1][y] = 2;
+							x++;
+							return StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x + 1][y] == 2)) {
+							TraceAlgoArrive.grille[x-1][y] = 3;
+							x--;
+							direction-=2;
+							if (direction < 0) {
+								direction += 4;
+							}
+							return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x + 1][y] == 3)) {
+							TraceAlgoArrive.grille[x-1][y] = 3;
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x][y - 1] = 3;
+								y--;
+								direction--;
+								if (direction <0) {
+									direction = direction + 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x][y + 1] = 3;
+								y++;
+								direction++;
+								if (direction >=4) {
+									direction -=4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 3) && (TraceAlgoArrive.grille[x + 1][y] == 2)) {
+							TraceAlgoArrive.grille[x-1][y] = 3;
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x][y - 1] = 3;
+								y--;
+								direction--;
+								if (direction <0) {
+									direction = direction + 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x+1][y] = 3;
+								x++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 2) && (TraceAlgoArrive.grille[x][y + 1] == 3) && (TraceAlgoArrive.grille[x + 1][y] == 3)) {
+							TraceAlgoArrive.grille[x - 1][y] = 3;
+							TraceAlgoArrive.grille[x][y - 1] = 3;
+							y--;
+							direction--;
+							if (direction <0) {
+								direction = direction + 4;
+							}
+							return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 3) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x + 1][y] == 2)) {
+							TraceAlgoArrive.grille[x-1][y] = 3;
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x][y + 1] = 3;
+								y++;
+								direction++;
+								if (direction >=4) {
+									direction -= 4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x+1][y] = 3;
+								x++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 3) && (TraceAlgoArrive.grille[x][y + 1] == 2) && (TraceAlgoArrive.grille[x + 1][y] == 3)) {
+							TraceAlgoArrive.grille[x - 1][y] = 3;
+							TraceAlgoArrive.grille[x][y+1] = 3;
+							y++;
+							direction++;
+							if (direction >=4) {
+								direction -= 4;
+							}
+							return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 3) && (TraceAlgoArrive.grille[x][y + 1] == 3) && (TraceAlgoArrive.grille[x + 1][y] == 2)) {
+							TraceAlgoArrive.grille[x + 1][y] = 3;
+							TraceAlgoArrive.grille[x - 1][y] = 3;
+							x++;
+							return StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x][y - 1] == 3) && (TraceAlgoArrive.grille[x][y + 1] == 3) && (TraceAlgoArrive.grille[x + 1][y] == 3)) {
+							TraceAlgoArrive.grille[x-1][y] = 3;
+							x--;
+							direction-=2;
+							if (direction < 0) {
+								direction += 4;
+							}
+							return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+						}
+					}
+                    
+                    
+                    else if (direction == 3) {
+                    	
+						if ((TraceAlgoArrive.grille[x-1][y] == 0) && (TraceAlgoArrive.grille[x+1][y] == 0) && (TraceAlgoArrive.grille[x][y+1] == 0)) {
+							Random r = new Random();
+							int rand = r.nextInt(3);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x+1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								x++;
+								direction--;
+								if (direction<0) {
+									direction = direction + 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else if (rand == 1) {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								x--;
+								direction++;
+								if (direction >=4) {
+									direction -=4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x][y+1] = 2;
+								TraceAlgoArrive.grille[x][y-1] = 2;
+								y++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 0) && (TraceAlgoArrive.grille[x+1][y] == 0) && (TraceAlgoArrive.grille[x][y+1] == 2)) {
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x+1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								x++;
+								direction--;
+								if (direction <0) {
+									direction = direction + 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								x--;
+								direction++;
+								if (direction >=4) {
+									direction -=4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 0) && (TraceAlgoArrive.grille[x+1][y] == 2) && (TraceAlgoArrive.grille[x][y+1] == 0)) {
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x-1][y] = 2;
+								TraceAlgoArrive.grille[x][y-1] = 2;
+								x--;
+								direction++;
+								if (direction >=4) {
+									direction = direction - 4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x][y-1] = 2;
+								TraceAlgoArrive.grille[x][y+1] = 2;
+								y++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 0) && (TraceAlgoArrive.grille[x+1][y] == 2) && (TraceAlgoArrive.grille[x][y+1] == 2)) {
+							TraceAlgoArrive.grille[x-1][y] = 2;
+							TraceAlgoArrive.grille[x][y - 1] = 2;
+							x--;
+							direction++;
+							if (direction >=4) {
+								direction = direction - 4;
+							}
+							return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+						}
+
+						else if ((TraceAlgoArrive.grille[x-1][y] == 2) && (TraceAlgoArrive.grille[x+1][y] == 0) && (TraceAlgoArrive.grille[x][y+1] == 0)) {
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x+1][y] = 2;
+								TraceAlgoArrive.grille[x][y - 1] = 2;
+								x++;
+								direction--;
+								if (direction <0) {
+									direction += 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x][y-1] = 2;
+								TraceAlgoArrive.grille[x][y+1] = 2;
+								y++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 2) && (TraceAlgoArrive.grille[x+1][y] == 0) && (TraceAlgoArrive.grille[x][y+1] == 2)) {
+							TraceAlgoArrive.grille[x+1][y] = 2;
+							TraceAlgoArrive.grille[x][y-1] = 2;
+							x++;
+							if (direction <0) {
+								direction += 4;
+							}
+							return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 2) && (TraceAlgoArrive.grille[x+1][y] == 2) && (TraceAlgoArrive.grille[x][y+1] == 0)) {
+							TraceAlgoArrive.grille[x][y-1] = 2;
+							TraceAlgoArrive.grille[x][y - 1] = 2;
+							y++;
+							return StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 2) && (TraceAlgoArrive.grille[x+1][y] == 2) && (TraceAlgoArrive.grille[x][y+1] == 2)) {
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							y--;
+							direction-=2;
+							if (direction < 0) {
+								direction += 4;
+							}
+							return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 2) && (TraceAlgoArrive.grille[x+1][y] == 2) && (TraceAlgoArrive.grille[x][y+1] == 3)) {
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x-1][y] = 3;
+								x--;
+								direction++;
+								if (direction >=4) {
+									direction = direction - 4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x+1][y] = 3;
+								x++;
+								direction--;
+								if (direction <0) {
+									direction +=4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 2) && (TraceAlgoArrive.grille[x+1][y] == 3) && (TraceAlgoArrive.grille[x][y+1] == 2)) {
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x-1][y] = 3;
+								x--;
+								direction++;
+								if (direction>=4) {
+									direction = direction - 4;
+								}
+								return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x][y+1] = 3;
+								y++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 2) && (TraceAlgoArrive.grille[x+1][y] == 3) && (TraceAlgoArrive.grille[x][y+1] == 3)) {
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							TraceAlgoArrive.grille[x-1][y] = 3;
+							x--;
+							direction++;
+							if (direction >=4) {
+								direction = direction - 4;
+							}
+							return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 3) && (TraceAlgoArrive.grille[x+1][y] == 2) && (TraceAlgoArrive.grille[x][y+1] == 2)) {
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							Random r = new Random();
+							int rand = r.nextInt(2);
+							if (rand == 0) {
+								TraceAlgoArrive.grille[x+1][y] = 3;
+								x++;
+								direction--;
+								if (direction <0) {
+									direction += 4;
+								}
+								return StaticProtocolMessages.DROITE + StaticProtocolMessages.AVANCER;
+							} else {
+								TraceAlgoArrive.grille[x][y+1] = 3;
+								y++;
+								return StaticProtocolMessages.AVANCER;
+							}
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 3) && (TraceAlgoArrive.grille[x+1][y] == 2) && (TraceAlgoArrive.grille[x][y+1] == 3)) {
+							TraceAlgoArrive.grille[x + 1][y] = 3;
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							x++;
+							direction--;
+							if (direction <0) {
+								direction += 4;
+							}
+							return StaticProtocolMessages.DROITE+StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 3) && (TraceAlgoArrive.grille[x+1][y] == 3) && (TraceAlgoArrive.grille[x][y+1] == 2)) {
+							TraceAlgoArrive.grille[x][y+1] = 3;
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							y++;
+							return StaticProtocolMessages.AVANCER;
+						}
+						
+						else if ((TraceAlgoArrive.grille[x-1][y] == 3) && (TraceAlgoArrive.grille[x+1][y] == 3) && (TraceAlgoArrive.grille[x][y+1] == 3)) {
+							TraceAlgoArrive.grille[x][y-1] = 3;
+							y--;
+							direction-=2;
+							if (direction < 0) {
+								direction += 4;
+							}
+							return StaticProtocolMessages.GAUCHE + StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
+						}
+					}
                 }
         }
         return null;
