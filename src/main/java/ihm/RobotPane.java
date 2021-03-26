@@ -268,7 +268,8 @@ public class RobotPane extends StackPane implements IRobotPane{
 		}
 
 		spD.getChildren().addAll(gpLaby,gpRobotVirtuel);
-		
+		spD.setTranslateY(50);
+		hbtitreD.setTranslateY(5);
 		bpD = new BorderPane();
 		bpD.setMinSize(c.getLargeur() / 2.0, c.getHauteur());
 		bpD.setMaxSize(c.getLargeur() / 2.0, c.getHauteur());
@@ -277,6 +278,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 		bpD.setPadding(new Insets(margeTitre));
 		bpD.setTop(hbtitreD);
 		bpD.setCenter(spD);
+		
 		BorderPane.setAlignment(hbtitreD, Pos.CENTER);
 
 		ImageView imgFond = new ImageView(DataControl.FOND);
