@@ -2,6 +2,9 @@
 import grovepi
 import socket
 
+ip = "localhost"
+port = 8888
+print("Client lecteur capteur demarré, \nrecherche d'un serveur sur l'IP :",ip,"et port :",port)
 line_finder = 6
 line_finder_gauche = 8
 line_finder_droit = 4
@@ -14,7 +17,7 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(("localhost", 8888))
 
 client_socket.send("CAPTEUR\n".encode())
-
+print ("Client lecteur capteur connecté")
 retour = ""
 
 while True:
