@@ -4,7 +4,7 @@ import java.util.Random;
 
 import raspberry.reseau.StaticProtocolMessages;
 
-public class AlgoDePledge implements AlgoStrategy {
+public class AlgoDeTremeaux implements AlgoStrategy {
 
 	private static int arrive=0;
 	

@@ -3,7 +3,7 @@
  */
 package raspberry.reseau;
 
-import raspberry.algo.AlgoDePledge;
+import raspberry.algo.AlgoDeTremeaux;
 import raspberry.algo.AlgoSuivreMurDeDroite;
 import raspberry.algo.RecommandationAlgo;
 
@@ -34,7 +34,7 @@ public class Protocol {
 				recommandationAlgo.changerStrategy(new AlgoSuivreMurDeDroite());
 				break;
 			case StaticProtocolMessages.ALGO_PLEDGE:
-				recommandationAlgo.changerStrategy(new AlgoDePledge());
+				recommandationAlgo.changerStrategy(new AlgoDeTremeaux());
 				break;
 			default:
 				System.out.println("strat défaut : algo mur droit");
