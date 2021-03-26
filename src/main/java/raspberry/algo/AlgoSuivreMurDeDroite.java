@@ -24,7 +24,7 @@ public class AlgoSuivreMurDeDroite implements AlgoStrategy {
         	arrive = 0;
             return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.GAUCHE;
         }
-
+        
         else if (capteur.equals("000")) {
             if (arrive == 1) {
             	return StaticProtocolMessages.ARRIVE;

@@ -5,10 +5,10 @@ import lejos.utility.Delay;
 
 public class MouvementController {
 	private int gearRatio = 24 / 8;
-	private double rotation = 0.75;
-	private double distance = 1.45;
+	private double rotation = 1.55;
+	private double distance = 1.35;
 	private double correctionGauche = 0;
-	private double correctionDroit = 0;
+	private double correctionDroit = -0.05;
 	private boolean modeVerbeux = false;
 	
 	

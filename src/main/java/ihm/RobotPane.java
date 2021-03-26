@@ -246,9 +246,9 @@ public class RobotPane extends StackPane implements IRobotPane{
 		gpRobotVirtuel.setAlignment(Pos.CENTER);
 		
 		rv = new RobotVirtuel();
-		int[] posDepart = {4,3};
-		int[] posArrivee = {1,0};
-		String dirRobot = "H";
+		int[] posDepart = {1,0};
+		int[] posArrivee = {4,4};
+		String dirRobot = "D";
 	
 		matriceFond = rv.creerMatriceLaby(tailleX, tailleY, posDepart);
 		matriceFondImg = new ImageView[tailleX][tailleY];
