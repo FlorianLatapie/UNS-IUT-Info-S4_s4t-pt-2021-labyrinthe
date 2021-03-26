@@ -24,103 +24,103 @@ class TraitementDirectionTest {
         String[] deplacement = {"G", "A"};
 
         int[] res = td.getdCoordByDeplacement(coordRobot, rotationRobot, deplacement);
-        assertEquals(res[0], 1);
-        assertEquals(res[1], 1);
-        assertEquals(res[2],0);
+        assertEquals(1,res[0]);
+        assertEquals(1,res[1]);
+        assertEquals(0,res[2]);
 
         rotationRobot="G";
         this.assignValues(deplacement,"A","");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 1);
-        assertEquals(res[1], 1);
-        assertEquals(res[2],0);
+        assertEquals(1,res[0]);
+        assertEquals(1,res[1]);
+        assertEquals(0,res[2]);
 
         rotationRobot = "B";
         this.assignValues(deplacement,"D","A");
-        assertEquals(res[0], 1);
-        assertEquals(res[1], 1);
-        assertEquals(res[2],0);
+        assertEquals(1,res[0]);
+        assertEquals(1,res[1]);
+        assertEquals(0,res[2]);
 
         ////////////////////////////////////////////////////////////
 
         rotationRobot="H";
         this.assignValues(deplacement,"A","");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 0);
-        assertEquals(res[1], 2);
-        assertEquals(res[2],1);
+        assertEquals(0,res[0]);
+        assertEquals(2,res[1]);
+        assertEquals(1,res[2]);
 
         rotationRobot = "G";
         this.assignValues(deplacement,"D","A");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 0);
-        assertEquals(res[1], 2);
-        assertEquals(res[2],1);
+        assertEquals(0,res[0]);
+        assertEquals(2,res[1]);
+        assertEquals(1,res[2]);
 
         rotationRobot = "D";
         this.assignValues(deplacement,"G","A");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 0);
-        assertEquals(res[1], 2);
-        assertEquals(res[2],1);
+        assertEquals(0,res[0]);
+        assertEquals(2,res[1]);
+        assertEquals(1,res[2]);
 
         ////////////////////////////////////////////////////////////
 
         rotationRobot = "H";
         this.assignValues(deplacement,"D","A");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 1);
-        assertEquals(res[1], 3);
-        assertEquals(res[2],2);
+        assertEquals(1,res[0]);
+        assertEquals(3,res[1]);
+        assertEquals(2,res[2]);
 
         rotationRobot = "D";
         this.assignValues(deplacement,"A","");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 1);
-        assertEquals(res[1], 3);
-        assertEquals(res[2],2);
+        assertEquals(1,res[0]);
+        assertEquals(3,res[1]);
+        assertEquals(2,res[2]);
 
         rotationRobot = "B";
         this.assignValues(deplacement,"G","A");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 1);
-        assertEquals(res[1], 3);
-        assertEquals(res[2],2);
+        assertEquals(1,res[0]);
+        assertEquals(3,res[1]);
+        assertEquals(2,res[2]);
 
         ////////////////////////////////////////////////////////////
 
         rotationRobot = "G";
         this.assignValues(deplacement,"G","A");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 2);
-        assertEquals(res[1], 2);
-        assertEquals(res[2],3);
+        assertEquals(2,res[0]);
+        assertEquals(2,res[1]);
+        assertEquals(3,res[2]);
 
         rotationRobot = "D";
         this.assignValues(deplacement,"D","A");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 2);
-        assertEquals(res[1], 2);
-        assertEquals(res[2],3);
+        assertEquals(2,res[0]);
+        assertEquals(2,res[1]);
+        assertEquals(3,res[2]);
 
         rotationRobot = "B";
         this.assignValues(deplacement,"A","");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(res[0], 2);
-        assertEquals(res[1], 2);
-        assertEquals(res[2],3);
+        assertEquals(2,res[0]);
+        assertEquals(2,res[1]);
+        assertEquals(3,res[2]);
 
         ////////////////////////////////////////////////////////////
 
         rotationRobot = "H";
         this.assignValues(deplacement,"A","");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(Arrays.toString(res), "[0, 2, 1]"); // 0,2 correspond aux nouvelles coordonnées du robot dans la matrice et 1 son orientation opposé (dans ce cas "1", soit bas car notre direction est vers le haut)
+        assertEquals("[0, 2, 1]",Arrays.toString(res)); // 0,2 correspond aux nouvelles coordonnées du robot dans la matrice et 1 son orientation opposé (dans ce cas "1", soit bas car notre direction est vers le haut)
 
         rotationRobot = "G";
         this.assignValues(deplacement,"x","");
         res = td.getdCoordByDeplacement(coordRobot,rotationRobot,deplacement);
-        assertEquals(Arrays.toString(res), "[1, 2, 2]");
+        assertEquals("[1, 2, 2]",Arrays.toString(res));
     }
 
     void assignValues(String[] tab, String d1, String d2){
@@ -130,13 +130,13 @@ class TraitementDirectionTest {
     }
     @Test
     void getOppositeIdRotationTest() {
-        assertEquals(td.getOppositeIdRotation("H"), 3);
-        assertEquals(td.getOppositeIdRotation("B"), 1);
-        assertEquals(td.getOppositeIdRotation("G"), 2);
-        assertEquals(td.getOppositeIdRotation("D"), 0);
-        assertEquals(td.getOppositeIdRotation(""), 1);
-        assertEquals(td.getOppositeIdRotation("x"), 1);
-        assertEquals(td.getOppositeIdRotation("aazaz"), 1);
+        assertEquals(3,td.getOppositeIdRotation("H"));
+        assertEquals(1,td.getOppositeIdRotation("B"));
+        assertEquals(2,td.getOppositeIdRotation("G"));
+        assertEquals(0,td.getOppositeIdRotation("D"));
+        assertEquals(1,td.getOppositeIdRotation(""));
+        assertEquals(1,td.getOppositeIdRotation("x"));
+        assertEquals(1,td.getOppositeIdRotation("aazaz"));
 
     }
 
