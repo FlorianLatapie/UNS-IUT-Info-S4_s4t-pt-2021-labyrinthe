@@ -20,7 +20,7 @@ public class ClientLego {
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
 			System.out.println("client connecte");
 			String fromServer;
-			out.println("LEGO");
+			out.println(StaticProtocolMessages.LEGO);
 			while ((fromServer = in.readLine()) != null) {
 				ProtocolLego pl = new ProtocolLego();
 				 if (fromServer.equals(StaticProtocolMessages.TERMINER)) {
