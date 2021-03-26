@@ -18,10 +18,10 @@ public class ProtocolLego {
 				mouvementController.setDistance(Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_AVANCE.length())));
 				return true;
 			} else if (fromServer.startsWith(StaticProtocolMessages.VAL_TRIM_GAUCHE)) {
-				//TODO 
+				mouvementController.setDistance(Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_TRIM_GAUCHE.length())));
 				return true;
 			} else if (fromServer.startsWith(StaticProtocolMessages.VAL_TRIM_DROIT)) {
-				//TODO
+				mouvementController.setDistance(Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_TRIM_DROIT.length())));
 				return true;
 			} else {
 				return false;

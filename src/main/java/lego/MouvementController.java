@@ -7,6 +7,8 @@ public class MouvementController {
 	private int gearRatio = 24 / 8;
 	private double rotation = 0.75;
 	private double distance = 1.45;
+	private double correctionGauche = 0;
+	private double correctionDroit = 0;
 	private boolean modeVerbeux = false;
 	
 	
@@ -33,6 +35,22 @@ public class MouvementController {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
+
+	public double getCorrectionGauche() {
+		return correctionGauche;
+	}
+
+	public void setCorrectionGauche(double correctionGauche) {
+		this.correctionGauche = correctionGauche;
+	}
+
+	public double getCorrectionDroit() {
+		return correctionDroit;
+	}
+
+	public void setCorrectionDroit(double correctionDroit) {
+		this.correctionDroit = correctionDroit;
+	}
 	
 	public void methodeExemple()  {
 		if (modeVerbeux)System.out.println("méthode d'exemple");
@@ -45,10 +63,9 @@ public class MouvementController {
 
 	public void gauche() {
 		if (modeVerbeux)System.out.println("je vais a gauche");
-		double correction = 0;
 
-		int objectifA = (int) (-360 * (rotation+correction) * gearRatio);
-		int objectifB = (int) (360 * (rotation+correction) * gearRatio);
+		int objectifA = (int) (-360 * (rotation+correctionGauche) * gearRatio);
+		int objectifB = (int) (360 * (rotation+correctionGauche) * gearRatio);
 
 		Motor.B.rotate(objectifB, true);
 		Motor.A.rotate(objectifA, true);
@@ -61,10 +78,8 @@ public class MouvementController {
 	public void droite() {
 		if (modeVerbeux)System.out.println("je vais � droite");
 
-		double correction = 0.05;
-
-		int objectifA = (int) (360 * (rotation+correction) * gearRatio);
-		int objectifB = (int) (-360 * (rotation+correction) * gearRatio);
+		int objectifA = (int) (360 * (rotation+correctionDroit) * gearRatio);
+		int objectifB = (int) (-360 * (rotation+correctionDroit) * gearRatio);
 
 		Motor.B.rotate(objectifB, true);
 		Motor.A.rotate(objectifA, true);
@@ -73,7 +88,7 @@ public class MouvementController {
 		}
 		if (modeVerbeux)System.out.println("fin droite");
 	}
-	
+
 	public void avancer() {
 		if (modeVerbeux)System.out.println("j'avance");
 		double correctionG = 0;

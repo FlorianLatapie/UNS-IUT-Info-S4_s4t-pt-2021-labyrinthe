@@ -4,8 +4,6 @@ import ihm.Evenement;
 import ihm.RobotPane;
 import ihm.TraitementDirection;
 
-import java.util.Arrays;
-
 public class ProtocolPC {
 	private int[] currentCoord;
 	private RobotPane robotPane;
@@ -39,7 +37,7 @@ public class ProtocolPC {
 			deplacement[0] = fromServer;
 		else
 			deplacement = fromServer.split("");
-		int[] newCoord =  TraitementDirection.getdCoordByDeplacement(currentCoord, rotation, deplacement);
+		int[] newCoord =  new TraitementDirection().getdCoordByDeplacement(currentCoord, rotation, deplacement);
 		if(fromServer != null) {
 			Evenement.deplacementRobot(currentCoord, newCoord);
 		}
