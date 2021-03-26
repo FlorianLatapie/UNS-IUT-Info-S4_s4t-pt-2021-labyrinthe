@@ -24,7 +24,6 @@ public class Protocol {
 	public String processInfo(String input) {
 
 		if (("" + input).equalsIgnoreCase("" + null) || input.equalsIgnoreCase("")) {
-			System.out.println("client input is null, sending \"\"");
 			return "";
 		}
 
@@ -89,8 +88,9 @@ public class Protocol {
 				String commandes = recommandationAlgo
 						.executer(input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
 
-				if (multiServer.getTabClients().containsKey("PC")) {
-					multiServer.sendTo("PC", input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
+				if (multiServer.getTabClients().containsKey(StaticProtocolMessages.PC)) {
+					multiServer.sendTo(StaticProtocolMessages.PC,
+							input.substring(StaticProtocolMessages.ENTETE_CAPTEUR.length()));
 				}
 				multiServer.sendAll(commandes);
 
@@ -103,25 +103,23 @@ public class Protocol {
 
 		if (input.startsWith(StaticProtocolMessages.RUN_ALGO)
 				|| input.startsWith(StaticProtocolMessages.MOUVEMENT_EFFECTUE)) {
-			if (multiServer.getTabClients().containsKey("CAPTEUR")) {
-				multiServer.sendToLn("CAPTEUR",StaticProtocolMessages.GET_VAL_CAPTEUR);
+			if (multiServer.getTabClients().containsKey(StaticProtocolMessages.CAPTEUR)) {
+				multiServer.sendToLn(StaticProtocolMessages.CAPTEUR, StaticProtocolMessages.GET_VAL_CAPTEUR);
 				return "";
-			}
-			else {
+			} else {
 				System.out.println("pas de capteur dans la hashmap");
 				return "pas de capteur";
 			}
-			
-			
+
 		}
-		
+
 		if (input.startsWith(StaticProtocolMessages.ENTETE_REGLAGE)) {
-			multiServer.sendToLn("LEGO",input);
+			multiServer.sendToLn(StaticProtocolMessages.LEGO, input);
 			return "";
 		}
 
 		else {
-			return "commande inconnue : "+input;
+			return "commande inconnue : " + input;
 		}
 	}
 

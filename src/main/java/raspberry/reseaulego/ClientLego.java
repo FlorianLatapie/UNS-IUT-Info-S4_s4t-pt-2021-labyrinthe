@@ -5,8 +5,6 @@ import java.net.*;
 
 import raspberry.reseau.StaticProtocolMessages;
 
-//cette classe est pour les tests locaux, les classes pour pc et lego sont dans leurs packages respectifs 
-
 public class ClientLego {
 	public void runClient(String args) throws IOException {
 		if (args == null) {

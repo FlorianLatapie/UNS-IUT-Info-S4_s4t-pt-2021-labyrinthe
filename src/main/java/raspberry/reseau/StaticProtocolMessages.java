@@ -9,8 +9,8 @@ public class StaticProtocolMessages {
 	public static final String DROITE = "D"; 
 	public static final String STOP = "S";
 	public static final String MOUVEMENT_EFFECTUE = "MOUVEMENT:OK";
-	
 	public static final String ARRIVE = "ARR";
+	
 	public static final String TERMINER = "QUIT";
 	
 	public static final String ENTETE_ALGO = "ALGO:";
@@ -34,5 +34,9 @@ public class StaticProtocolMessages {
 	public static final String TEST = "test";
 	public static final String HELP = "help";
 	public static final String COMMANDE_INCONNUE = "commmande inconnue";
+	
+	public static final String PC = "PC";
+	public static final String CAPTEUR = "CAPTEUR";
+	public static final String LEGO = "LEGO";
 	
 }

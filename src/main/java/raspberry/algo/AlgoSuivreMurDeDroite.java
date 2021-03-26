@@ -18,7 +18,6 @@ public class AlgoSuivreMurDeDroite implements AlgoStrategy {
 
         else if (capteur.equals("011")) {
         	arrive = 0;
-        	System.out.println("je retourne "+StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER);
             return StaticProtocolMessages.GAUCHE+StaticProtocolMessages.AVANCER;
 
         } else if (capteur.equals("111")) {
