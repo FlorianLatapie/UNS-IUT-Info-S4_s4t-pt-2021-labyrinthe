@@ -39,7 +39,7 @@ public class RobotPane extends StackPane implements IRobotPane{
 	private String styleBoutonsSouris = c.getStyleBoutonSouris();
 	private String styleGp = "-fx-border-color: black; -fx-border-insets: -3; -fx-border-width: 6";
 	private GaussianBlur flou = new GaussianBlur(c.getValeurBlur());
-	private String[][] matriceLaby = { 
+	/*private String[][] matriceLaby = { 
 			{ "CD", "LH", "LH", "LH", "AHD" }, 
 			{ "ABG", "AHD", "CB", "AHG", "ABD" },
 			{ "LG", "ABD", "LB", "ABG", "LD" }, 
@@ -51,7 +51,21 @@ public class RobotPane extends StackPane implements IRobotPane{
 			{ null, null, null, null, null },
 			{ null, null, null, null, null }, 
 			{ null, null, null, null, null }, 
-			{ null, null, null, null, null }};
+			{ null, null, null, null, null }};*/
+	
+	private String[][] matriceLaby = { 
+		{ "CB", "UH", "CB", "CB", "CB" }, 
+		{ "CD", "LB", "LH", "DLH", "AHD" },
+		{ "CB", "CB", "DLV", "CB", "DLV" }, 
+		{ "CB", "CB", "UB","CB", "DLV" }, 
+		{ "CB","CB",  "CB", "CB", "CA" }};
+
+	private static String[][] matriceRobot = {
+		{ null, null, null, null, null }, 
+		{ "D", null, null, null, null },
+		{ null, null, null, null, null }, 
+		{ null, null, null, null, null }, 
+		{ null, null, null, null, null }};
 
 	private static int[] coordRobot = new int[2];
 
