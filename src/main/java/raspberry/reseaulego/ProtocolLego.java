@@ -60,9 +60,6 @@ public class ProtocolLego {
 			case StaticProtocolMessages.STOP:
 				mouvementController.stop();
 				return true;
-			case StaticProtocolMessages.ARRIVE:
-				System.out.println("+---------------+\n|Je suis  arrive|\n+---------------+");
-				return true;
 
 			default:
 				System.out.println("mouvement inconnu\n" + fromServer);

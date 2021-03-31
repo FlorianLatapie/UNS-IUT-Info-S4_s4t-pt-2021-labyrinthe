@@ -23,9 +23,13 @@ public class ClientLego {
 			out.println(StaticProtocolMessages.LEGO);
 			while ((fromServer = in.readLine()) != null) {
 				ProtocolLego pl = new ProtocolLego();
-				 if (fromServer.equals(StaticProtocolMessages.TERMINER)) {
-					 System.exit(0);
-				 }
+				if (fromServer.equals(StaticProtocolMessages.TERMINER)) {
+					System.exit(0);
+				}
+				if (fromServer == StaticProtocolMessages.ARRIVE) {
+					System.out.println("+---------------+\n|Je suis  arrive|\n+---------------+");
+					break;
+				}
 				if (pl.traitement(fromServer)) {
 					out.println(StaticProtocolMessages.MOUVEMENT_EFFECTUE);
 					System.out.println("\"" + fromServer + "\" :\nMouvement done");
