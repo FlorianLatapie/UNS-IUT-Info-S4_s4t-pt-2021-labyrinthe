@@ -11,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
@@ -55,7 +54,6 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	Label titre;
 	
 	Label choixAlgo;
-	Label vitesse;
 	Label reglageRobot;
 	
 	TextField reglageAvancer;
@@ -136,20 +134,6 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	//	radioAlignment.getChildren().add(button3);
 
 		
-		// choix de la vitesse 
-		
-		vitesse = new Label("Choix de la vitesse");
-		vitesse.setFont(Font.font(nomPolice, FontWeight.BOLD, tailleSousTitre));
-		vitesse.setStyle(c.getCouleurPolice());
-
-		Slider slider = new Slider(1, 3, 1);
-		slider.setShowTickLabels(true);
-		slider.setMajorTickUnit(1);
-		slider.setBlockIncrement(1);
-		slider.setValue(2);
-		slider.setMaxWidth(500);
-		slider.setStyle(c.getCouleurPolice());
-		
 		// réglage robot 
 		
 		reglageRobot = new Label("Réglages du Robot");
@@ -200,7 +184,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		gpReglages.add(reglageDroit, 1, 3);
 		
 
-		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, vitesse, slider, reglageRobot,gpReglages);
+		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, reglageRobot,gpReglages);
 
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
