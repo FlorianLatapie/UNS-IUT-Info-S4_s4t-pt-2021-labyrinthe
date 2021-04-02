@@ -17,8 +17,9 @@ public class LegoMain {
 		in.close();
 		System.out.println(ip);
 		clientLego.runClient(ip);
-		
-		while(Button.waitForAnyPress()!=Button.ID_ESCAPE) {}
+
+		while (Button.waitForAnyPress() != Button.ID_ESCAPE) {
+		}
 	}
 
 }

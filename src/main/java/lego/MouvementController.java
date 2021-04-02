@@ -10,16 +10,15 @@ public class MouvementController {
 	private double correctionGauche = 0;
 	private double correctionDroit = -0.05;
 	private boolean modeVerbeux = false;
-	
-	
+
 	public MouvementController() {
 		this.modeVerbeux = false;
 	}
-	
+
 	public MouvementController(boolean modeVerbeux) {
 		this.modeVerbeux = modeVerbeux;
 	}
-	
+
 	public double getRotation() {
 		return rotation;
 	}
@@ -51,75 +50,85 @@ public class MouvementController {
 	public void setCorrectionDroit(double correctionDroit) {
 		this.correctionDroit = correctionDroit;
 	}
-	
-	public void methodeExemple()  {
-		if (modeVerbeux)System.out.println("méthode d'exemple");
+
+	public void methodeExemple() {
+		if (modeVerbeux)
+			System.out.println("méthode d'exemple");
 		gauche();
 		droite();
 		avancer();
 		reculer();
-		if (modeVerbeux)System.out.println("fin de l'exemple");
+		if (modeVerbeux)
+			System.out.println("fin de l'exemple");
 	}
 
 	public void gauche() {
-		if (modeVerbeux)System.out.println("je vais a gauche");
+		if (modeVerbeux)
+			System.out.println("je vais a gauche");
 
-		int objectifA = (int) (-360 * (rotation+correctionGauche) * gearRatio);
-		int objectifB = (int) (360 * (rotation+correctionGauche) * gearRatio);
+		int objectifA = (int) (-360 * (rotation + correctionGauche) * gearRatio);
+		int objectifB = (int) (360 * (rotation + correctionGauche) * gearRatio);
 
 		Motor.B.rotate(objectifB, true);
 		Motor.A.rotate(objectifA, true);
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		if (modeVerbeux)System.out.println("fin gauche");
+		if (modeVerbeux)
+			System.out.println("fin gauche");
 	}
 
 	public void droite() {
-		if (modeVerbeux)System.out.println("je vais � droite");
+		if (modeVerbeux)
+			System.out.println("je vais � droite");
 
-		int objectifA = (int) (360 * (rotation+correctionDroit) * gearRatio);
-		int objectifB = (int) (-360 * (rotation+correctionDroit) * gearRatio);
+		int objectifA = (int) (360 * (rotation + correctionDroit) * gearRatio);
+		int objectifB = (int) (-360 * (rotation + correctionDroit) * gearRatio);
 
 		Motor.B.rotate(objectifB, true);
 		Motor.A.rotate(objectifA, true);
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		if (modeVerbeux)System.out.println("fin droite");
+		if (modeVerbeux)
+			System.out.println("fin droite");
 	}
 
 	public void avancer() {
-		if (modeVerbeux)System.out.println("j'avance");
+		if (modeVerbeux)
+			System.out.println("j'avance");
 		double correctionG = 0;
 		double correctionD = 0;
 
-		int objectifA = (int) (-360 * (distance+correctionD) * gearRatio);
-		int objectifB = (int) (-360 * (distance+correctionG) * gearRatio);
+		int objectifA = (int) (-360 * (distance + correctionD) * gearRatio);
+		int objectifB = (int) (-360 * (distance + correctionG) * gearRatio);
 
 		Motor.B.rotate(objectifB, true);
 		Motor.A.rotate(objectifA, true);
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		if (modeVerbeux)System.out.println("stop");
+		if (modeVerbeux)
+			System.out.println("stop");
 	}
-	
+
 	public void reculer() {
-		if (modeVerbeux)System.out.println("je recule");
+		if (modeVerbeux)
+			System.out.println("je recule");
 		double correction = 0.15;
 
-		int objectifA = (int) (360 * (distance+correction) * gearRatio);
-		int objectifB = (int) (360 * (distance+correction) * gearRatio);
+		int objectifA = (int) (360 * (distance + correction) * gearRatio);
+		int objectifB = (int) (360 * (distance + correction) * gearRatio);
 
 		Motor.B.rotate(objectifB, true);
 		Motor.A.rotate(objectifA, true);
 		while (Motor.A.isMoving() || Motor.B.isMoving()) {
 			Delay.msDelay(1);
 		}
-		if (modeVerbeux)System.out.println("stop");
+		if (modeVerbeux)
+			System.out.println("stop");
 	}
-	
+
 	public void stop() {
 		Motor.A.stop();
 		Motor.B.stop();
