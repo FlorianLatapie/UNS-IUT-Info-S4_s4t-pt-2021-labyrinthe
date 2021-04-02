@@ -15,33 +15,33 @@ public class TraitementDirection {
 		String rotation = "";
 		String direction = "";
 		int[] res = new int[3];
-		if (deplacement[1] != null) {
-			rotation = deplacement[0];
+		if (deplacement[1] != null) {  // récupérer des données de déplacements et de rotation
+			rotation = deplacement[0]; 
 			direction = deplacement[1];
 		} else {
 			rotation = deplacement[0];
 		}
-		if (rotationRobot.equals("H") && rotation.equals("G") && direction.equals("A")
+		if (rotationRobot.equals("H") && rotation.equals("G") && direction.equals("A") // regroupement des cas où le robot va aller une fois vers la gauche
 				|| rotationRobot.equals("G") && rotation.equals("A") && direction.equals("")
 				|| rotationRobot.equals("B") && rotation.equals("D") && direction.equals("A")) {
 			res[0] = coordRobot[0];
 			res[1] = (coordRobot[1]) - 1;
 			res[2] = 0; // image vers la gauche
-		} else if (rotationRobot.equals("H") && rotation.equals("A") && direction.equals("")
+		} else if (rotationRobot.equals("H") && rotation.equals("A") && direction.equals("") // regroupement des cas où le robot va aller une fois vers le haut
 				|| rotationRobot.equals("G") && rotation.equals("D") && direction.equals("A")
 				|| rotationRobot.equals("D") && rotation.equals("G") && direction.equals("A")) {
 			res[0] = (coordRobot[0]) - 1;
 			res[1] = coordRobot[1];
 			res[2] = 1; // image vers le haut
 
-		} else if (rotationRobot.equals("H") && rotation.equals("D") && direction.equals("A")
+		} else if (rotationRobot.equals("H") && rotation.equals("D") && direction.equals("A") // regroupement des cas où le robot va aller une fois vers la droite
 				|| rotationRobot.equals("D") && rotation.equals("A") && direction.equals("")
 				|| rotationRobot.equals("B") && rotation.equals("G") && direction.equals("A")) {
 			res[0] = coordRobot[0];
 			res[1] = (coordRobot[1]) + 1;
 			res[2] = 2; // image vers la droite;
-
-		} else if (rotationRobot.equals("G") && rotation.equals("G") && direction.equals("A")
+ 
+		} else if (rotationRobot.equals("G") && rotation.equals("G") && direction.equals("A") // regroupement des cas où le robot va aller une fois vers le bas
 				|| rotationRobot.equals("D") && rotation.equals("D") && direction.equals("A")
 				|| rotationRobot.equals("B") && rotation.equals("A") && direction.equals("")) {
 			res[0] = (coordRobot[0]) + 1;
