@@ -29,20 +29,20 @@ public class MultiServerThread implements Runnable {
 	public void run() {
 		try (PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));) {
-			numClient = multiServer.addClient(in.readLine(),out);
-			//System.out.println("Un nouveau client s'est connecté : #" + numClient);
+			numClient = multiServer.addClient(in.readLine(), out);
+			// System.out.println("Un nouveau client s'est connecté : #" + numClient);
 			String inputLine, outputLine;
 			Protocol protocol = new Protocol(multiServer);
 
 			while ((inputLine = in.readLine()) != null) {
-				System.out.println("recu : "+inputLine);
+				System.out.println("recu : " + inputLine);
 				if (inputLine.equals(StaticProtocolMessages.TERMINER)) {
 					multiServer.sendAll(StaticProtocolMessages.TERMINER);
 					System.exit(0);
 				}
 				if (!protocol.processInfo(inputLine).equals("")) {
 					outputLine = protocol.processInfo(inputLine);
-					System.out.println("envoyé : "+outputLine);
+					System.out.println("envoyé : " + outputLine);
 					out.println(outputLine);
 				}
 			}

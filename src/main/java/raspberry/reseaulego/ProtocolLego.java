@@ -12,16 +12,20 @@ public class ProtocolLego {
 			if (fromServer.startsWith(StaticProtocolMessages.VAL_AVANCE)) {
 				return true;
 			} else if (fromServer.startsWith(StaticProtocolMessages.VAL_ROTATION)) {
-				mouvementController.setRotation(Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_ROTATION.length())));
+				mouvementController.setRotation(
+						Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_ROTATION.length())));
 				return true;
 			} else if (fromServer.startsWith(StaticProtocolMessages.VAL_AVANCE)) {
-				mouvementController.setDistance(Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_AVANCE.length())));
+				mouvementController.setDistance(
+						Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_AVANCE.length())));
 				return true;
 			} else if (fromServer.startsWith(StaticProtocolMessages.VAL_TRIM_GAUCHE)) {
-				mouvementController.setDistance(Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_TRIM_GAUCHE.length())));
+				mouvementController.setDistance(
+						Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_TRIM_GAUCHE.length())));
 				return true;
 			} else if (fromServer.startsWith(StaticProtocolMessages.VAL_TRIM_DROIT)) {
-				mouvementController.setDistance(Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_TRIM_DROIT.length())));
+				mouvementController.setDistance(
+						Double.parseDouble(fromServer.substring(StaticProtocolMessages.VAL_TRIM_DROIT.length())));
 				return true;
 			} else {
 				return false;

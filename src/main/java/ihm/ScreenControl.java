@@ -7,13 +7,11 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.HashMap;
 
-
 public class ScreenControl implements EventHandler<MouseEvent> {
-	
+
 	private InterfacePrincipale primary = null;
 	private HashMap<ApplicationPane, Node> listNode = new HashMap<>();
 	private boolean lock = false;
-
 
 	public ScreenControl(InterfacePrincipale i, Core core) {
 		primary = i;
@@ -21,8 +19,8 @@ public class ScreenControl implements EventHandler<MouseEvent> {
 	}
 
 	/**
-	 * Enregistre les noeuds (écrans/panneau) qui seront pilotés par le jeu.controleur
-	 * de dialogue
+	 * Enregistre les noeuds (écrans/panneau) qui seront pilotés par le
+	 * jeu.controleur de dialogue
 	 *
 	 * @param s : le nom du noeud, c'est à dire de l'écran (en réalité panneau)
 	 * @param n : une référence sur le noeud
@@ -40,13 +38,11 @@ public class ScreenControl implements EventHandler<MouseEvent> {
 	public void setPaneOnTop(ApplicationPane s) {
 		if (listNode.containsKey(s)) {
 			primary.setOnTop(listNode.get(s));
-		}
-		else {
-			System.out.println("pane "+s.toString()+" introuvable");
+		} else {
+			System.out.println("pane " + s.toString() + " introuvable");
 		}
 
 	}
-	
 
 	/**
 	 * Consomme les évènement souris qui ont lieu durant une animation pour

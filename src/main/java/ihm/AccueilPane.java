@@ -28,7 +28,7 @@ import raspberry.reseaupc.ClientPC;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccueilPane extends StackPane implements IAccueilPane{
+public class AccueilPane extends StackPane implements IAccueilPane {
 	private ScreenControl sControl = null;
 	private Core c = InterfacePrincipale.getCore();
 	private static final ApplicationPane paneName = ApplicationPane.ACCUEIL;
@@ -52,30 +52,29 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	VBox radioAlignment;
 	HBox hbBottom;
 	Label titre;
-	
+
 	Label choixAlgo;
 	Label reglageRobot;
-	
+
 	TextField reglageAvancer;
 	TextField reglageTourner;
 	TextField reglageGauche;
 	TextField reglageDroit;
-	
+
 	Label titreRAvancer;
 	Label titreRTourner;
 	Label titreRGauche;
 	Label titreRDroit;
-	
+
 	BorderPane bp;
-	
+
 	Button bLancer;
 	Button bQuitter;
-	
+
 	RadioButton button1;
 	RadioButton button2;
 	RadioButton button3;
 
-	
 	public AccueilPane(final ScreenControl sc) {
 		sControl = sc;
 
@@ -91,7 +90,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 
 		vbTitre.getChildren().add(titre);
 		vbTitre.setStyle(c.getStyleTitre());
-		
+
 		vbTitre.setPrefWidth(largeurTitre);
 		vbTitre.setPrefHeight(hauteurTitre);
 		vbTitre.setMinWidth(largeurTitre);
@@ -103,9 +102,8 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		vbCentre.setAlignment(Pos.CENTER);
 		vbCentre.setSpacing(10);
 
-		
-		// choix algo 
-		
+		// choix algo
+
 		choixAlgo = new Label("Choisir un algorithme");
 		choixAlgo.setFont(Font.font(nomPolice, FontWeight.BOLD, tailleSousTitre));
 		choixAlgo.setStyle(c.getCouleurPolice());
@@ -123,23 +121,17 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		button1.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button1);
 
-		button2 = new RadioButton("Pledge");
+		button2 = new RadioButton("Tremaux");
 		button2.setToggleGroup(group);
 		button2.setStyle(c.getCouleurPolice());
 		radioAlignment.getChildren().add(button2);
 
-		button3 = new RadioButton("Mur de gauche");
-	//	button3.setToggleGroup(group);
-		button3.setStyle(c.getCouleurPolice());
-	//	radioAlignment.getChildren().add(button3);
+		// réglage robot
 
-		
-		// réglage robot 
-		
 		reglageRobot = new Label("Réglages du Robot");
 		reglageRobot.setFont(Font.font(nomPolice, FontWeight.BOLD, tailleSousTitre));
 		reglageRobot.setStyle(c.getCouleurPolice());
-		
+
 		reglageAvancer = new TextField();
 		reglageAvancer.setMinHeight(hauteurTF);
 		reglageTourner = new TextField();
@@ -148,32 +140,30 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		reglageGauche.setMinHeight(hauteurTF);
 		reglageDroit = new TextField();
 		reglageDroit.setMinHeight(hauteurTF);
-		
+
 		titreRAvancer = new Label("Distance avancer/reculer");
 		titreRAvancer.setStyle(c.getCouleurPolice());
 		titreRAvancer.setFont(Font.font(nomPolice, 30));
-		
+
 		titreRTourner = new Label("Angle gauche/droite");
 		titreRTourner.setStyle(c.getCouleurPolice());
 		titreRTourner.setFont(Font.font(nomPolice, 30));
-		
+
 		titreRGauche = new Label("Trim gauche");
 		titreRGauche.setStyle(c.getCouleurPolice());
 		titreRGauche.setFont(Font.font(nomPolice, 30));
-		titreRGauche.setPadding(new Insets(30,0,0,0));
-		
+		titreRGauche.setPadding(new Insets(30, 0, 0, 0));
+
 		titreRDroit = new Label("Trim droit");
 		titreRDroit.setStyle(c.getCouleurPolice());
 		titreRDroit.setFont(Font.font(nomPolice, 30));
-		titreRDroit.setPadding(new Insets(30,0,0,0));
+		titreRDroit.setPadding(new Insets(30, 0, 0, 0));
 
-		
-		
 		GridPane gpReglages = new GridPane();
 		gpReglages.setAlignment(Pos.CENTER);
 		gpReglages.setHgap(10);
 		gpReglages.setVgap(10);
-		
+
 		gpReglages.add(titreRAvancer, 0, 0);
 		gpReglages.add(titreRTourner, 1, 0);
 		gpReglages.add(reglageAvancer, 0, 1);
@@ -182,9 +172,8 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		gpReglages.add(titreRDroit, 1, 2);
 		gpReglages.add(reglageGauche, 0, 3);
 		gpReglages.add(reglageDroit, 1, 3);
-		
 
-		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, reglageRobot,gpReglages);
+		vbCentre.getChildren().addAll(choixAlgo, radioAlignment, reglageRobot, gpReglages);
 
 		hbBottom = new HBox();
 		hbBottom.setAlignment(Pos.CENTER);
@@ -214,7 +203,6 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 				algoSelected = getAlgoSelected(group.getSelectedToggle().toString());
 				valeurReglage = checkValueInsered();
 				isTriggered = true;
-				//System.out.println("valeur reglage : "+valeurReglage);
 			}
 		});
 
@@ -246,18 +234,16 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 			}
 		});
 
-		
-
 		hbBottom.getChildren().addAll(bQuitter, bLancer);
 		BorderPane.setAlignment(vbTitre, Pos.CENTER);
 		bp.setTop(vbTitre);
 		bp.setCenter(vbCentre);
 		bp.setBottom(hbBottom);
-		
+
 		ImageView imgFond = new ImageView(DataControl.FOND);
 		imgFond.setEffect(flou);
 
-		this.getChildren().addAll(imgFond,bp);
+		this.getChildren().addAll(imgFond, bp);
 
 		sControl.registerNode(paneName, this);
 		sControl.setPaneOnTop(paneName);
@@ -265,35 +251,39 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 	}
 
 	public String getAlgoSelected(String input) {
-		switch(input.split("'")[1]) {
+		switch (input.split("'")[1]) {
 		case "Mur de droite":
 			return StaticProtocolMessages.ALGO_MUR_DROIT;
-		case "Pledge":
-			return StaticProtocolMessages.ALGO_PLEDGE;
+		case "Tremaux":
+			return StaticProtocolMessages.ALGO_TREMAUX;
 		default:
 			return StaticProtocolMessages.ALGO_MUR_DROIT;
 		}
 	}
 
-	public String checkValueInsered(){
+	public String checkValueInsered() {
 		String toReturn = "";
-		if(!reglageAvancer.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_AVANCE+reglageAvancer.getText()+"\n";
-		if(!reglageTourner.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_ROTATION+reglageTourner.getText()+"\n";
-		if(!reglageGauche.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_TRIM_GAUCHE+reglageGauche.getText()+"\n";
-		if(!reglageDroit.getText().equals(""))
-			toReturn += StaticProtocolMessages.ENTETE_REGLAGE+StaticProtocolMessages.VAL_TRIM_DROIT+reglageDroit.getText()+"\n";
+		if (!reglageAvancer.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE + StaticProtocolMessages.VAL_AVANCE
+					+ reglageAvancer.getText() + "\n";
+		if (!reglageTourner.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE + StaticProtocolMessages.VAL_ROTATION
+					+ reglageTourner.getText() + "\n";
+		if (!reglageGauche.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE + StaticProtocolMessages.VAL_TRIM_GAUCHE
+					+ reglageGauche.getText() + "\n";
+		if (!reglageDroit.getText().equals(""))
+			toReturn += StaticProtocolMessages.ENTETE_REGLAGE + StaticProtocolMessages.VAL_TRIM_DROIT
+					+ reglageDroit.getText() + "\n";
 		if (toReturn.length() > 0) {
 			toReturn = toReturn.substring(0, (toReturn.length() - 1));
 		}
 		return toReturn;
 	}
-	
+
 	@Override
 	public String getAttAlgoSelected() {
-		return StaticProtocolMessages.ENTETE_ALGO+this.algoSelected;
+		return StaticProtocolMessages.ENTETE_ALGO + this.algoSelected;
 	}
 
 	@Override
@@ -301,8 +291,7 @@ public class AccueilPane extends StackPane implements IAccueilPane{
 		return valeurReglage;
 	}
 
-	public boolean isTriggered(){
+	public boolean isTriggered() {
 		return isTriggered;
 	}
 }
-

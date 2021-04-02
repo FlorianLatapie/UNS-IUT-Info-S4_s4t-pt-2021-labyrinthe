@@ -3,30 +3,6 @@ package ihm;
 import raspberry.reseau.StaticProtocolMessages;
 
 public class RobotVirtuel {
-	public void méthodeExemple() {
-		int tailleX = 5, tailleY = 5;
-		int[] posDepart = {3,4};
-		
-		String[][] matriceRobot = creerMatriceRobot(tailleX, tailleY, posDepart, "G");
-
-
-		String[][] matriceLaby = creerMatriceLaby(tailleX, tailleY, posDepart);
-
-		affiche2Matrices(matriceRobot, matriceLaby);
-
-		
-		bouger("A", "101", matriceRobot, matriceLaby);
-		bouger("A", "101", matriceRobot, matriceLaby);
-		
-		bouger("GA", "011", matriceRobot, matriceLaby);
-		bouger("DA", "110", matriceRobot, matriceLaby);
-		
-		bouger("A", "101", matriceRobot, matriceLaby);
-		
-		
-		affiche2Matrices(matriceRobot, matriceLaby);
-		//afficheMatrice(matriceRobot);
-	}
 
 	public String[][] creerMatriceRobot(int tailleX, int tailleY, int[] posDepart, String dirRobot) {
 		String[][] retour = new String[tailleX][tailleY];
@@ -48,8 +24,9 @@ public class RobotVirtuel {
 			for (int j = 0; j < tailleY; j++) {
 				if (i == posDepart[0] && j == posDepart[1]) {
 					retour[i][j] = "CD";
-				/*} else if (i == posArrivee[0] && j == posArrivee[1]) {
-					retour[i][j] = "CA";*/
+					/*
+					 * } else if (i == posArrivee[0] && j == posArrivee[1]) { retour[i][j] = "CA";
+					 */
 				} else {
 					retour[i][j] = null;
 				}

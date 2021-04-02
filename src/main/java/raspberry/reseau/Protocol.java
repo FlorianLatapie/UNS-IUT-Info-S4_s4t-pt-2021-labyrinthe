@@ -33,7 +33,7 @@ public class Protocol {
 			case StaticProtocolMessages.ALGO_MUR_DROIT:
 				recommandationAlgo.changerStrategy(new AlgoSuivreMurDeDroite());
 				break;
-			case StaticProtocolMessages.ALGO_PLEDGE:
+			case StaticProtocolMessages.ALGO_TREMAUX:
 				recommandationAlgo.changerStrategy(new AlgoDeTremeaux());
 				break;
 			default:

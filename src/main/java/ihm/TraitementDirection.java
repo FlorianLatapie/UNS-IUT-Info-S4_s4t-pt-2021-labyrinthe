@@ -12,7 +12,6 @@ import java.util.Arrays;
 public class TraitementDirection {
 
 	public int[] getdCoordByDeplacement(int[] coordRobot, String rotationRobot, String[] deplacement) {
-		//System.out.println("coord "+Arrays.toString(coordRobot)+" rota "+ rotationRobot+" deplaceemnt "+ Arrays.toString(deplacement));
 		String rotation = "";
 		String direction = "";
 		int[] res = new int[3];
@@ -34,32 +33,31 @@ public class TraitementDirection {
 			res[0] = (coordRobot[0]) - 1;
 			res[1] = coordRobot[1];
 			res[2] = 1; // image vers le haut
-			
+
 		} else if (rotationRobot.equals("H") && rotation.equals("D") && direction.equals("A")
 				|| rotationRobot.equals("D") && rotation.equals("A") && direction.equals("")
 				|| rotationRobot.equals("B") && rotation.equals("G") && direction.equals("A")) {
 			res[0] = coordRobot[0];
 			res[1] = (coordRobot[1]) + 1;
 			res[2] = 2; // image vers la droite;
-			
+
 		} else if (rotationRobot.equals("G") && rotation.equals("G") && direction.equals("A")
 				|| rotationRobot.equals("D") && rotation.equals("D") && direction.equals("A")
 				|| rotationRobot.equals("B") && rotation.equals("A") && direction.equals("")) {
 			res[0] = (coordRobot[0]) + 1;
 			res[1] = coordRobot[1];
 			res[2] = 3; // image vers le bas;
-			
-		}
-		else {
+
+		} else {
 			res[0] = coordRobot[0];
 			res[1] = coordRobot[1];
 			res[2] = getOppositeIdRotation(rotationRobot);
 		}
 		return res;
 	}
-	
+
 	public int getOppositeIdRotation(String currRotation) {
-		switch(currRotation) {
+		switch (currRotation) {
 		case "H":
 			return 3;
 		case "B":
@@ -70,7 +68,7 @@ public class TraitementDirection {
 			return 0;
 		default:
 			return 1;
-				
+
 		}
 	}
 

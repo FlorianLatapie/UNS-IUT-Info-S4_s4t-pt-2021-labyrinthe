@@ -17,7 +17,7 @@ public class ProtocolPC {
 	}
 
 	public void traitement(String fromServer) {
-		// System.out.println(fromServer);
+
 		if (fromServer.length() == 6) {
 			ihmPaneGauche(fromServer.substring(3));
 		}
@@ -25,7 +25,6 @@ public class ProtocolPC {
 	}
 
 	private void ihmPaneDroit(String fromServer) {
-		// System.out.println("fromserver :"+fromServer);
 		String valcapteur = fromServer.substring(0, 3);
 		String directions = fromServer.substring(3);
 		Evenement.deplacementRobotVirtuel(valcapteur, directions);

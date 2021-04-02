@@ -11,16 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
-
 /**
  * @author Remy
  *
  */
 public class MultiServer {
 	private Map<String, PrintWriter> tabClients = new HashMap<>();
-	
 
 	private int nbClients = 0;
 
@@ -32,7 +28,7 @@ public class MultiServer {
 			port = Integer.parseInt(args[0]);
 		System.out.println("Serveur prêt");
 		MultiServer multiServ = new MultiServer();
-		
+
 		try {
 			ServerSocket ss = new ServerSocket(port);
 			checkConnexion(port);
@@ -51,10 +47,9 @@ public class MultiServer {
 
 	public synchronized void sendAll(String message) {
 		for (PrintWriter printWriter : tabClients.values()) {
-			if(printWriter!=null) {
+			if (printWriter != null) {
 				printWriter.println(message);
-			}
-			else {
+			} else {
 				System.err.println("un printwriter est null");
 			}
 		}
@@ -62,24 +57,22 @@ public class MultiServer {
 
 	public synchronized void delClient(int i) {
 		nbClients--;
-		if (tabClients.get(i) != null) 
-		{
+		if (tabClients.get(i) != null) {
 			tabClients.remove(i);
 		}
 	}
 
-
 	public synchronized int addClient(String nom, PrintWriter out) {
-		System.out.println(nom+"#"+nbClients+" connecté et ajouté");
+		System.out.println(nom + "#" + nbClients + " connecté et ajouté");
 		nbClients++;
-		tabClients.put(nom, out); 
+		tabClients.put(nom, out);
 		return tabClients.size() - 1;
 	}
 
 	public synchronized int getNbClients() {
 		return nbClients;
 	}
-	
+
 	public Map<String, PrintWriter> getTabClients() {
 		return tabClients;
 	}
@@ -87,20 +80,18 @@ public class MultiServer {
 	public void sendTo(String nomCli, String message) {
 		if (tabClients.containsKey(nomCli)) {
 			tabClients.get(nomCli).print(message);
+		} else {
+			System.out.println("client " + nomCli + " inconnu");
 		}
-		else {
-			System.out.println("client "+nomCli+" inconnu");
-		}
-		
+
 	}
 
 	public void sendToLn(String nomCli, String message) {
 		if (tabClients.containsKey(nomCli)) {
 			tabClients.get(nomCli).println(message);
+		} else {
+			System.out.println("client " + nomCli + " inconnu");
 		}
-		else {
-			System.out.println("client "+nomCli+" inconnu");
-		}
-		
+
 	}
 }
