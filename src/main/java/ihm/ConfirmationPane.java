@@ -37,9 +37,7 @@ public class ConfirmationPane {
 	/**
 	 * affiche une fenêtre de confirmation avec un titre et un message personnalisé
 	 *
-	 * @param titre   titre de la fenetre
-	 * @param message message affiché dans la fenetre
-	 * @return
+	 * @return si l'affichage s'est bien fait
 	 */
 	public static boolean afficher() {
 		final Stage window = new Stage();

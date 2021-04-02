@@ -40,7 +40,7 @@ public class ClientManuel {
 				}
 			}).start();
 
-			while ((fromServer = in.readLine()) != null) {
+			while ((fromServer = in.readLine()) != null) { // on recoit tous les informations arrivant du serveur
 				System.out.println("Server: " + fromServer);
 				if (fromServer.equals(StaticProtocolMessages.TERMINER)) {
 					System.exit(0);

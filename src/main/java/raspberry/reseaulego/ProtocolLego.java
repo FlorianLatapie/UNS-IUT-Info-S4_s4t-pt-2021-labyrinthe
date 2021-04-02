@@ -5,6 +5,11 @@ import raspberry.reseau.StaticProtocolMessages;
 
 public class ProtocolLego {
 
+	/**
+	 * Méthode qui recoit les informations de mouvements du robot
+	 * @param fromServer le mouvement a effectué
+	 * @return si le mouvement a bien été réalisé.
+	 */
 	public boolean traitement(String fromServer) {
 		MouvementController mouvementController = new MouvementController(true);
 		

@@ -5,6 +5,11 @@ import raspberry.reseau.StaticProtocolMessages;
 public class AlgoSuivreMurDeDroite implements AlgoStrategy {
 	static int arrive = 0;
 
+	/**
+	 * Cette méthode sera appelée pour exécuter l'algorithme du mur de droite.
+	 * @param capteur la valeur des capteurs sous la forme de 3 nombres soit 1 ou 0.
+	 * @return le mouvement a effectué
+	 */
 	@Override
 	public String executer(String capteur) {
 		if ((capteur.equals("101")) || (capteur.equals("001"))) {

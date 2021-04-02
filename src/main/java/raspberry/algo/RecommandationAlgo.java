@@ -1,6 +1,11 @@
 package raspberry.algo;
 
 public class RecommandationAlgo {
+	/**
+	 * Utilisation du pattern Strategy.
+	 * Cette classe permet d'appeller un algorithme sans avoir besoin d'appeler directement l'algorithme en choisissant un algorithme.
+	 */
+
 	private AlgoStrategy algoStrategy = new AlgoSuivreMurDeDroite();
 
 	public void changerStrategy(AlgoStrategy strategy) {

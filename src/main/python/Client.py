@@ -28,29 +28,21 @@ while True:
         if (from_server.decode().startswith("getCapteur")):
             
             retour = ""
-            # Return HIGH when black line is detected, and LOW when white line is detected
-            if grovepi.digitalRead(line_finder_gauche) == 1:
-                #print ("lfc 0")
+            # Retourne 1 quand la ligne détectée est noir et 0 si une ligne blanche est détectée
+            if grovepi.digitalRead(line_finder_gauche) == 1: # Capteur de gauche
                 retour += "0"
             else:
-                #print ("lfc 1")
                 retour += "1"
 
-            if grovepi.digitalRead(line_finder) == 1:
-                #print ("lfg 0")
+            if grovepi.digitalRead(line_finder) == 1: #Capteur du milieu
                 retour += "0"
             else:
-                #print ("lfg 1")
                 retour += "1"
 
-            if grovepi.digitalRead(line_finder_droit) == 1:
-                #print ("lfd 0")
+            if grovepi.digitalRead(line_finder_droit) == 1: #Capteur de droite
                 retour += "0"
             else:
-                #print ("lfd 1")
                 retour += "1"
-            
-
             toServer = "VAL_CAPTEUR:"+retour+"\n"
             print("toServer : ",toServer)
             client_socket.send(toServer.encode())

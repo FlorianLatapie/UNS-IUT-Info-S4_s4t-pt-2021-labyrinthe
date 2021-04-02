@@ -19,12 +19,24 @@ public class MultiServerThread implements Runnable {
 	private MultiServer multiServer;
 	private int numClient = 0;
 
+	/**
+	 * Constructeur pour instancier un serveur thread.
+	 * @param socket le socket du serveur
+	 * @param multiServ un multiServeur pour initialiser le serveur
+	 */
+
 	public MultiServerThread(Socket socket, MultiServer multiServ) {
 		this.multiServer = multiServ;
 		this.s = socket;
 		t = new Thread(this);
 		t.start();
 	}
+
+	/**
+	 * Cette méthode est appelée lorsque le thread est démarré.
+	 * Elle sert à la communication des différents clients.
+	 * Un thread par client.
+	 */
 
 	public void run() {
 		try (PrintWriter out = new PrintWriter(s.getOutputStream(), true);
