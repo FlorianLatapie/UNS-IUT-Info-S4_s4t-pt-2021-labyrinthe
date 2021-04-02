@@ -16,6 +16,7 @@ import java.util.Map;
  *
  */
 public class MultiServer {
+	//association client <=> printwriter
 	private Map<String, PrintWriter> tabClients = new HashMap<>();
 
 	private int nbClients = 0;
@@ -45,6 +46,10 @@ public class MultiServer {
 		System.out.println("Serveur en écoute sur le port : " + port);
 	}
 
+	/**
+	 * envoie un message sur tous les clients
+	 * @param message message à envoyer
+	 */
 	public synchronized void sendAll(String message) {
 		for (PrintWriter printWriter : tabClients.values()) {
 			if (printWriter != null) {
@@ -55,6 +60,10 @@ public class MultiServer {
 		}
 	}
 
+	/**
+	 * supprime un client de la hashmap
+	 * @param i client
+	 */
 	public synchronized void delClient(int i) {
 		nbClients--;
 		if (tabClients.get(i) != null) {
@@ -62,6 +71,12 @@ public class MultiServer {
 		}
 	}
 
+	/**
+	 * ajoute un client
+	 * @param nom nom du client
+	 * @param out PrintWriter de sortie du client
+	 * @return taille de la hashmap contenant les clients 
+	 */
 	public synchronized int addClient(String nom, PrintWriter out) {
 		System.out.println(nom + "#" + nbClients + " connecté et ajouté");
 		nbClients++;
@@ -77,6 +92,11 @@ public class MultiServer {
 		return tabClients;
 	}
 
+	/**
+	 * prépare l'envoi d'un message à un client SANS retour à la ligne 
+	 * @param nomCli destinataire
+	 * @param message message 
+	 */
 	public void sendTo(String nomCli, String message) {
 		if (tabClients.containsKey(nomCli)) {
 			tabClients.get(nomCli).print(message);
@@ -86,6 +106,11 @@ public class MultiServer {
 
 	}
 
+	/**
+	 * envoi d'un message à un client AVEC retour à la ligne 
+	 * @param nomCli destinataire
+	 * @param message message 
+	 */
 	public void sendToLn(String nomCli, String message) {
 		if (tabClients.containsKey(nomCli)) {
 			tabClients.get(nomCli).println(message);

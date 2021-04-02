@@ -1,5 +1,12 @@
 package ihm;
 
+/**
+ * 
+ * @author florian 
+ * classe qui référence toutes les ressources :
+ * images et style 
+ *
+ */
 public class DataControl {
 	public enum ApplicationPane {
 		ACCUEIL, ROBOT

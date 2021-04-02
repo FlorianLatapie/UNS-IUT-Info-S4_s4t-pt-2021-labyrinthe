@@ -287,6 +287,9 @@ public class RobotPane extends StackPane implements IRobotPane {
 		sControl.setPaneOnTop(paneName);
 	}
 
+	/**
+	 * mise à jour des images dans les matrices du pane de droite
+	 */
 	private void updateImagesRobotVirtuel() {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -307,7 +310,12 @@ public class RobotPane extends StackPane implements IRobotPane {
 			}
 		});
 	}
-
+	
+	/**
+	 * 
+	 * @param val nom synthétique de la ressource à chercher
+	 * @return la valeur de la ressource depuis le datacontrol
+	 */
 	public String buildMatrice(String val) {
 		if (val != null) {
 			switch (val) {
@@ -352,6 +360,11 @@ public class RobotPane extends StackPane implements IRobotPane {
 		return DataControl.CARRE_VIDE;
 	}
 
+	/**
+	 * 
+	 * @param s nom synthétique de la ressource à chercher
+	 * @return la valeur de la ressource depuis le datacontrol
+	 */
 	public String buildRobot(String s) {
 		if (s != null) {
 			switch (s) {
@@ -370,6 +383,12 @@ public class RobotPane extends StackPane implements IRobotPane {
 		return DataControl.CARRE_TRANSPARENT;
 	}
 
+	/**
+	 * 
+	 * @param s Direction du robot (G, D, B, H) 
+	 * @param v image dont il faut changer la direction
+	 * @return l'image tournée 
+	 */
 	public ImageView positionRobot(String s, ImageView v) {
 		if (s == null) {
 			v.setVisible(false);

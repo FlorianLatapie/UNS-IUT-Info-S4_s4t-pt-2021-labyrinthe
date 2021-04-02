@@ -12,6 +12,7 @@ import raspberry.reseau.MultiServer;
 public class RaspMain {
 	public static void main(String[] args) throws IOException {
 		System.out.println("--- Raspberry Pi main ---\n");
+		// lancement du serveur
 		MultiServer multiServer = new MultiServer();
 		multiServer.runServer(args);
 	}

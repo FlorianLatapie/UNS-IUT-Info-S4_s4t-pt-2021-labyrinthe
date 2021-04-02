@@ -17,7 +17,7 @@ public class ProtocolPC {
 	}
 
 	public void traitement(String fromServer) {
-
+		// mise à jour de l'interface graphique 
 		if (fromServer.length() == 6) {
 			ihmPaneGauche(fromServer.substring(3));
 		}

@@ -1,5 +1,11 @@
 package ihm;
 
+/**
+ * 
+ * @author florian, remy
+ * classe permettant de modifier toutes les valeurs de l'interface graphique
+ *
+ */
 public class Core {
 	private String nomPolice = "Segoe UI";
 	private String ip = "localhost";

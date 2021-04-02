@@ -4,6 +4,14 @@ import raspberry.reseau.StaticProtocolMessages;
 
 public class RobotVirtuel {
 
+	/**
+	 * crée une matrice pour robot 
+	 * @param tailleX largeur du labyrinthe
+	 * @param tailleY hauteur du labyrinthe
+	 * @param posDepart position de départ du robot
+	 * @param dirRobot direction du robot
+	 * @return la matrice
+	 */
 	public String[][] creerMatriceRobot(int tailleX, int tailleY, int[] posDepart, String dirRobot) {
 		String[][] retour = new String[tailleX][tailleY];
 		for (int i = 0; i < tailleX; i++) {
@@ -18,6 +26,13 @@ public class RobotVirtuel {
 		return retour;
 	}
 
+	/**
+	 * crée une matrice sous le robot
+	 * @param tailleX largeur du labyrinthe
+	 * @param tailleY hauteur du labyrinthe
+	 * @param posDepart position de départ du robot
+	 * @return une matrice de labyrinthe
+	 */
 	public String[][] creerMatriceLaby(int tailleX, int tailleY, int[] posDepart) {
 		String[][] retour = new String[tailleX][tailleY];
 		for (int i = 0; i < tailleX; i++) {
@@ -35,6 +50,13 @@ public class RobotVirtuel {
 		return retour;
 	}
 
+	/**
+	 * bouge le robot dans les deux matrices (labyrinthe et robot)
+	 * @param mouvement mouvement du robot à effectuer
+	 * @param valCapteur valeur du capteur pour dessiner les murs
+	 * @param mRobot matrice robot
+	 * @param mLaby matrice labyrinthe
+	 */
 	public void bouger(String mouvement, String valCapteur, String[][] mRobot, String[][] mLaby) {
 		String[] tabMouvement = mouvement.split("");
 		for (int i = 0; i < tabMouvement.length; i++) {
@@ -45,6 +67,12 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * crée un nouveau mur en fonction des entrée du capteur et de la position du robot 
+	 * @param valCapteur valeur du capteur
+	 * @param mRobot matrice robot
+	 * @param mLaby matrice labyrinthe
+	 */
 	public void nouveauMur(String valCapteur, String[][] mRobot, String[][] mLaby) {
 		int[] posRobot = getPosRobot(mRobot);
 
@@ -73,6 +101,12 @@ public class RobotVirtuel {
 		}
 	}
 
+	/**
+	 * crée un mur composé d'une ligne à gauche et d'une ligne à droite
+	 * @param posRobot position du robot
+	 * @param dirRobot direction du robot 
+	 * @param mLaby matrice labyrinthe
+	 */
 	public void deuxLignes(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
@@ -93,6 +127,12 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * crée un mur composé d'une ligne à droite et d'une ligne devant
+	 * @param posRobot position du robot
+	 * @param dirRobot direction du robot 
+	 * @param mLaby matrice labyrinthe
+	 */
 	public void angleDroit(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
@@ -113,6 +153,12 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * crée un mur composé d'une ligne à gauche et d'une ligne devant
+	 * @param posRobot position du robot
+	 * @param dirRobot direction du robot 
+	 * @param mLaby matrice labyrinthe
+	 */
 	public void angleGauche(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
@@ -133,6 +179,12 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * crée un mur composé d'une ligne de chaque coté 
+	 * @param posRobot position du robot
+	 * @param dirRobot direction du robot 
+	 * @param mLaby matrice labyrinthe
+	 */
 	public void U(int[] posRobot, String dirRobot, String[][] mLaby) {
 		switch (dirRobot) {
 		case "H":
@@ -153,6 +205,11 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * déplace le robot sur sa matrice 
+	 * @param mouvement mouvement à effectuer
+	 * @param mRobot matrice du robot
+	 */
 	public void bougerRobot(String mouvement, String[][] mRobot) {
 		switch (mouvement) {
 		case StaticProtocolMessages.AVANCER:
@@ -172,6 +229,10 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * fait avancer le robot
+	 * @param mRobot matrice du robot
+	 */
 	public void avancer(String[][] mRobot) {
 		int posX = getPosRobot(mRobot)[0];
 		int posY = getPosRobot(mRobot)[1];
@@ -198,6 +259,10 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * fait tourner le robot suis lui meme 
+	 * @param mRobot matrice du robot
+	 */
 	public void droite(String[][] mRobot) {
 		switch (getDirRobot(mRobot)) {
 		case "H":
@@ -218,6 +283,10 @@ public class RobotVirtuel {
 
 	}
 
+	/**
+	 * fait tourner le robot suis lui meme 
+	 * @param mRobot matrice du robot
+	 */
 	public void gauche(String[][] mRobot) {
 		switch (getDirRobot(mRobot)) {
 		case "H":
@@ -238,6 +307,7 @@ public class RobotVirtuel {
 
 	}
 
+	
 	public String getDirRobot(String[][] mRobot) {
 		return mRobot[getPosRobot(mRobot)[0]][getPosRobot(mRobot)[1]];
 	}
@@ -255,12 +325,21 @@ public class RobotVirtuel {
 		return null;
 	}
 
+	/**
+	 * affiche 2 matrices dans la sortie standard 
+	 * @param matrice
+	 * @param matrice2
+	 */
 	public void affiche2Matrices(String[][] matrice, String[][] matrice2) {
 		afficheMatrice(matrice);
 		System.out.println("\n");
 		afficheMatrice(matrice2);
 	}
 
+	/**
+	 * affiche 1 matrice dans la sortie standard
+	 * @param matrice
+	 */
 	public void afficheMatrice(String[][] matrice) {
 		for (int i = 0; i < matrice[0].length; i++) {
 			for (int j = 0; j < matrice.length; j++) {

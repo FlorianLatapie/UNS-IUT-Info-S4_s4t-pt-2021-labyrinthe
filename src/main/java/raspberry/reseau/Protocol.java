@@ -23,10 +23,12 @@ public class Protocol {
 
 	public String processInfo(String input) {
 
+		// si le message est null ou vide, on ne renvoie rien
 		if (("" + input).equalsIgnoreCase("" + null) || input.equalsIgnoreCase("")) {
 			return "";
 		}
-
+		
+		// changement de l'algorithme
 		else if (input.startsWith(StaticProtocolMessages.ENTETE_ALGO)) {
 			input = input.substring(StaticProtocolMessages.ENTETE_ALGO.length());
 			switch (input) {
@@ -42,6 +44,7 @@ public class Protocol {
 			return "";
 		}
 
+		// affiche plus ou moins de messages dans la console
 		else if (input.startsWith(StaticProtocolMessages.ENTETE_VERBOSE)) {
 			input = input.substring(StaticProtocolMessages.ENTETE_VERBOSE.length());
 			switch (input) {
@@ -64,21 +67,25 @@ public class Protocol {
 			return "";
 		}
 
+		// test du protocole
 		else if (input.equalsIgnoreCase(StaticProtocolMessages.TEST)) {
 			return StaticProtocolMessages.TEST + " : le protocol existe";
 		}
 
+		// affiche de l'aide pour un ClientManuel
 		else if (input.equalsIgnoreCase(StaticProtocolMessages.HELP)) {
 			return StaticProtocolMessages.HELP + " : " + StaticProtocolMessages.ENTETE_BROADCAST
 					+ "<msg> pour envoyer un message à tout le monde";
 		}
 
+		// envoie un message à tous les clients 
 		else if (input.startsWith(StaticProtocolMessages.ENTETE_BROADCAST)) {
 			input = input.substring(StaticProtocolMessages.ENTETE_BROADCAST.length());
 			multiServer.sendAll(input);
 			return "";
 		}
 
+		// lecture du capteur
 		else if (input.startsWith(StaticProtocolMessages.ENTETE_CAPTEUR)) {
 			if (verbose) {
 				System.out.println("execution de l'algo");
@@ -101,6 +108,7 @@ public class Protocol {
 			}
 		}
 
+		// démarrage de l'algorithme ou execution de l'ordre suivant
 		if (input.startsWith(StaticProtocolMessages.RUN_ALGO)
 				|| input.startsWith(StaticProtocolMessages.MOUVEMENT_EFFECTUE)) {
 			if (multiServer.getTabClients().containsKey(StaticProtocolMessages.CAPTEUR)) {
@@ -113,6 +121,7 @@ public class Protocol {
 
 		}
 
+		// envoi des réglages à la brique lego 
 		if (input.startsWith(StaticProtocolMessages.ENTETE_REGLAGE)) {
 			multiServer.sendToLn(StaticProtocolMessages.LEGO, input);
 			return "";

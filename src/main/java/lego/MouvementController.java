@@ -62,6 +62,9 @@ public class MouvementController {
 			System.out.println("fin de l'exemple");
 	}
 
+	/**
+	 * fait tourner le robot à gauche
+	 */
 	public void gauche() {
 		if (modeVerbeux)
 			System.out.println("je vais a gauche");
@@ -78,6 +81,9 @@ public class MouvementController {
 			System.out.println("fin gauche");
 	}
 
+	/**
+	 * fait tourner le robot à droite
+	 */
 	public void droite() {
 		if (modeVerbeux)
 			System.out.println("je vais � droite");
@@ -94,6 +100,9 @@ public class MouvementController {
 			System.out.println("fin droite");
 	}
 
+	/**
+	 * fait avancer le robot
+	 */
 	public void avancer() {
 		if (modeVerbeux)
 			System.out.println("j'avance");
@@ -111,7 +120,10 @@ public class MouvementController {
 		if (modeVerbeux)
 			System.out.println("stop");
 	}
-
+	
+	/**
+	 * fait reculer le robot 
+	 */
 	public void reculer() {
 		if (modeVerbeux)
 			System.out.println("je recule");
@@ -129,6 +141,10 @@ public class MouvementController {
 			System.out.println("stop");
 	}
 
+	
+	/**
+	 * stoppe le robot
+	 */
 	public void stop() {
 		Motor.A.stop();
 		Motor.B.stop();

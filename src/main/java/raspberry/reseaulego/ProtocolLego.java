@@ -7,6 +7,8 @@ public class ProtocolLego {
 
 	public boolean traitement(String fromServer) {
 		MouvementController mouvementController = new MouvementController(true);
+		
+		// Réglage du robot
 		if (fromServer.startsWith(StaticProtocolMessages.ENTETE_REGLAGE)) {
 			fromServer = fromServer.substring(StaticProtocolMessages.ENTETE_REGLAGE.length());
 			if (fromServer.startsWith(StaticProtocolMessages.VAL_AVANCE)) {
@@ -30,7 +32,10 @@ public class ProtocolLego {
 			} else {
 				return false;
 			}
-		} else {
+		} 
+		
+		// Déplacement du robot 
+		else {
 			switch (fromServer) {
 			case StaticProtocolMessages.GAUCHE + StaticProtocolMessages.AVANCER:
 				mouvementController.gauche();
